@@ -1,0 +1,66 @@
+@mixin manrope {
+  $path: 'src/assets/fonts';
+
+  @font-face {
+    font-family: 'manrope';
+    src: url(#{$path}/Manrope-Regular.woff);
+    src:
+      local('Manrope'),
+      local('Manrope-Regular'),
+      url(#{$path}/Manrope-Regular.woff) format('woff'),
+      url(#{$path}/Manrope-Regular.orf) format('otf'),
+      url(#{$path}/Manrope-Regular.ttf) format('ttf');
+    font-weight: 400;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'manrope';
+    src: url(#{$path}/Manrope-SemiBold.woff);
+    src:
+      local('Manrope'),
+      local('Manrope-SemiBold'),
+      url(#{$path}/Manrope-SemiBold.woff) format('woff'),
+      url(#{$path}/Manrope-SemiBold.orf) format('otf'),
+      url(#{$path}/Manrope-SemiBold.ttf) format('ttf');
+    font-weight: 600;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'manrope';
+    src: url(#{$path}/Manrope-Medium.woff);
+    src:
+      local('Manrope'),
+      local('Manrope-Medium'),
+      url(#{$path}/Manrope-Medium.woff) format('woff'),
+      url(#{$path}/Manrope-Medium.orf) format('otf'),
+      url(#{$path}/Manrope-Medium.ttf) format('ttf');
+    font-weight: 500;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'manrope';
+    src: url(#{$path}/Manrope-Bold.woff);
+    src:
+      local('Manrope'),
+      local('Manrope-Bold'),
+      url(#{$path}/Manrope-Bold.woff) format('woff'),
+      url(#{$path}/Manrope-Bold.orf) format('otf'),
+      url(#{$path}/Manrope-Bold.ttf) format('ttf');
+    font-weight: 700;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'manrope';
+    src: url(#{$path}/Manrope-ExtraBold.woff);
+    src:
+      local('Manrope'),
+      local('Manrope-ExtraBold'),
+      url(#{$path}/Manrope-ExtraBold.woff) format('woff'),
+      url(#{$path}/Manrope-ExtraBold.orf) format('otf'),
+      url(#{$path}/Manrope-ExtraBold.ttf) format('ttf');
+    font-weight: 800;
+    font-style: normal;
+  }
+}
+
+@include manrope();
