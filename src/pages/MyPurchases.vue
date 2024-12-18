@@ -3,13 +3,12 @@
     <div class="purple-yellor-gr env-t tw-rounded-b-24 tw-mb-6">
       <div class="tw-pb-6 tw-pt-7.5">
         <div class="tw-relative tw-flex tw-justify-center">
-          <router-link to="go(-1)" class="tw-absolute tw-left-5 tw-top-0">
+          <div @click="$router.go(-1)" class="tw-absolute tw-left-5 tw-top-0">
             <baseIcon name="back" class="tw-w-[17px] tw-h-[17px]" />
-          </router-link>
+          </div>
           <div class="tw-grid tw-gap-3 tw-justify-items-center">
             <div
-              class="tw-bg-el tw-rounded-12 tw-grid tw-place-content-center tw-w-[50px] tw-h-[50px]"
-            >
+              class="tw-bg-el tw-rounded-12 tw-grid tw-place-content-center tw-w-[50px] tw-h-[50px]">
               <baseIcon name="shopping" class="tw-w-7.5 tw-h-7.5" />
             </div>
             <div class="tw-text-h1 tw-font-bold">Мои покупки</div>
@@ -39,23 +38,23 @@
 </template>
 
 <script setup lang="ts">
-import TabItemList from 'src/components/TabItemList.vue'
+import TabItemList from "src/components/TabItemList.vue";
 
 defineOptions({
-  name: 'IndexPage',
-})
-const open = ref(false)
-const isOpenModal = ref(false)
-const tab = ref<string | null>(null)
+  name: "IndexPage",
+});
+const open = ref(false);
+const isOpenModal = ref(false);
+const tab = ref<string | null>(null);
 const tabs = [
   {
-    name: 'active',
-    label: 'Активные',
+    name: "active",
+    label: "Активные",
   },
   {
-    name: 'completed',
-    label: 'Завершенные',
+    name: "completed",
+    label: "Завершенные",
   },
-]
+];
 </script>
 <style lang="scss"></style>

@@ -1,5 +1,5 @@
 <template>
-  <label for="1" class="checkbox">
+  <label class="checkbox">
     <div class="checkbox__wrapper">
       <input type="radio" name="test" id="1" hidden class="checkbox__input" />
       <div class="checkbox__icon"></div>
@@ -9,8 +9,8 @@
 </template>
 <script setup lang="ts">
 const props = defineProps<{
-  label: string
-}>()
+  label: string;
+}>();
 </script>
 <style lang="scss" scoped>
 .checkbox__wrapper {
@@ -51,8 +51,8 @@ const props = defineProps<{
 .checkbox__icon::before {
   position: absolute;
   opacity: 0;
-  content: '';
-  background: red;
+  content: "";
+  background: #181818;
   border-radius: 9999px;
   width: 9px;
   height: 9px;
@@ -72,8 +72,7 @@ const props = defineProps<{
 }
 .checkbox__input:checked ~ .checkbox__label {
 }
-.checkbox__input:checked + .checkbox__icon .tick {
-  /* убираем смещение для отрезков, чтобы включить анимацию галочки */
-  stroke-dashoffset: 0;
+.checkbox__input:checked + .checkbox__icon {
+  border-color: #181818;
 }
 </style>

@@ -4,7 +4,7 @@
     <div class="label">Хиты продаж</div>
     <div class="popular__cards">
       <div class="popular__cards--wrapper">
-        <Card v-for="n in 6" />
+        <Card v-for="n in 6" mini />
       </div>
     </div>
   </div>

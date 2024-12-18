@@ -1,102 +1,54 @@
 <template>
-  <q-page class="">
-    <div class="purple-yellor-gr env-t tw-rounded-b-24 tw-mb-6">
-      <div class="tw-pb-6 tw-pt-7.5">
-        <div class="tw-relative tw-flex tw-justify-center">
-          <router-link to="go(-1)" class="tw-absolute tw-left-5 tw-top-0">
-            <baseIcon name="back" class="tw-w-[17px] tw-h-[17px]" />
-          </router-link>
-          <div class="tw-grid tw-gap-3 tw-justify-items-center">
-            <div
-              class="tw-bg-el tw-rounded-12 tw-grid tw-place-content-center tw-w-[50px] tw-h-[50px]"
-            >
-              <baseIcon name="box" class="tw-w-7.5 tw-h-7.5" />
+  <q-page class="env-t">
+    <div class="tw-container tw-grid">
+      <BaseHeader title="Каталог" />
+
+      <!-- <h2 class="tw-flex tw-justify-center tw-pt-3">Каталог</h2> -->
+      <SelectCategory class="tw-mb-5" />
+      <template v-if="tab">
+        <TabItemList v-model="tab" :options="tabs" class="tw-mb-3.5" />
+        <TabBody v-model="tab" class="tw-mb-6">
+          <TabContent name="1">
+            <div class="tw-gap-x-2.5 tw-gap-y-4 tw-grid tw-grid-cols-2">
+              <Card v-for="n in 6" @favorite="favorite" />
             </div>
-            <div class="tw-text-h1 tw-font-bold">Мои продажи</div>
-          </div>
-        </div>
+          </TabContent>
+        </TabBody>
+      </template>
+
+      <div v-else class="tw-gap-x-2.5 tw-gap-y-4 tw-grid tw-grid-cols-2">
+        <Card v-for="n in 6" @favorite="favorite" />
       </div>
     </div>
-    <div class="tw-container tw-grid tw-gap-7.5">
-      <TabItemList v-model="tab" :options="tabs" class="tw-mb-2 lg:tw-mb-4" />
-      <div class="tw-rounded-20 tw-p-4 tw-bg-gray-light">
-        <div class="tw-grid tw-gap-1.5 tw-mb-3">
-          <div class="tw-text-h2 tw-font-bold">Заказ № 531-141</div>
-          <div class="tw-text-t2 tw-text-card-descr">4 октября 2024</div>
-        </div>
-        <div class="tw-border-b tw-border-[#D2D2E0] tw-mb-2.5"></div>
-        <div class="tw-grid tw-gap-1.5 tw-mb-3.5">
-          <div class="tw-text-t2 tw-text-card-descr">Статус</div>
-          <div class="tw-text-t1">Оценка товара</div>
-        </div>
-        <div class="tw-grid tw-gap-1.5">
-          <div class="tw-text-t2 tw-text-card-descr">Товар</div>
-          <div class="tw-text-t1">Кольцо из красного золота проба 585</div>
-        </div>
-      </div>
-    </div>
-    <Modal v-if="isOpenModal" class="tw-container">
-      <div
-        class="tw-grid tw-content-between tw-grid-rows-[1fr_auto] tw-gap-8 tw-h-full"
-      >
-        <div class="">
-          <div class="tw-mb-6 tw-relative">
-            <h2>З аказ № 531-141</h2>
-          </div>
-          <div class="tw-grid tw-gap-5">
-            <div>
-              <h2 class="tw-mb-1.5">Дата</h2>
-              <div>4 октября 2024</div>
-            </div>
-            <div>
-              <h2 class="tw-mb-1.5">Статус</h2>
-              <div>Оценка товара</div>
-            </div>
-            <div>
-              <h2 class="tw-mb-1.5">Наименование товара</h2>
-              <div>Серьги золотые из красного золота проба 585</div>
-            </div>
-            <div>
-              <h2 class="tw-mb-2.5">Фотографии</h2>
-              <div class="tw-flex tw-gap-3 tw-flex-wrap">
-                <img
-                  v-for="n in 2"
-                  src="/public/test.png"
-                  alt=""
-                  class="tw-w-[100px] tw-h-[100px] tw-shrink-0 tw-rounded-20 tw-object-cover"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <BaseButton text="Отменить сделку" to="/" class="" />
-      </div>
-    </Modal>
   </q-page>
 </template>
 
 <script setup lang="ts">
-import TabItemList from 'src/components/TabItemList.vue'
+import TabItemList from "src/components/TabItemList.vue";
 
 defineOptions({
-  name: 'IndexPage',
-})
-const open = ref(false)
-const isOpenModal = ref(true)
-const tab = ref<string | null>(null)
+  name: "IndexPage",
+});
+const open = ref(false);
+const isOpenModal = ref(true);
+const tab = ref<string | null>("1");
 const tabs = [
   {
-    name: 'active',
-    label: 'Активные',
+    name: "1",
+    label: "Кольца",
   },
   {
-    name: 'completed',
-    label: 'Завершенные',
+    name: "2",
+    label: "Серьги",
   },
   {
-    name: 'сanceled',
-    label: 'Отмененные',
+    name: "3",
+    label: "Браслеты",
   },
-]
+];
+
+const favorite = (id) => {
+  console.log(id);
+};
 </script>
 <style lang="scss"></style>

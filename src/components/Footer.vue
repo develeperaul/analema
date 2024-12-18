@@ -4,57 +4,49 @@
       <router-link
         to="/"
         v-slot="{ isActive }"
-        class="tw-grid tw-justify-items-center tw-gap-1 tw-text-t3"
-      >
+        class="tw-grid tw-justify-items-center tw-gap-1 tw-text-t3">
         <base-icon
           name="home"
-          class="tw-w-5 tw-h-5 tw-text-gray"
-          :class="{ 'tw-text-black': isActive }"
-        />
-        <span class="tw-text-gray" :class="{ 'tw-text-black': isActive }"
+          class="tw-w-5 tw-h-5"
+          :class="[isActive ? 'tw-text-black' : 'tw-text-gray']" />
+        <span :class="[isActive ? 'tw-text-black' : 'tw-text-gray']"
           >Главная</span
         >
       </router-link>
       <router-link
-        to="/"
+        :to="{ name: 'catalog' }"
         v-slot="{ isActive }"
-        class="tw-grid tw-justify-items-center tw-gap-1 tw-text-t3"
-      >
+        class="tw-grid tw-justify-items-center tw-gap-1 tw-text-t3">
         <base-icon
           name="category"
-          class="tw-w-5 tw-h-5 tw-text-gray"
-          :class="{ 'tw-text-black': isActive }"
-        />
-        <span class="tw-text-gray" :class="{ 'tw-text-black': isActive }">
+          class="tw-w-5 tw-h-5"
+          :class="[isActive ? 'tw-text-black' : 'tw-text-gray']" />
+        <span :class="[isActive ? 'tw-text-black' : 'tw-text-gray']">
           Каталог
         </span>
       </router-link>
       <router-link
-        to="/"
+        :to="{ name: 'basket' }"
         v-slot="{ isActive }"
-        class="tw-grid tw-justify-items-center tw-gap-1 tw-text-t3"
-      >
+        class="tw-grid tw-justify-items-center tw-gap-1 tw-text-t3">
         <base-icon
-          name="ingots"
-          class="tw-w-5 tw-h-5 tw-text-gray"
-          :class="{ 'tw-text-black': isActive }"
-        />
-        <span class="tw-text-gray" :class="{ 'tw-text-black': isActive }">
-          Слитки
+          name="basket"
+          class="tw-w-5 tw-h-5"
+          :class="[isActive ? 'tw-text-black' : 'tw-text-gray']" />
+        <span :class="[isActive ? 'tw-text-black' : 'tw-text-gray']">
+          Корзина
         </span>
       </router-link>
       <router-link
-        to="/"
+        :to="{ name: 'profile' }"
         v-slot="{ isActive }"
-        class="tw-grid tw-justify-items-center tw-gap-1 tw-text-t3"
-      >
+        class="tw-grid tw-justify-items-center tw-gap-1 tw-text-t3">
         <base-icon
           name="user"
           class="tw-w-5 tw-h-5 tw-text-gray"
-          :class="{ 'tw-text-black': isActive }"
-        />
-        <span class="tw-text-gray" :class="{ 'tw-text-black': isActive }">
-          Слитки
+          :class="[isActive ? 'tw-text-black' : 'tw-text-gray']" />
+        <span :class="[isActive ? 'tw-text-black' : 'tw-text-gray']">
+          Профиль
         </span>
       </router-link>
     </div>

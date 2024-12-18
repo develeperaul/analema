@@ -2,13 +2,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import './fonts.scss';
+@import "swiper/css";
+@import "./fonts.scss";
 @layer base {
+  :root {
+    --swiper-pagination-color: theme(colors.black);
+    --swiper-pagination-bullet-inactive-color: theme(colors.black/10);
+    --swiper-pagination-bullet-inactive-opacity: 0.9;
+  }
   html {
     font-size: 100%;
   }
   body {
-    @apply tw-font-manrope tw-text-base;
+    @apply tw-font-manrope tw-text-t1;
+  }
+  h1 {
+    @apply tw-font-bold tw-text-h1;
   }
   h2 {
     @apply tw-font-bold tw-text-h2;
@@ -64,5 +73,12 @@
 
   .env-b {
     padding-bottom: max(20px, env(safe-area-inset-bottom, 20px));
+  }
+  .env-t-40 {
+    padding-top: max(40px, env(safe-area-inset-top, 20px));
+  }
+
+  .env-b-40 {
+    padding-bottom: max(40px, env(safe-area-inset-bottom, 20px));
   }
 }
