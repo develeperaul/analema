@@ -9,6 +9,7 @@ const routes: RouteRecordRaw[] = [
         path: "",
         name: "home",
         component: () => import("pages/IndexPage.vue"),
+        meta: { auth: true }
       },
     ],
   },
@@ -110,23 +111,26 @@ const routes: RouteRecordRaw[] = [
   },
 
   {
-    path: "/",
+    path: "/auth",
     component: () => import("layouts/ZeroLayout.vue"),
     children: [
       {
-        path: "auth",
-        name: "auth",
-        component: () => import("pages/Auth/Index.vue"),
+        path: "",
+        name: "auth.login",
+        component: () => import("pages/Auth/Login.vue"),
+        meta: { guest: true },
       },
       {
-        path: "verify",
-        name: "verify",
-        component: () => import("pages/Auth/Verify.vue"),
+        path: "verify-code",
+        name: "auth.verify-code",
+        component: () => import("pages/Auth/VerifyCode.vue"),
+        meta: { guest: true },
       },
       {
-        path: "data",
-        name: "data",
-        component: () => import("pages/Auth/Data.vue"),
+        path: "profile",
+        name: "auth.profile",
+        component: () => import("pages/Auth/Profile.vue"),
+        meta: { auth: true },
       },
       {
         path: "first",
