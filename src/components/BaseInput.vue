@@ -58,15 +58,16 @@
   </div>
 </template>
 <script setup lang="ts">
-import { useField } from "vee-validate";
+import { useField, type RuleExpression } from "vee-validate";
 import { Mask } from "maska";
+
 const props = withDefaults(
   defineProps<{
     modelValue: string;
     type?: string;
     maska?: string;
     name: string;
-    rules?: string;
+    rules?: RuleExpression<string>;
     label?: string;
     placeholder?: string;
     disabled?: boolean;

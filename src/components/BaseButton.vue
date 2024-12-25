@@ -11,11 +11,16 @@
   </button>
 </template>
 <script setup lang="ts">
-const props = defineProps<{
-  text: string
-  border: boolean
-  to?: string | { name: string }
-}>()
+const props = withDefaults(
+  defineProps<{
+    text: string
+    border?: boolean
+    to?: string | { name: string }
+  }>(),
+  {
+    border: false,
+  }
+)
 </script>
 <style lang="scss" scoped>
 .btn {
