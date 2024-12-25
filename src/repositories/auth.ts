@@ -7,7 +7,7 @@ export default function(http: AxiosInstance) {
       return http.post('auth.php', jsonFormData(body));
     },
     verifyCode(body: VerifyCodeBody) {
-      return http.post('token.php', jsonFormData(body));
+      return http.post<SuccessVerified | Array<never> | null>('token.php', jsonFormData(body));
     },
   }
 }
@@ -19,4 +19,8 @@ export interface SendCodeBody {
 export interface VerifyCodeBody {
   phone: string,
   kod: string,
+}
+
+export interface SuccessVerified {
+  token: string,
 }
