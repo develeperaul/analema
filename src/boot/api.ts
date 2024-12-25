@@ -15,7 +15,7 @@ export default boot(({ app }) => {
   app.provide(repositoriesKey, repositories);
 });
 
-function createRepositories(http: AxiosInstance) {
+export function createRepositories(http: AxiosInstance) {
   const repositories = {
     'auth': createAuthRepo(http),
     'profile': createProfileRepo(http),
@@ -24,7 +24,7 @@ function createRepositories(http: AxiosInstance) {
   return repositories;
 }
 
-function createHttp() {
+export function createHttp() {
   const http = axios.create({
     baseURL: process.env.API_BASE,
   });
@@ -36,6 +36,10 @@ function createHttp() {
 
     if(config.data instanceof FormData) {
       config.data.append('token', token);
+    } else {
+      const formData = new FormData();
+      formData.append('token', token);
+      config.data = formData;
     }
 
     return config;
@@ -46,3 +50,10 @@ function createHttp() {
 
 export const httpKey: InjectionKey<AxiosInstance> = Symbol();
 export const repositoriesKey: InjectionKey<ReturnType<typeof createRepositories>> = Symbol();
+
+declare module '@vue/runtime-core' {
+  interface ComponentCustomProperties {
+    $repositories: ReturnType<typeof createRepositories>,
+    $http: AxiosInstance,
+  }
+}

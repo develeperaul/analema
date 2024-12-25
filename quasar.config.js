@@ -27,7 +27,13 @@ module.exports = configure(function (/* ctx */) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
-    boot: ["init", "registr-validators", "api"],
+    boot: [
+      "init",
+      "registr-validators",
+      "api",
+      "init-user",
+      "auth"
+    ],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
     css: ["app.scss"],
@@ -63,7 +69,7 @@ module.exports = configure(function (/* ctx */) {
       // publicPath: '/',
       // analyze: true,
       env: {
-        API_BASE: 'https://analemmatrade.ru/api',
+        API_BASE: 'https://d25.highdevlab.ru/api',
       },
       // rawDefine: {}
       // ignorePublicFolder: true,
@@ -142,7 +148,7 @@ module.exports = configure(function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: [],
+      plugins: [ 'Notify' ],
     },
 
     // animations: 'all', // --- includes all animations
