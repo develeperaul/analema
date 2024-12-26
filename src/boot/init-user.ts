@@ -2,6 +2,7 @@ import { boot } from "quasar/wrappers";
 import { Notify } from 'quasar';
 import { AxiosError } from 'axios';
 import { useAuthStore } from 'src/stores/auth';
+import { Loading } from 'quasar';
 import * as Token from 'src/utils/token';
 
 export default boot(async ({ app }) => {
@@ -9,6 +10,7 @@ export default boot(async ({ app }) => {
   const authStore = useAuthStore();
 
   try {
+    Loading.show();
     const res = await api.profile.show();
     if(typeof res.data === 'string') {
       authStore.setUser(null);
@@ -35,5 +37,7 @@ export default boot(async ({ app }) => {
     }
 
     authStore.setUser(null);
+  } finally {
+    Loading.hide();
   }
 });
