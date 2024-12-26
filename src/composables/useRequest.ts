@@ -7,7 +7,7 @@ export type Params = {
   watch: WatchSource[],
 }
 
-export default async function<T, E>(fetchFn: (...args: any[]) => Promise<AxiosResponse<T>>, params: Partial<Params> = {}) {
+export default function<T, E>(fetchFn: (...args: any[]) => Promise<AxiosResponse<T>>, params: Partial<Params> = {}) {
   params = Object.assign({}, {
     immediate: true,
   }, params);
@@ -32,7 +32,7 @@ export default async function<T, E>(fetchFn: (...args: any[]) => Promise<AxiosRe
   }
 
   if(params.immediate) {
-    await send();
+    send();
   }
 
   if(params.watch) {
