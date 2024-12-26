@@ -67,8 +67,11 @@ declare global {
   const useAttrs: typeof import('vue')['useAttrs']
   const useCssModule: typeof import('vue')['useCssModule']
   const useCssVars: typeof import('vue')['useCssVars']
+  const useDataOrAlert: typeof import('./src/composables/useDataOrAlert')['default']
   const useId: typeof import('vue')['useId']
   const useModel: typeof import('vue')['useModel']
+  const useRepositories: typeof import('./src/composables/useRepositories')['default']
+  const useRequest: typeof import('./src/composables/useRequest')['default']
   const useSlots: typeof import('vue')['useSlots']
   const useTemplateRef: typeof import('vue')['useTemplateRef']
   const watch: typeof import('vue')['watch']
@@ -102,7 +105,6 @@ declare module 'vue' {
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
-    readonly index: UnwrapRef<typeof import('./src/stores/index')['default']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>

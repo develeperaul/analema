@@ -9,13 +9,20 @@ declare module 'vue' {
     BaseIcon: typeof import('./components/BaseIcon.vue')['default']
     BaseInput: typeof import('./components/BaseInput.vue')['default']
     Card: typeof import('./components/Card.vue')['default']
+    CategoriesList: typeof import('./components/Estimates/CategoriesList.vue')['default']
     CodeInput: typeof import('./components/CodeInput.vue')['default']
+    Cooldown: typeof import('./components/Base/Cooldown.vue')['default']
     EssentialLink: typeof import('./components/EssentialLink.vue')['default']
     ExampleComponent: typeof import('./components/ExampleComponent.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
+    Input: typeof import('./components/PhotoUploader/Input.vue')['default']
     Modal: typeof import('./components/Modal.vue')['default']
+    ModalLoading: typeof import('./components/Estimates/ModalLoading.vue')['default']
+    ModalScreen: typeof import('./components/Base/ModalScreen.vue')['default']
     MyLink: typeof import('./components/myLink.vue')['default']
+    PhotoUploader: typeof import('./components/PhotoUploader/index.vue')['default']
     PopularCards: typeof import('./components/PopularCards.vue')['default']
+    Preview: typeof import('./components/PhotoUploader/Preview.vue')['default']
     Radio: typeof import('./components/Radio.vue')['default']
     SelectCategory: typeof import('./components/SelectCategory.vue')['default']
     Switch: typeof import('./components/Switch.vue')['default']
@@ -23,6 +30,7 @@ declare module 'vue' {
     TabContent: typeof import('./components/TabContent.vue')['default']
     TabItem: typeof import('./components/TabItem.vue')['default']
     TabItemList: typeof import('./components/TabItemList.vue')['default']
+    Textarea: typeof import('./components/Base/Textarea.vue')['default']
   }
 }
 
