@@ -18,9 +18,9 @@ const routes: RouteRecordRaw[] = [
     component: () => import("layouts/NoHeadLayout.vue"),
     children: [
       {
-        path: "online-scene",
-        name: "online-scene",
-        component: () => import("pages/OnlineScene.vue"),
+        path: "estimates/create",
+        name: "estimates.create",
+        component: () => import("pages/EstimatesCreate.vue"),
         meta: { auth: true },
       },
       {

@@ -1,6 +1,6 @@
 <template>
   <q-page class="tw-container tw-pt-7 tw-flex tw-flex-col tw-gap-5">
-    <router-link :to="{ name: 'online-scene' }" class="online-scene">
+    <router-link :to="{ name: 'estimates.create' }" class="online-scene">
       <div class="online-scene__title">Онлайн-оценка товаров</div>
       <div class="online-scene__name">Получите деньги за 1 день</div>
       <img src="~assets/images/wallet.png" alt="" class="online-scene__icon" />
@@ -24,7 +24,5 @@
 </template>
 
 <script setup lang="ts">
-defineOptions({
-  name: "IndexPage",
-});
+
 </script>
