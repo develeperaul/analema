@@ -2,6 +2,7 @@ import { boot } from 'quasar/wrappers'
 import axios, { type AxiosInstance } from 'axios';
 import createAuthRepo from 'src/repositories/auth';
 import createProfileRepo from 'src/repositories/profile';
+import createEstimatesRepo from 'src/repositories/estimates';
 import createFilesRepo from 'src/repositories/files';
 import { InjectionKey } from 'vue';
 import * as Token from 'src/utils/token';
@@ -20,6 +21,7 @@ export function createRepositories(http: AxiosInstance) {
   const repositories = {
     'auth': createAuthRepo(http),
     'profile': createProfileRepo(http),
+    'estimates': createEstimatesRepo(http),
     'files': createFilesRepo(http),
   };
 
