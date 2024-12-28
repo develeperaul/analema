@@ -25,7 +25,7 @@
           </div>
           <div class="tw-relative">
             <h2
-              class="tw-absolute tw-text-center tw-bottom-[124px] tw-left-1/2 tw-transform -tw-translate-x-1/2 tw-w-full">
+              class="tw-absolute tw-text-center tw-bottom-[140px] tw-left-1/2 tw-transform -tw-translate-x-1/2 tw-w-full tw-px-4 tw-pb-4">
               Покупайте, продавайте и <br />
               зарабатывайте вместе с нами
             </h2>
@@ -60,7 +60,7 @@
           </div>
           <div class="tw-relative">
             <h2
-              class="tw-absolute tw-text-center tw-bottom-[124px] tw-left-1/2 tw-transform -tw-translate-x-1/2 tw-w-full">
+              class="tw-absolute tw-text-center tw-bottom-[140px] tw-left-1/2 tw-transform -tw-translate-x-1/2 tw-w-full tw-px-4 tw-pb-4">
               Каталог с уникальными <br />
               товарами и лучшими ценами
             </h2>
@@ -93,7 +93,7 @@
           </div>
           <div class="tw-relative">
             <h2
-              class="tw-absolute tw-text-center tw-bottom-[124px] tw-left-1/2 tw-transform -tw-translate-x-1/2 tw-w-full">
+              class="tw-absolute tw-text-center tw-bottom-[140px] tw-left-1/2 tw-transform -tw-translate-x-1/2 tw-w-full tw-px-4 tw-pb-4">
               Экспресс-оценка товара <br />
               нейросетью за 1 минуту
             </h2>
@@ -127,11 +127,15 @@
               alt="" />
           </div>
           <div class="tw-relative">
-            <h2
-              class="tw-absolute tw-text-center tw-bottom-[124px] tw-left-1/2 tw-transform -tw-translate-x-1/2 tw-w-full">
-              Зарабатывайте с нашей <br />
-              реферальной программой
-            </h2>
+            <div class="tw-absolute tw-text-center tw-bottom-[140px] tw-left-1/2 tw-transform -tw-translate-x-1/2 tw-w-full tw-px-4 tw-pb-4">
+              <h2>
+                Зарабатывайте с нашей <br />
+                реферальной программой
+              </h2>
+            </div>
+            <div class="tw-absolute tw-text-center tw-bottom-[40px] tw-left-1/2 tw-transform -tw-translate-x-1/2 tw-w-full tw-px-4">
+              <BaseButton class="tw-mt-6" text="Продолжить" to="/" />
+            </div>
             <svg
               width="100%"
               height="100%"
@@ -154,6 +158,7 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import { Pagination, EffectFade } from "swiper/modules";
 import type { Swiper as SW } from "swiper";
 import { useRouter } from "vue-router";
+import BaseButton from "src/components/BaseButton.vue";
 
 const router = useRouter();
 const sw = ref<SW | null>(null);
@@ -187,7 +192,7 @@ onMounted(() => {
 <style lang="scss">
 .swiper-pagination {
   position: absolute;
-  bottom: 96px;
+  bottom: 120px;
   display: flex;
   gap: 8px;
   left: 50%;

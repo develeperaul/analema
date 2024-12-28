@@ -139,12 +139,19 @@ const routes: RouteRecordRaw[] = [
         component: () => import("pages/Auth/Profile.vue"),
         meta: { auth: true },
       },
-      {
-        path: "first",
-        name: "first",
-        component: () => import("pages/First.vue"),
-      },
     ],
+  },
+
+  {
+    path: "/start",
+    component: () => import("layouts/ZeroLayout.vue"),
+    children: [
+      {
+        path: "",
+        name: "start",
+        component: () => import("pages/Start.vue"),
+      },
+    ]
   },
 
   // Always leave this as last one,
