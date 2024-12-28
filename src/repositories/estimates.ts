@@ -9,6 +9,9 @@ export default function(http: AxiosInstance) {
     create(body: EstimateBody) {
       return http.post<CreateEstimateSuccess>('online_selling.php', jsonFormData(body));
     },
+    list(body: EstimateListParams = {}) {
+      return http.post<EstimateListItem[]>('my_ocenki.php', jsonFormData(body));
+    },
   }
 }
 

@@ -20,7 +20,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: "estimates/create",
         name: "estimates.create",
-        component: () => import("pages/EstimatesCreate.vue"),
+        component: () => import("pages/Estimates/Create.vue"),
         meta: { auth: true },
       },
       {
@@ -36,9 +36,9 @@ const routes: RouteRecordRaw[] = [
         meta: { parent: "home", auth: true },
       },
       {
-        path: "my-purchases",
-        name: "my-purchases",
-        component: () => import("pages/MyPurchases.vue"),
+        path: "estimates",
+        name: "estimates.index",
+        component: () => import("pages/Estimates/Index.vue"),
         meta: { parent: "home", auth: true },
       },
       {
