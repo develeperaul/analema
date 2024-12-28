@@ -30,6 +30,7 @@
 </template>
 
 <script setup lang="ts">
+  import { Form } from 'vee-validate';
   import usePostRequest from 'src/composables/usePostRequest';
   import useRepositories from 'src/composables/useRepositories';
   import { profileSchema } from 'src/schemas/profile';

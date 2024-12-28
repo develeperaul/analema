@@ -40,6 +40,7 @@
 </template>
 
 <script setup lang="ts">
+  import { Form } from 'vee-validate';
   import { loginSchema } from 'src/schemas/auth';
   import usePostRequest from 'src/composables/usePostRequest';
   import useRepositories from 'src/composables/useRepositories';
