@@ -10,8 +10,9 @@
       <my-link
         icon="shopping"
         text="Мои покупки"
-        :to="{ name: 'my-purchases' }" />
-      <my-link icon="box" text="Мои продажи" :to="{ name: 'my-sales' }" />
+        :to="{ name: 'my-purchases' }"
+      />
+      <my-link icon="box" text="Мои продажи" :to="{ name: 'estimates.index' }" />
     </div>
     <router-link :to="{ name: 'referals' }" class="invite">
       <div class="invite__title">

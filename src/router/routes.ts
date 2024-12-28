@@ -30,9 +30,9 @@ const routes: RouteRecordRaw[] = [
         meta: { parent: "online-scene", auth: true },
       },
       {
-        path: "my-sales",
-        name: "my-sales",
-        component: () => import("pages/MySales.vue"),
+        path: "my-purchases",
+        name: "my-purchases",
+        component: () => import("pages/MyPurchases.vue"),
         meta: { parent: "home", auth: true },
       },
       {

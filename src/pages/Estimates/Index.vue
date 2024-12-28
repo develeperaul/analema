@@ -11,7 +11,7 @@
               class="tw-bg-el tw-rounded-12 tw-grid tw-place-content-center tw-w-[50px] tw-h-[50px]">
               <baseIcon name="shopping" class="tw-w-7.5 tw-h-7.5" />
             </div>
-            <div class="tw-text-h1 tw-font-bold">Мои покупки</div>
+            <div class="tw-text-h1 tw-font-bold">Мои продажи</div>
           </div>
         </div>
       </div>

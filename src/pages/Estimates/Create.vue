@@ -76,6 +76,6 @@
   const router = useRouter();
 
   function onFinish() {
-    router.replace({ name: 'my-purchases' });
+    router.replace({ name: 'estimates.index' });
   }
 </script>
