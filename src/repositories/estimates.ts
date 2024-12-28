@@ -12,6 +12,16 @@ export default function(http: AxiosInstance) {
     list(body: EstimateListParams = {}) {
       return http.post<EstimateListItem[]>('my_ocenki.php', jsonFormData(body));
     },
+    show(id: string | number) {
+      return http.get<[ EstimateListItem ]>('online_status.php', {
+        params: {
+          id,
+        }
+      })
+    },
+    sendEvent(body: SendEventBody) {
+      return http.post('online_event.php', jsonFormData(body));
+    }
   }
 }
 
@@ -28,4 +38,27 @@ export interface EstimateBody {
 
 export interface CreateEstimateSuccess {
   id: number,
+}
+
+export interface EstimateListParams {
+  status?: Status,
+}
+
+export type Status = '1' | '2' | '3';
+
+export interface EstimateListItem {
+  id: string,
+  comment: string,
+  date: string,
+  desc: string,
+  gallery: string[],
+  price: string,
+  status: string,
+}
+
+export type EventType = '1' | '2' | '3';
+
+export interface SendEventBody {
+  id: string,
+  event: EventType,
 }
