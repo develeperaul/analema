@@ -21,20 +21,27 @@
           stroke="#181818" />
       </svg>
 
-      <img src="/public/test.png" alt="" />
+      <img :src="item.image" />
     </div>
     <div class="card__content">
-      <span class="title"> 26 000 ₽ </span>
+      <span class="title">{{ item.price }}</span>
       <span class="descr">
-        Стиральная машина Ariston Стиральная машина Ariston
+        {{ item.name }}
       </span>
     </div>
   </div>
 </template>
 <script setup lang="ts">
+interface Item {
+  price: string,
+  name: string,
+  image: string,
+}
+
 const props = withDefaults(
   defineProps<{
     mini?: boolean;
+    item: Item,
   }>(),
   {
     mini: false,

@@ -4,12 +4,37 @@
     <div class="label">Хиты продаж</div>
     <div class="popular__cards">
       <div class="popular__cards--wrapper">
-        <Card v-for="n in 6" mini />
+        <Card v-for="item in items" :item="item" mini />
       </div>
     </div>
   </div>
 </template>
-<script setup lang="ts"></script>
+
+<script setup lang="ts">
+  const items = [
+    {
+      name: 'Кольца, красное золото 585 проба',
+      price: '45 000 ₽',
+      image: '/items/gold.png',
+    },
+    {
+      name: 'Стиральная машина Ariston',
+      price: '26 000 ₽',
+      image: '/items/stir.png',
+    },
+    {
+      name: 'Ноутбук Apple MacBook Air 13 M3',
+      price: '135 000 ₽',
+      image: '/items/nout.png',
+    },
+    {
+      name: 'Кольцо 3 ряда из розового золота',
+      price: '38 000 ₽',
+      image: '/items/gold2.png',
+    },
+  ];
+</script>
+
 <style lang="scss" scoped>
 .popular {
   @apply tw-rounded-20;
