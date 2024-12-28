@@ -14,7 +14,7 @@
         >
       </router-link>
       <router-link
-        :to="{ name: 'catalog' }"
+        :to="{ name: 'catalog.index' }"
         v-slot="{ isActive }"
         class="tw-grid tw-justify-items-center tw-gap-1 tw-text-t3">
         <base-icon

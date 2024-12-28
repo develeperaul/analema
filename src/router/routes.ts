@@ -50,8 +50,8 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: "catalog",
-        name: "catalog",
-        component: () => import("pages/Catalog.vue"),
+        name: "catalog.index",
+        component: () => import("pages/Catalog/Index.vue"),
         meta: { auth: true },
       },
       {
