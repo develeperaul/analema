@@ -1,7 +1,7 @@
 <template>
   <q-page class="env-t">
-    <div class="tw-container tw-grid">
-      <BaseHeader title="Каталог" />
+    <div class="tw-container">
+      <Toolbar class="tw-mb-5" title="Каталог" />
       <SelectCategories
         v-if="sectionsRes.data.value"
         :sections="sectionsRes.data.value"
@@ -29,6 +29,7 @@
   import useDataOrAlert from 'src/composables/useDataOrAlert';
   import CatalogList from 'src/components/Catalog/List.vue';
   import SelectCategories from 'src/components/Catalog/SelectCategories.vue';
+  import Toolbar from 'src/components/LayoutParts/Toolbar.vue';
 
   const api = useRepositories();
 
