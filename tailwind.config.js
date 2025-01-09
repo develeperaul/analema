@@ -4,14 +4,6 @@ module.exports = {
   prefix: "tw-",
   theme: {
     extend: {
-      fontSize: {
-        t1: ["16px", "20.8px"],
-        t2: ["14px", "18.2px"],
-        t3: ["12px", "15.6px"],
-        t4: ["10px", "13px"],
-        h1: ["20px", "25px"],
-        h2: ["18px", "23.4px"],
-      },
       spacing: {
         4.5: "1.125rem",
         7.5: "1.875rem",
@@ -20,7 +12,14 @@ module.exports = {
         3000: 3000,
       },
     },
-
+    fontSize: {
+      t1: ["16px", "20.8px"],
+      t2: ["14px", "18.2px"],
+      t3: ["12px", "15.6px"],
+      t4: ["10px", "13px"],
+      h1: ["20px", "25px"],
+      h2: ["18px", "23.4px"],
+    },
     colors: {
       white: "#fff",
       black: "#000",
