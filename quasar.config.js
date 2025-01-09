@@ -32,7 +32,8 @@ module.exports = configure(function (/* ctx */) {
       "registr-validators",
       "api",
       "init-user",
-      "auth"
+      "auth",
+      "favorites",
     ],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
