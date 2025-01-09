@@ -20,6 +20,7 @@ declare module 'vue' {
     ExampleComponent: typeof import('./components/ExampleComponent.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
     GalleryUploaded: typeof import('./components/GalleryUploaded/index.vue')['default']
+    Image: typeof import('./components/Base/Image.vue')['default']
     IndexList: typeof import('./components/Catalog/IndexList.vue')['default']
     Input: typeof import('./components/PhotoUploader/Input.vue')['default']
     List: typeof import('./components/Catalog/List.vue')['default']
