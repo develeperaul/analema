@@ -4,12 +4,18 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AddProduct: typeof import('./components/Favorites/AddProduct.vue')['default']
     Base: typeof import('./components/Base/index.vue')['default']
     BaseButton: typeof import('./components/BaseButton.vue')['default']
     BaseHeader: typeof import('./components/BaseHeader.vue')['default']
     BaseIcon: typeof import('./components/BaseIcon.vue')['default']
     BaseInput: typeof import('./components/BaseInput.vue')['default']
+    Button: typeof import('./components/Favorites/Button.vue')['default']
+    ButtonAdd: typeof import('./components/Favorites/ButtonAdd.vue')['default']
     ButtonClose: typeof import('./components/Base/ButtonClose.vue')['default']
+    ButtonHeart: typeof import('./components/Favorites/ButtonHeart.vue')['default']
+    ButtonProductAdd: typeof import('./components/Favorites/ButtonProductAdd.vue')['default']
+    ButtonProductToggle: typeof import('./components/Favorites/ButtonProductToggle.vue')['default']
     Card: typeof import('./components/Card.vue')['default']
     CategoriesList: typeof import('./components/Estimates/CategoriesList.vue')['default']
     Chip: typeof import('./components/Base/Chip.vue')['default']
@@ -37,6 +43,7 @@ declare module 'vue' {
     PhotoUploader: typeof import('./components/PhotoUploader/index.vue')['default']
     PopularCards: typeof import('./components/PopularCards.vue')['default']
     Preview: typeof import('./components/GalleryUploaded/Preview.vue')['default']
+    ProductAdd: typeof import('./components/Favorites/ProductAdd.vue')['default']
     Radio: typeof import('./components/Radio.vue')['default']
     SelectCategories: typeof import('./components/Catalog/SelectCategories.vue')['default']
     SelectCategory: typeof import('./components/SelectCategory.vue')['default']
@@ -46,6 +53,7 @@ declare module 'vue' {
     TabItem: typeof import('./components/TabItem.vue')['default']
     TabItemList: typeof import('./components/TabItemList.vue')['default']
     Textarea: typeof import('./components/Base/Textarea.vue')['default']
+    ToggleProduct: typeof import('./components/Favorites/ToggleProduct.vue')['default']
   }
 }
 

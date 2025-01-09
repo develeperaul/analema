@@ -5,7 +5,10 @@
       <ListItem
         class="item"
         v-for="item in items"
+        :key="item.id"
         :item="item"
+        :isInFavorite="favoritesStore.has(item.id)"
+        @favorite:toggle="favoritesStore.toggle(item.id)"
       />
     </div>
   </div>
@@ -14,10 +17,13 @@
 <script setup lang="ts">
   import ListItem from './ListItem.vue';
   import type { CatalogItem } from 'src/repositories/catalog';
+  import { useFavoritesStore } from 'src/stores/favorites';
 
   defineProps<{
     items: CatalogItem[],
   }>();
+
+  const favoritesStore = useFavoritesStore();
 </script>
 
 <style scoped lang="scss">

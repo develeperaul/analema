@@ -1,5 +1,8 @@
 <template>
   <router-link class="catalog-item" to="/">
+    <div class="actions">
+      <FavoritesButton :active="isInFavorite" @click.prevent="$emit('favorite:toggle', item.id)" />
+    </div>
     <Image imgClass="tw-w-full" width="162" height="142" :src="item.img" />
     <div class="body">
       <div class="price">{{ $amount(item.price) }}</div>
@@ -9,16 +12,21 @@
 </template>
 
 <script setup lang="ts">
+  import FavoritesButton from 'src/components/Favorites/Button.vue';
   import type { CatalogItem } from 'src/repositories/catalog';
 
   const props = defineProps<{
     item: CatalogItem,
+    isInFavorite: boolean,
   }>();
+
+  defineEmits<{ (event: 'favorite:toggle', id: string): void }>();
 </script>
 
 
 <style scoped lang="scss">
   .catalog-item {
+    position: relative;
     border-radius: 10px;
     overflow: hidden;
     @apply tw-bg-card;
@@ -34,5 +42,15 @@
 
   .name {
     @apply tw-text-t2 tw-text-card-descr;
+  }
+
+  .actions {
+    z-index: 5;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 </style>
