@@ -8,11 +8,18 @@
         :category="activeSection"
         @change:category="activeSection = $event"
       />
-      <CatalogList v-if="itemsRes.data.value" :items="itemsRes.data.value" />
+      <CatalogList
+        v-if="itemsRes.data.value"
+        class="tw-mt-5"
+        :items="itemsRes.data.value"
+      />
     </div>
-    <q-inner-loading
-      :showing="sectionsRes.loading.value"
-    />
+    <div
+      v-if="sectionsRes.loading.value || itemsRes.loading.value"
+      class="tw-w-full tw-h-full tw-top-0 tw-left-0 tw-fixed tw-z-50"
+    >
+      <q-inner-loading showing />
+    </div>
   </q-page>
 </template>
 

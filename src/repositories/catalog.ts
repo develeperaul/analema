@@ -13,7 +13,7 @@ export default function(http: AxiosInstance) {
       });
     },
     list(sectionId: string | number) {
-      return http.get('catalog_element.php', {
+      return http.get<CatalogItem[]>('catalog_list.php', {
         params: {
           id: sectionId,
         }
@@ -25,4 +25,12 @@ export default function(http: AxiosInstance) {
 export interface Section {
   id: string,
   name: string,
+}
+
+export interface CatalogItem {
+  id: string,
+  id_tp: number,
+  img: string | null,
+  name: string,
+  price: string,
 }
