@@ -25,6 +25,7 @@ declare module 'vue' {
     EssentialLink: typeof import('./components/EssentialLink.vue')['default']
     ExampleComponent: typeof import('./components/ExampleComponent.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
+    Gallery: typeof import('./components/Catalog/Gallery.vue')['default']
     GalleryUploaded: typeof import('./components/GalleryUploaded/index.vue')['default']
     Image: typeof import('./components/Base/Image.vue')['default']
     IndexList: typeof import('./components/Catalog/IndexList.vue')['default']
@@ -54,6 +55,7 @@ declare module 'vue' {
     TabItemList: typeof import('./components/TabItemList.vue')['default']
     Textarea: typeof import('./components/Base/Textarea.vue')['default']
     ToggleProduct: typeof import('./components/Favorites/ToggleProduct.vue')['default']
+    Toolbar: typeof import('./components/LayoutParts/Toolbar.vue')['default']
   }
 }
 

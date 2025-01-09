@@ -1,5 +1,5 @@
 <template>
-  <router-link class="catalog-item" to="/">
+  <router-link class="catalog-item" :to="{ name: 'catalog.show', params: { id: item.id } }">
     <div class="actions">
       <FavoritesButton :active="isInFavorite" @click.prevent="$emit('favorite:toggle', item.id)" />
     </div>

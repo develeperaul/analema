@@ -55,6 +55,13 @@ const routes: RouteRecordRaw[] = [
         meta: { auth: true },
       },
       {
+        path: "catalog/:id",
+        name: "catalog.show",
+        component: () => import("pages/Catalog/Show.vue"),
+        meta: { auth: true },
+        props: true,
+      },
+      {
         path: "card/:id",
         name: "card",
         component: () => import("pages/Tovar.vue"),
