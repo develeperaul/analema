@@ -5,7 +5,8 @@
       <SelectCategories
         v-if="sectionsRes.data.value"
         :sections="sectionsRes.data.value"
-        v-model:category="activeSection"
+        :category="activeSection"
+        @change:category="activeSection = $event"
       />
       <CatalogList v-if="itemsRes.data.value" :items="itemsRes.data.value" />
     </div>
