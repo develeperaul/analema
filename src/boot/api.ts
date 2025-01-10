@@ -6,6 +6,7 @@ import createEstimatesRepo from 'src/repositories/estimates';
 import createFilesRepo from 'src/repositories/files';
 import createCatalogRepo from 'src/repositories/catalog';
 import createBasketRepo from 'src/repositories/basket';
+import createReferralsRepo from 'src/repositories/referrals';
 import { InjectionKey } from 'vue';
 import * as Token from 'src/utils/token';
 
@@ -27,6 +28,7 @@ export function createRepositories(http: AxiosInstance) {
     'files': createFilesRepo(http),
     'catalog': createCatalogRepo(http),
     'basket': createBasketRepo(http),
+    'referrals': createReferralsRepo(http),
   };
 
   return repositories;
@@ -41,6 +43,13 @@ export function createHttp() {
     const token = Token.get();
 
     if(!token) return config;
+
+    if(config.params?.token === true) {
+      config.params.token = token;
+      return config;
+    }
+
+    if(config.method === 'get') return config;
 
     if(config.data instanceof FormData) {
       config.data.append('token', token);
