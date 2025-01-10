@@ -13,6 +13,7 @@
         <Gallery class="tw-mb-4" width="1000" height="1000" :images="data.gallery" />
         <div class="price">{{ $amount(data.price) }}</div>
         <div class="name">{{ data.name }}</div>
+        <BasketButton :active="basketStore.has(id)" @click="basketStore.toggle(id)" />
       </div>
     </div>
     <q-inner-loading :showing="productRes.loading.value" />
@@ -22,17 +23,20 @@
 <script setup lang="ts">
   import Toolbar from 'src/components/LayoutParts/Toolbar.vue';
   import Gallery from 'src/components/Catalog/Gallery.vue';
+  import BasketButton from 'src/components/Basket/Button.vue';
   import FavoritesButton from 'src/components/Favorites/Button.vue';
   import useRepositories from 'src/composables/useRepositories';
   import useRequest from 'src/composables/useRequest';
   import useDataOrAlert from 'src/composables/useDataOrAlert';
   import { useFavoritesStore } from 'src/stores/favorites';
+  import { useBasketStore } from 'src/stores/basket';
 
   const props = defineProps<{
     id: string,
   }>();
 
   const favoritesStore = useFavoritesStore();
+  const basketStore = useBasketStore();
   const api = useRepositories();
 
   const productRes = useRequest(
