@@ -26,7 +26,7 @@
         </span>
       </router-link>
       <router-link
-        :to="{ name: 'basket' }"
+        :to="{ name: 'basket.index' }"
         v-slot="{ isActive }"
         class="tw-grid tw-justify-items-center tw-gap-1 tw-text-t3">
         <base-icon
