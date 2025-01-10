@@ -34,6 +34,7 @@ module.exports = configure(function (/* ctx */) {
       "init-user",
       "auth",
       "favorites",
+      "basket",
     ],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css

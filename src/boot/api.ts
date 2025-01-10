@@ -5,6 +5,7 @@ import createProfileRepo from 'src/repositories/profile';
 import createEstimatesRepo from 'src/repositories/estimates';
 import createFilesRepo from 'src/repositories/files';
 import createCatalogRepo from 'src/repositories/catalog';
+import createBasketRepo from 'src/repositories/basket';
 import { InjectionKey } from 'vue';
 import * as Token from 'src/utils/token';
 
@@ -25,6 +26,7 @@ export function createRepositories(http: AxiosInstance) {
     'estimates': createEstimatesRepo(http),
     'files': createFilesRepo(http),
     'catalog': createCatalogRepo(http),
+    'basket': createBasketRepo(http),
   };
 
   return repositories;
