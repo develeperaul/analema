@@ -125,6 +125,19 @@ const routes: RouteRecordRaw[] = [
   },
 
   {
+    path: "/referrals",
+    component: () => import("layouts/NoHeadLayout.vue"),
+    children: [
+      {
+        path: "",
+        name: "referrals.index",
+        component: () => import("pages/Referrals/Index.vue"),
+        meta: { auth: true },
+      },
+    ],
+  },
+
+  {
     path: "/auth",
     component: () => import("layouts/ZeroLayout.vue"),
     children: [
