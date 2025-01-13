@@ -62,6 +62,12 @@ const routes: RouteRecordRaw[] = [
         props: true,
       },
       {
+        path: "catalog/favorites",
+        name: "catalog.favorites",
+        component: () => import("pages/Catalog/Favorites.vue"),
+        meta: { parent: "profile", auth: true },
+      },
+      {
         path: "card/:id",
         name: "card",
         component: () => import("pages/Tovar.vue"),
@@ -113,12 +119,6 @@ const routes: RouteRecordRaw[] = [
         path: "notification-settings",
         name: "notification-settings",
         component: () => import("pages/NotificationSettingsPage.vue"),
-        meta: { parent: "profile", auth: true },
-      },
-      {
-        path: "favorite",
-        name: "favorite",
-        component: () => import("pages/FavoritesPage.vue"),
         meta: { parent: "profile", auth: true },
       },
     ],

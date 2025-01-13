@@ -18,7 +18,14 @@ export default function(http: AxiosInstance) {
           id: sectionId,
         }
       });
-    }
+    },
+    showProducts(ids: string[]) {
+      return http.get<CatalogItem[]>('show-products.php', {
+        params: {
+          goods: ids,
+        },
+      });
+    },
   }
 }
 
