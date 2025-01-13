@@ -2,7 +2,12 @@
   <q-page class="env-t">
     <div class="tw-container">
       <Toolbar class="tw-mb-6" showBack title="Корзина" />
-      <BasketList :count="basketStore.count" />
+      <BasketList
+        v-if="basketRes.data.value"
+        :count="basketStore.count"
+        :items="basketRes.data.value"
+        @basket:remove="removeItem"
+      />
       <q-inner-loading :showing="basketRes.loading.value" />
     </div>
   </q-page>
@@ -23,4 +28,9 @@
     () => api.basket.show(basketStore.ids),
   );
   useDataOrAlert(basketRes);
+
+  function removeItem(id: string) {
+    basketStore.removeSync(id);
+    basketRes.send();
+  }
 </script>
