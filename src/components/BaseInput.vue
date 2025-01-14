@@ -8,7 +8,9 @@
         :type="type"
         class="input"
         :placeholder="placeholder"
-        :disabled="disabled" />
+        :disabled="disabled"
+        @change="$emit('change', value)"
+      />
       <label class="tw-font-medium tw-text-t1" v-if="label">
         {{ label }}
       </label>
@@ -84,6 +86,7 @@ const mask = new Mask({ mask: props.maska });
 
 const emitsInput = defineEmits<{
   (e: "update:modelValue", val: string | number): void;
+  (e: "change", val: string | number): void;
 }>();
 const { name, rules, modelValue } = toRefs(props);
 const { errorMessage, value, meta } = useField(name, rules, {
