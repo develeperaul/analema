@@ -1,19 +1,19 @@
 <template>
-  <div class="item">
+  <router-link class="item" :to="{ name: 'catalog.show', params: { id: item.id } }">
     <Image class="photo" imgClass="tw-w-full" width="160" height="160" :src="item.img" />
     <div class="body">
       <div class="name">{{ item.name }}</div>
       <div class="price">{{ $amount(item.price) }}</div>
       <div class="actions">
-        <button class="action" type="button" @click="$emit('basket:remove', item.id)">
+        <button class="action" type="button" @click.prevent="$emit('basket:remove', item.id)">
           <BaseIcon class="action__icon" name="delete" color="tw-fill-brown" fit />
         </button>
-        <button class="action" type="button" @click="$emit('favorite:toggle', item.id)">
+        <button class="action" type="button" @click.prevent="$emit('favorite:toggle', item.id)">
           <BaseIcon class="action__icon" name="heart-2" :color="isInFavorite ? 'tw-fill-negative' : 'tw-fill-brown'" fit />
         </button>
       </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script setup lang="ts">
