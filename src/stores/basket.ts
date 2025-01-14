@@ -24,6 +24,11 @@ export const useBasketStore = defineStore('basketStore', () => {
     syncStorage();
   }
 
+  function clearSync() {
+    ids.value = [];
+    syncStorage();
+  }
+
   function toggle(id: string) {
     if(has(id)) {
       remove(id);
@@ -56,5 +61,6 @@ export const useBasketStore = defineStore('basketStore', () => {
     has,
     toggle,
     removeSync,
+    clearSync,
   }
 });
