@@ -1,8 +1,9 @@
 <template>
-  <q-page class="env-t">
-    <div class="tw-container">
+  <q-page class="env-t tw-flex tw-flex-col">
+    <div class="tw-container tw-grow tw-flex tw-flex-col">
       <Toolbar class="tw-mb-6" showBack title="Корзина" />
       <BasketList
+        class="tw-grow"
         v-if="basketRes.data.value"
         :count="basketStore.count"
         :items="basketRes.data.value"
