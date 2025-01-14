@@ -1,6 +1,8 @@
 <template>
   <div>
-    <p v-if="items.length === 0">Не найдено ни одного товара</p>
+    <slot v-if="items.length === 0" name="empty">
+      <p>Не найдено ни одного товара</p>
+    </slot>
     <div v-else class="list">
       <ListItem
         class="item"
