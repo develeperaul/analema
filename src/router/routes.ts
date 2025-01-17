@@ -128,6 +128,12 @@ const routes: RouteRecordRaw[] = [
         component: () => import("pages/Profile/Index.vue"),
         meta: { auth: true },
       },
+      {
+        path: "update",
+        name: "profile.update",
+        component: () => import("pages/Profile/Update.vue"),
+        meta: { auth: true },
+      },
     ],
   },
 
