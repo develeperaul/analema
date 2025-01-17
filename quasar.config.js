@@ -71,7 +71,7 @@ module.exports = configure(function (/* ctx */) {
       // publicPath: '/',
       // analyze: true,
       env: {
-        API_BASE: 'https://d25.highdevlab.ru/api',
+        API_BASE: 'https://analemmatrade.ru/api',
         FILES_BASE: 'https://d25.highdevlab.ru',
       },
       // rawDefine: {}

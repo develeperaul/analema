@@ -5,7 +5,7 @@
       <div class="online-scene__name">Получите деньги за 1 день</div>
       <img src="~assets/images/wallet.png" alt="" class="online-scene__icon" />
     </router-link>
-    <popular-cards />
+    <PopularList />
     <div class="tw-grid tw-grid-cols-2 tw-gap-2">
       <my-link
         icon="shopping"
@@ -25,5 +25,5 @@
 </template>
 
 <script setup lang="ts">
-
+  import PopularList from 'src/components/Catalog/PopularList.vue';
 </script>

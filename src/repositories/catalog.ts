@@ -26,6 +26,9 @@ export default function(http: AxiosInstance) {
         },
       });
     },
+    showPopular() {
+      return http.get<PopularProduct[]>('show-popular.php');
+    },
   }
 }
 
@@ -56,3 +59,5 @@ export interface CatalogShowed {
   prop5: string | null,
   prop6: string | null,
 }
+
+export type PopularProduct = Pick<CatalogItem, 'id' | 'img' | 'name' | 'price'>;
