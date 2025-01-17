@@ -104,12 +104,6 @@ const routes: RouteRecordRaw[] = [
         meta: { parent: "referals", auth: true },
       },
       {
-        path: "profile",
-        name: "profile",
-        component: () => import("pages/ProfilePage.vue"),
-        meta: { auth: true },
-      },
-      {
         path: "profile-data",
         name: "profile-data",
         component: () => import("pages/ProfileDataPage.vue"),
@@ -120,6 +114,19 @@ const routes: RouteRecordRaw[] = [
         name: "notification-settings",
         component: () => import("pages/NotificationSettingsPage.vue"),
         meta: { parent: "profile", auth: true },
+      },
+    ],
+  },
+
+  {
+    path: "/profile",
+    component: () => import("layouts/NoHeadLayout.vue"),
+    children: [
+      {
+        path: "",
+        name: "profile.index",
+        component: () => import("pages/Profile/Index.vue"),
+        meta: { auth: true },
       },
     ],
   },
