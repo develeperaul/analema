@@ -147,6 +147,12 @@ const routes: RouteRecordRaw[] = [
         component: () => import("pages/Referrals/Index.vue"),
         meta: { auth: true },
       },
+      {
+        path: "output",
+        name: "referrals.output",
+        component: () => import("pages/Referrals/Output.vue"),
+        meta: { auth: true },
+      }
     ],
   },
 
