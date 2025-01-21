@@ -1,7 +1,7 @@
 <template>
-  <q-page class="tw-pb-8">
+  <q-page class="page-pb">
     <div class="purple-gr env-t tw-rounded-b-24 tw-mb-6">
-      <div class="tw-container tw-pb-8 tw-pt-8">
+      <div class="tw-container tw-pb-8">
         <BaseHeader title="Онлайн-оценка" back />
       </div>
     </div>

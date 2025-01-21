@@ -1,5 +1,5 @@
 <template>
-  <q-page class="tw-pb-8">
+  <q-page class="page-pb">
     <div class="purple-yellor-gr env-t tw-rounded-b-24 tw-mb-6">
       <div class="tw-pb-6 tw-pt-7.5">
         <div class="tw-relative tw-flex tw-justify-center">
