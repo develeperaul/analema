@@ -2,7 +2,7 @@
   <q-layout view="lHh Lpr lFf">
     <q-header class="tw-bg-white env-t">
       <div class="tw-container tw-flex tw-items-center tw-justify-between">
-        <img src="/public/logo.svg" alt="" width="119" height="12" />
+        <img src="/logo.svg" alt="" width="119" height="12" />
         <router-link to="/">
           <base-icon
             name="notification"
