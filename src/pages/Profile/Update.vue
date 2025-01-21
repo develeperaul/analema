@@ -1,5 +1,5 @@
 <template>
-  <q-page>
+  <q-page class="page-pb">
     <div class="tw-container">
       <Toolbar class="tw-mb-6" title="Мои данные" showBack>
         <template #actions>

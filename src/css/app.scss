@@ -75,7 +75,7 @@
     padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 16px) !important;
   }
 
-  .env-b-40 {
-    padding-bottom: max(40px, env(safe-area-inset-bottom, 20px));
+  .page-pb {
+    padding-bottom: 32px;
   }
 }
