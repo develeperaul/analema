@@ -24,12 +24,6 @@ const routes: RouteRecordRaw[] = [
         meta: { auth: true },
       },
       {
-        path: "rezult-scene",
-        name: "rezult-scene",
-        component: () => import("pages/RezultScene.vue"),
-        meta: { parent: "online-scene", auth: true },
-      },
-      {
         path: "my-purchases",
         name: "my-purchases",
         component: () => import("pages/MyPurchases.vue"),
@@ -68,46 +62,10 @@ const routes: RouteRecordRaw[] = [
         meta: { parent: "profile", auth: true },
       },
       {
-        path: "card/:id",
-        name: "card",
-        component: () => import("pages/Tovar.vue"),
-        meta: { parent: "catalog", auth: true },
-      },
-      {
         path: "basket",
         name: "basket.index",
         component: () => import("pages/Basket/Index.vue"),
         meta: { auth: true },
-      },
-      {
-        path: "referals",
-        name: "referals",
-        component: () => import("pages/ReferalsPage.vue"),
-        meta: { auth: true },
-      },
-      {
-        path: "referals-list",
-        name: "referals-list",
-        component: () => import("pages/ReferalsListPage.vue"),
-        meta: { parent: "referals", auth: true },
-      },
-      {
-        path: "link",
-        name: "link",
-        component: () => import("pages/LinkPage.vue"),
-        meta: { parent: "referals", auth: true },
-      },
-      {
-        path: "ref-rules",
-        name: "ref-rules",
-        component: () => import("pages/RefRulesPage.vue"),
-        meta: { parent: "referals", auth: true },
-      },
-      {
-        path: "profile-data",
-        name: "profile-data",
-        component: () => import("pages/ProfileDataPage.vue"),
-        meta: { parent: "profile", auth: true },
       },
       {
         path: "notification-settings",
