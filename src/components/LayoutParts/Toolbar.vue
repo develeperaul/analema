@@ -1,5 +1,5 @@
 <template>
-  <div class="toolbar">
+  <div class="toolbar env-t">
     <div>
       <button v-if="showBack" class="btn-back" type="button" @click="router.back">
         <BaseIcon name="back" fit />

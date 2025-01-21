@@ -1,5 +1,5 @@
 <template>
-  <div class="toolbar-colored">
+  <div class="toolbar-colored env-t">
     <div class="tw-mb-4" :class="btnWrapClass">
       <button class="btn-back" type="button" @click="router.back">
         <BaseIcon name="back" fit />

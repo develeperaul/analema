@@ -68,14 +68,11 @@
 }
 @layer utilities {
   .env-t {
-    padding-top: max(20px, env(safe-area-inset-top, 20px));
+    padding-top: calc(env(safe-area-inset-top, 0px) + 16px) !important;
   }
 
   .env-b {
-    padding-bottom: max(20px, env(safe-area-inset-bottom, 20px));
-  }
-  .env-t-40 {
-    padding-top: max(40px, env(safe-area-inset-top, 20px));
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 16px) !important;
   }
 
   .env-b-40 {

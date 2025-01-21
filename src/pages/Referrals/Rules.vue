@@ -1,5 +1,5 @@
 <template>
-  <q-page class="env-t">
+  <q-page>
     <div class="tw-container">
       <Toolbar class="tw-mb-4" showBack title="Правила программы" />
       <p class="tw-text-t2 tw-text-base tw-mb-4">

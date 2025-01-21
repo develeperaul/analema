@@ -1,5 +1,5 @@
 <template>
-  <q-page class="env-t">
+  <q-page>
     <div class="tw-container">
       <Toolbar class="tw-mb-8" showBack title="Реферальная программа" />
       <div v-if="balanceRes.data.value" class="tw-space-y-5">

@@ -1,5 +1,5 @@
 <template>
-  <q-page class="env-t">
+  <q-page>
     <div class="tw-container">
       <Toolbar class="tw-mb-5" showBack>
         <template #actions>
