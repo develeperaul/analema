@@ -1,5 +1,5 @@
 <template>
-  <div class="item" @click="router.push('/')">
+  <router-link class="item" :to="{ name: 'referrals.link' }">
     <div class="body">
       <span class="icon-wrap">
         <BaseIcon name="chain" fit />
@@ -10,17 +10,14 @@
       </div>
     </div>
     <div class="tw-px-5 tw-pb-5">
-      <FieldRefLink class="tw-cursor-default" :balance="balance" @click.stop />
+      <FieldRefLink class="tw-cursor-default" :balance="balance" @click.prevent />
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script setup lang="ts">
   import FieldRefLink from './FieldRefLink.vue';
-  import { useRouter } from 'vue-router';
   import type { RefCodeBalance } from 'src/repositories/referrals';
-
-  const router = useRouter();
 
   defineProps<{
     balance: RefCodeBalance,
@@ -29,6 +26,7 @@
 
 <style scoped lang="scss">
   .item {
+    display: block;
     box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.19);
     background: linear-gradient(127deg, #ffefd2 0%, #edc39b 100%);
     border-radius: 20px;

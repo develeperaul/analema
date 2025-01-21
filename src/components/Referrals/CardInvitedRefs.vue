@@ -1,5 +1,5 @@
 <template>
-  <router-link class="item" to="/">
+  <router-link class="item" :to="{ name: 'referrals.friends' }">
     <span class="icon-wrap">
       <BaseIcon name="plus" fit color="#DFA543" />
     </span>
