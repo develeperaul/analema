@@ -4,6 +4,7 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    ActiveFriendsList: typeof import('./components/Referrals/ActiveFriendsList.vue')['default']
     AddProduct: typeof import('./components/Favorites/AddProduct.vue')['default']
     Address: typeof import('./components/Order/Address.vue')['default']
     Base: typeof import('./components/Base/index.vue')['default']
@@ -24,6 +25,7 @@ declare module 'vue' {
     CardInvitedRefs: typeof import('./components/Referrals/CardInvitedRefs.vue')['default']
     CardNamePhone: typeof import('./components/Profile/CardNamePhone.vue')['default']
     CardRefCode: typeof import('./components/Referrals/CardRefCode.vue')['default']
+    CardRefLink: typeof import('./components/Referrals/CardRefLink.vue')['default']
     CategoriesList: typeof import('./components/Estimates/CategoriesList.vue')['default']
     Chip: typeof import('./components/Base/Chip.vue')['default']
     ChipList: typeof import('./components/Base/ChipList.vue')['default']
@@ -36,13 +38,21 @@ declare module 'vue' {
     Footer: typeof import('./components/Footer.vue')['default']
     FormCreate: typeof import('./components/Order/FormCreate.vue')['default']
     FormUpdate: typeof import('./components/Profile/FormUpdate.vue')['default']
+    FriendsListActive: typeof import('./components/Referrals/FriendsListActive.vue')['default']
+    FriendsListEmpty: typeof import('./components/Referrals/FriendsListEmpty.vue')['default']
+    FriendsListItem: typeof import('./components/Referrals/FriendsListItem.vue')['default']
+    FriendsListNew: typeof import('./components/Referrals/FriendsListNew.vue')['default']
     Gallery: typeof import('./components/Catalog/Gallery.vue')['default']
     GalleryUploaded: typeof import('./components/GalleryUploaded/index.vue')['default']
     Image: typeof import('./components/Base/Image.vue')['default']
     IndexList: typeof import('./components/Catalog/IndexList.vue')['default']
     Input: typeof import('./components/PhotoUploader/Input.vue')['default']
     List: typeof import('./components/Basket/List.vue')['default']
+    ListActiveFriends: typeof import('./components/Referrals/ListActiveFriends.vue')['default']
+    'ListActiveFriends copy': typeof import('./components/Referrals/ListActiveFriends copy.vue')['default']
+    ListInvited: typeof import('./components/Referrals/ListInvited.vue')['default']
     ListItem: typeof import('./components/Basket/ListItem.vue')['default']
+    ListNewFriends: typeof import('./components/Referrals/ListNewFriends.vue')['default']
     Modal: typeof import('./components/Modal.vue')['default']
     ModalAcceptVideo: typeof import('./components/Estimates/ModalAcceptVideo.vue')['default']
     'ModalAcceptVideo copy': typeof import('./components/Estimates/ModalAcceptVideo copy.vue')['default']
@@ -55,6 +65,7 @@ declare module 'vue' {
     ModalScreen: typeof import('./components/Base/ModalScreen.vue')['default']
     ModalSuccess: typeof import('./components/Estimates/ModalSuccess.vue')['default']
     ModalSuccessOutput: typeof import('./components/Referrals/ModalSuccessOutput.vue')['default']
+    ModalTextRules: typeof import('./components/Referrals/ModalTextRules.vue')['default']
     MyLink: typeof import('./components/myLink.vue')['default']
     NavItem: typeof import('./components/Profile/NavItem.vue')['default']
     PhotoUploader: typeof import('./components/PhotoUploader/index.vue')['default']
@@ -75,6 +86,7 @@ declare module 'vue' {
     Textarea: typeof import('./components/Base/Textarea.vue')['default']
     ToggleProduct: typeof import('./components/Favorites/ToggleProduct.vue')['default']
     Toolbar: typeof import('./components/LayoutParts/Toolbar.vue')['default']
+    ToolbarColored: typeof import('./components/LayoutParts/ToolbarColored.vue')['default']
   }
 }
 
