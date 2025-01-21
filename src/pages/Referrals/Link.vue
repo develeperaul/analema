@@ -1,5 +1,5 @@
 <template>
-  <q-page>
+  <q-page class="page-pb">
     <ToolbarColored
       class="bg-bar tw-mb-6"
       iconWrapClass="tw-w-[80px] tw-h-[80px] tw-p-[14px]"
