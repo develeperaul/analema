@@ -7,12 +7,12 @@
     </router-link>
     <PopularList />
     <div class="tw-grid tw-grid-cols-2 tw-gap-2">
-      <my-link
+      <LinkCard
         icon="shopping"
         text="Мои покупки"
         :to="{ name: 'my-purchases' }"
       />
-      <my-link icon="box" text="Мои продажи" :to="{ name: 'estimates.index' }" />
+      <LinkCard icon="box" text="Мои продажи" :to="{ name: 'estimates.index' }" />
     </div>
     <router-link :to="{ name: 'referrals.index' }" class="invite">
       <div class="invite__title">
@@ -26,4 +26,5 @@
 
 <script setup lang="ts">
   import PopularList from 'src/components/Catalog/PopularList.vue';
+  import LinkCard from 'src/components/Home/LinkCard.vue';
 </script>
