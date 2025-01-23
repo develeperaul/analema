@@ -1,4 +1,5 @@
 import type { AxiosInstance } from 'axios';
+import { jsonFormData } from 'src/utils/formdata';
 
 export default function(http: AxiosInstance) {
   return {
@@ -22,6 +23,9 @@ export default function(http: AxiosInstance) {
           token: true,
         }
       });
+    },
+    outputMoney(body: OutputMoneyBody) {
+      return http.post('get_money.php', jsonFormData(body));
     }
   }
 }
@@ -42,4 +46,9 @@ export interface FriendsActiveItem {
   summ: string,
   login: string,
   bitrix_user_id: number
+}
+
+export interface OutputMoneyBody {
+  sum: string | number,
+  card: string,
 }
