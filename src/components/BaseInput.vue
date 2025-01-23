@@ -15,7 +15,7 @@
         {{ label }}
       </label>
       <svg
-        v-if="meta.dirty && meta.valid"
+        v-if="!hideStatus && meta.dirty && meta.valid"
         class="tw-absolute tw-right-5 tw-top-1/2 tw-transform -tw-translate-y-1/2"
         width="20"
         height="20"
@@ -65,21 +65,23 @@ import { Mask } from "maska";
 
 const props = withDefaults(
   defineProps<{
-    modelValue: string;
+    modelValue: string | number;
     type?: string;
     maska?: string;
     name: string;
-    rules?: RuleExpression<string>;
+    rules?: RuleExpression<string | number>;
     label?: string;
     placeholder?: string;
     disabled?: boolean;
     unMask?: boolean;
+    hideStatus?: boolean
   }>(),
   {
     type: "text",
     disabled: false,
     unMask: false,
     placeholder: "",
+    hideStatus: false,
   }
 );
 const mask = new Mask({ mask: props.maska });
@@ -94,7 +96,7 @@ const { errorMessage, value, meta } = useField(name, rules, {
   initialValue: modelValue,
 });
 watch(value, (val) => {
-  if (props.unMask) emitsInput("update:modelValue", mask.unmasked(val));
+  if (props.unMask) emitsInput("update:modelValue", mask.unmasked(val.toString()));
   else emitsInput("update:modelValue", val);
 });
 </script>
