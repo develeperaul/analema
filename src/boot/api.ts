@@ -8,6 +8,7 @@ import createCatalogRepo from 'src/repositories/catalog';
 import createBasketRepo from 'src/repositories/basket';
 import createReferralsRepo from 'src/repositories/referrals';
 import createOrderRepo from 'src/repositories/order';
+import createNotificationsRepo from 'src/repositories/notifications';
 import { InjectionKey } from 'vue';
 import * as Token from 'src/utils/token';
 
@@ -31,6 +32,7 @@ export function createRepositories(http: AxiosInstance) {
     'basket': createBasketRepo(http),
     'referrals': createReferralsRepo(http),
     'order': createOrderRepo(http),
+    'notifications': createNotificationsRepo(http),
   };
 
   return repositories;
