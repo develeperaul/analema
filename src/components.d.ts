@@ -33,8 +33,10 @@ declare module 'vue' {
     FriendsListNew: typeof import('./components/Referrals/FriendsListNew.vue')['default']
     Gallery: typeof import('./components/Catalog/Gallery.vue')['default']
     GalleryUploaded: typeof import('./components/GalleryUploaded/index.vue')['default']
+    GroupsList: typeof import('./components/Notifications/GroupsList.vue')['default']
     Image: typeof import('./components/Base/Image.vue')['default']
     Input: typeof import('./components/PhotoUploader/Input.vue')['default']
+    LinkCard: typeof import('./components/Home/LinkCard.vue')['default']
     List: typeof import('./components/Basket/List.vue')['default']
     ListItem: typeof import('./components/Basket/ListItem.vue')['default']
     Modal: typeof import('./components/Base/Modal.vue')['default']
@@ -56,6 +58,7 @@ declare module 'vue' {
     SelectCategories: typeof import('./components/Catalog/SelectCategories.vue')['default']
     Switch: typeof import('./components/Switch.vue')['default']
     Textarea: typeof import('./components/Base/Textarea.vue')['default']
+    Toggle: typeof import('./components/Base/Toggle.vue')['default']
     Toolbar: typeof import('./components/LayoutParts/Toolbar.vue')['default']
     ToolbarColored: typeof import('./components/LayoutParts/ToolbarColored.vue')['default']
   }

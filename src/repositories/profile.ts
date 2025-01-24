@@ -12,6 +12,8 @@ export default function(http: AxiosInstance) {
   }
 }
 
+export type OnOff = '10' | '11';
+
 export interface ProfileDataBody {
   name: string,
   last_name: string,
@@ -19,6 +21,8 @@ export interface ProfileDataBody {
   db: string,
   address: string,
   email: string,
+  uv_actions: OnOff,
+  uv_zak: OnOff,
 }
 
 export interface ProfileData {
@@ -31,6 +35,8 @@ export interface ProfileData {
   address: string,
   email: string,
   avatar: Avatar,
+  uv_actions: OnOff,
+  uv_zak: OnOff,
 }
 
 interface Avatar {

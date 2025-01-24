@@ -92,6 +92,12 @@ const routes: RouteRecordRaw[] = [
         component: () => import("pages/Profile/Update.vue"),
         meta: { auth: true },
       },
+      {
+        path: "notifications",
+        name: "profile.notifications",
+        component: () => import("pages/Profile/Notifications.vue"),
+        meta: { auth: true },
+      },
     ],
   },
 

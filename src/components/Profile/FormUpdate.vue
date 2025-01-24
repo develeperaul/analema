@@ -27,7 +27,7 @@
   const authStore = useAuthStore();
   const api = useRepositories();
 
-  const form: ProfileDataBody = reactive({
+  const form: Omit<ProfileDataBody, 'uv_zak' | 'uv_actions'> = reactive({
     name: authStore.user!.name,
     last_name: authStore.user!.last_name,
     otch: authStore.user!.otch,
@@ -38,10 +38,20 @@
 
   const $q = useQuasar();
 
+  const { send: showProfile } = usePostRequest(
+    api.profile.show,
+    () => {},
+    (user) => {
+      authStore.setUser(user.data);
+    },
+    'Не удалось обновить профиль',
+  );
+
   const { loading, send } = usePostRequest(
     api.profile.update,
     () => form,
     () => {
+      showProfile();
       $q.notify({
         type: 'positive',
         message: 'Профиль успешно обновлен!',
