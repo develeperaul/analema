@@ -24,10 +24,10 @@ const routes: RouteRecordRaw[] = [
         meta: { auth: true },
       },
       {
-        path: "my-purchases",
-        name: "my-purchases",
-        component: () => import("pages/MyPurchases.vue"),
-        meta: { parent: "home", auth: true },
+        path: "orders",
+        name: "orders.index",
+        component: () => import("pages/Orders/Index.vue"),
+        meta: { auth: true },
       },
       {
         path: "estimates",

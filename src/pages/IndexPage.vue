@@ -10,7 +10,7 @@
       <LinkCard
         icon="shopping"
         text="Мои покупки"
-        :to="{ name: 'my-purchases' }"
+        :to="{ name: 'orders.index' }"
       />
       <LinkCard icon="box" text="Мои продажи" :to="{ name: 'estimates.index' }" />
     </div>

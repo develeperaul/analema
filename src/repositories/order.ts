@@ -9,6 +9,13 @@ export default function(http: AxiosInstance) {
     showPoints() {
       return http.get<Point[]>('points.php');
     },
+    list() {
+      return http.get('order_list.php', {
+        params: {
+          token: true,
+        }
+      });
+    },
   }
 }
 
