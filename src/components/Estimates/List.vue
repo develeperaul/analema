@@ -1,5 +1,8 @@
 <template>
-  <div class="tw-space-y-4">
+  <p v-if="items.length === 0" class="tw-text-center tw-text-t1 tw-text-base tw-py-10">
+    Ничего не найдено
+  </p>
+  <div v-else class="tw-space-y-4">
     <ListItem
       class="tw-w-full"
       v-for="item in items"
