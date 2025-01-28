@@ -28,7 +28,13 @@
       <router-link
         :to="{ name: 'basket.index' }"
         v-slot="{ isActive }"
-        class="tw-grid tw-justify-items-center tw-gap-1 tw-text-t3">
+        class="tw-grid tw-justify-items-center tw-gap-1 tw-text-t3 tw-relative">
+        <div
+          class="basket-count"
+          v-if="basketStore.count > 0"
+        >
+          {{ basketStore.count }}
+        </div>
         <base-icon
           name="basket"
           class="tw-w-5 tw-h-5"
@@ -52,5 +58,25 @@
     </div>
   </q-footer>
 </template>
-<script setup lang="ts"></script>
-<style lang="scss" scoped></style>
+
+<script setup lang="ts">
+  import { useBasketStore } from 'src/stores/basket';
+
+  const basketStore = useBasketStore();
+</script>
+
+<style lang="scss" scoped>
+  .basket-count {
+    position: absolute;
+    top: -10px;
+    right: 0;
+    z-index: 10;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    border-radius: 50%;
+    text-align: center;
+    background-color: #F4C531;
+    @apply tw-text-el;
+  }
+</style>
