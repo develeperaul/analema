@@ -16,7 +16,7 @@
       />
     </div>
     <div
-      v-if="sectionsRes.loading.value || itemsRes.loading.value"
+      v-if="sectionsRes.loading.value || itemsRes.loading.value || subSectionsRes.loading.value"
       class="tw-w-full tw-h-full tw-top-0 tw-left-0 tw-fixed tw-z-50"
     >
       <q-inner-loading showing />
@@ -72,6 +72,7 @@
   watch(activeSection, () => {
     if(activeSection.value) {
       subSectionsRes.send();
+      activeSubSection.value = null;
     }
   });
 

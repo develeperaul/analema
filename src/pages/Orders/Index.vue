@@ -8,13 +8,15 @@
     />
     <div class="tw-container">
       <ChipList class="tw-mb-5" :items="tabs" :activeItem="activeTab" @change:item="activeTab = $event" />
-      <pre>{{ orders }}</pre>
+      <OrdersList v-if="ordersRes.data.value" :items="ordersRes.data.value" />
     </div>
+    <q-inner-loading :showing="ordersRes.loading.value" />
   </q-page>
 </template>
 
 <script setup lang="ts">
   import ToolbarColored from 'src/components/LayoutParts/ToolbarColored.vue';
+  import OrdersList from 'src/components/Order/List.vue';
   import ChipList, { type Item as ChipItem } from 'src/components/Base/ChipList.vue';
   import useRepositories from 'src/composables/useRepositories';
   import useDataOrAlert from 'src/composables/useDataOrAlert';
