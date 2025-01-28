@@ -16,7 +16,7 @@
   import type { CatalogItem } from 'src/repositories/catalog';
 
   const props = defineProps<{
-    item: CatalogItem,
+    item: Omit<CatalogItem, 'id_tp'>,
     isInFavorite: boolean,
   }>();
 
