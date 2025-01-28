@@ -45,6 +45,8 @@ export interface CatalogItem {
   price: string,
 }
 
+export type CatalogShowedProp = string | null;
+
 export interface CatalogShowed {
   gallery: string[],
   id: string,
@@ -52,12 +54,8 @@ export interface CatalogShowed {
   name: string,
   img: string | null,
   price: string,
-  prop1: string | null,
-  prop2: string | null,
-  prop3: string | null,
-  prop4: string | null,
-  prop5: string | null,
-  prop6: string | null,
+  detail_text: string,
+  properties: [ Record<string, CatalogShowedProp> ],
 }
 
 export type PopularProduct = Pick<CatalogItem, 'id' | 'img' | 'name' | 'price'>;
