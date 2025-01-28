@@ -5,6 +5,13 @@ export default function(http: AxiosInstance) {
     showSections() {
       return http.get<Section[]>('catalog_sec.php');
     },
+    showSubSections(sectionId: string | number) {
+      return http.get<Section[]>('catalog_subsec.php', {
+        params: {
+          id: sectionId,
+        },
+      });
+    },
     show(id: string | number) {
       return http.get<[ CatalogShowed ]>('catalog_element.php', {
         params: {
