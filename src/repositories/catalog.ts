@@ -29,6 +29,9 @@ export default function(http: AxiosInstance) {
     showPopular() {
       return http.get<PopularProduct[]>('show-popular.php');
     },
+    showPersonalSet() {
+      return http.get<PersonalSetItem[]>('show-liked.php');
+    }
   }
 }
 
@@ -59,3 +62,5 @@ export interface CatalogShowed {
 }
 
 export type PopularProduct = Pick<CatalogItem, 'id' | 'img' | 'name' | 'price'>;
+
+export type PersonalSetItem = Omit<CatalogItem, 'id_tp'>;

@@ -14,6 +14,7 @@
         <div class="price">{{ $amount(data.price) }}</div>
         <div class="name">{{ data.name }}</div>
         <Description class="tw-mb-6" :properties="data.properties[0]" :text="data.detail_text" />
+        <PersonalList class="tw-mb-10" />
         <BasketButton :active="basketStore.has(id)" @click="basketStore.toggle(id)" />
       </div>
     </div>
@@ -24,6 +25,7 @@
 <script setup lang="ts">
   import Toolbar from 'src/components/LayoutParts/Toolbar.vue';
   import Gallery from 'src/components/Catalog/Gallery.vue';
+  import PersonalList from 'src/components/Catalog/PersonalList.vue';
   import Description from 'src/components/Catalog/Description.vue';
   import BasketButton from 'src/components/Basket/Button.vue';
   import FavoritesButton from 'src/components/Favorites/Button.vue';
