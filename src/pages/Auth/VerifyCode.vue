@@ -36,10 +36,12 @@
   import { useRouter } from 'vue-router';
   import { useQuasar } from 'quasar';
   import * as Token from 'src/utils/token';
+  import { usePush } from 'src/boot/push';
 
   const $q = useQuasar();
   const authStore = useAuthStore();
   const api = useRepositories();
+  const push = usePush();
   const router = useRouter();
 
   const form = reactive({
@@ -71,6 +73,7 @@
       } else {
         Token.set(res.data.token);
         showProfile();
+        push.updateToken();
       }
     },
   );

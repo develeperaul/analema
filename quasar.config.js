@@ -30,6 +30,7 @@ module.exports = configure(function (/* ctx */) {
     boot: [
       "init",
       "api",
+      'push',
       "init-user",
       "auth",
       "favorites",
