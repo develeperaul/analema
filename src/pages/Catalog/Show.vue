@@ -65,7 +65,7 @@
   .basket-btn {
     position: sticky;
     z-index: 9000;
-    bottom: 85px;
     left: 0;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 85px) !important;
   }
 </style>
