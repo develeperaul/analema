@@ -15,7 +15,7 @@
         <div class="name">{{ data.name }}</div>
         <Description class="tw-mb-6" :properties="data.properties[0]" :text="data.detail_text" />
         <PersonalList class="tw-mb-10" />
-        <BasketButton :active="basketStore.has(id)" @click="basketStore.toggle(id)" />
+        <BasketButton class="basket-btn" :active="basketStore.has(id)" @click="basketStore.toggle(id)" />
       </div>
     </div>
     <q-inner-loading :showing="productRes.loading.value" />
@@ -60,5 +60,12 @@
 
   .name {
     @apply tw-text-t1 tw-text-base tw-font-bold tw-mb-6;
+  }
+
+  .basket-btn {
+    position: sticky;
+    z-index: 9000;
+    bottom: 85px;
+    left: 0;
   }
 </style>
