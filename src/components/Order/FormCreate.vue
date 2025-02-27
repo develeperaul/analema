@@ -52,6 +52,7 @@
   import { Form } from 'vee-validate';
   import { ProfileData } from 'src/repositories/profile';
   import { BasketItem } from 'src/repositories/basket';
+  import { OrderCreateSuccess } from 'src/repositories/order';
   import { orderSchema } from 'src/schemas/order';
   import { useQuasar } from 'quasar';
   import { useRouter } from 'vue-router';
@@ -63,7 +64,7 @@
   }>();
 
   const emit = defineEmits<{
-    (event: 'success'): void,
+    (event: 'success', res: OrderCreateSuccess): void,
   }>();
 
   const api = useRepositories();
@@ -106,8 +107,8 @@
         tovars: props.basketItems.map(i => ({ id: i.id, kol: 1 })),
       }
     },
-    () => {
-      emit('success');
+    (res) => {
+      emit('success', res.data);
       router.push('/');
       $q.notify({
         type: 'positive',

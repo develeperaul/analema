@@ -14,9 +14,10 @@
           :total="total"
           :user="authStore.user"
           :basketItems="basketRes.data.value"
-          @success="basketStore.clearSync"
+          @success="onSuccess"
         />
       </template>
+      <ModalPayment v-model="showedPayment" :links="paymentLinks" />
       <q-inner-loading :showing="basketRes.loading.value" />
     </div>
   </q-page>
@@ -29,8 +30,10 @@
   import useRequest from 'src/composables/useRequest';
   import useDataOrAlert from 'src/composables/useDataOrAlert';
   import FormCreate from 'src/components/Order/FormCreate.vue';
-  import { useBasketStore } from 'src/stores/basket';
+  import ModalPayment from 'src/components/Order/ModalPayment.vue';
+  import { OrderCreateSuccess } from 'src/repositories/order';
   import { useAuthStore } from 'src/stores/auth';
+  import { useBasketStore } from 'src/stores/basket';
 
   const api = useRepositories();
   const basketStore = useBasketStore();
@@ -54,4 +57,17 @@
       return acc;
     }, 0);
   });
+
+  const showedPayment = ref(true);
+  const paymentLinks = ref<OrderCreateSuccess>([]);
+
+  function onSuccess(res: OrderCreateSuccess) {
+    if(res.length > 1) {
+      paymentLinks.value = res;
+      showedPayment.value = true;
+    } else {
+      window.open(res[0].payment_url, '_blank');
+    }
+    basketStore.clearSync();
+  }
 </script>

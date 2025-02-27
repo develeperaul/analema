@@ -4,7 +4,7 @@ import { jsonFormData } from 'src/utils/formdata';
 export default function(http: AxiosInstance) {
   return {
     create(body: OrderCreateBody) {
-      return http.post('create_order.php', jsonFormData(body));
+      return http.post<OrderCreateSuccess>('create_order.php', jsonFormData(body));
     },
     showPoints() {
       return http.get<Point[]>('points.php');
@@ -32,6 +32,8 @@ export interface OrderCreateBody {
   time: string,
   tovars: Product[],
 }
+
+export type OrderCreateSuccess = ({ payment_url: string })[];
 
 export interface Product {
   id: string,
