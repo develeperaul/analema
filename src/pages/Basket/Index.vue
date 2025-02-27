@@ -58,7 +58,7 @@
     }, 0);
   });
 
-  const showedPayment = ref(true);
+  const showedPayment = ref(false);
   const paymentLinks = ref<OrderCreateSuccess>([]);
 
   function onSuccess(res: OrderCreateSuccess) {
