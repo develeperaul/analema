@@ -9,7 +9,6 @@ const routes: RouteRecordRaw[] = [
         path: "",
         name: "home",
         component: () => import("pages/IndexPage.vue"),
-        meta: { auth: true }
       },
     ],
   },
@@ -46,20 +45,18 @@ const routes: RouteRecordRaw[] = [
         path: "catalog",
         name: "catalog.index",
         component: () => import("pages/Catalog/Index.vue"),
-        meta: { auth: true },
       },
       {
         path: "catalog/:id",
         name: "catalog.show",
         component: () => import("pages/Catalog/Show.vue"),
-        meta: { auth: true },
         props: true,
       },
       {
         path: "catalog/favorites",
         name: "catalog.favorites",
         component: () => import("pages/Catalog/Favorites.vue"),
-        meta: { parent: "profile", auth: true },
+        meta: { parent: "profile" },
       },
       {
         path: "basket",
@@ -71,7 +68,6 @@ const routes: RouteRecordRaw[] = [
         path: "notifications",
         name: "notifications.index",
         component: () => import("pages/Notifications/Index.vue"),
-        meta: { auth: true },
       },
     ],
   },
