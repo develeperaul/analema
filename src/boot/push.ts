@@ -9,8 +9,6 @@ import { PushNotifications } from '../../src-capacitor/node_modules/@capacitor/p
 export function createPush(api: ReturnType<typeof createRepositories>) {
   async function updateToken(token?: string) {
     const token_fcm = token ?? Fcm.get();
-    console.log(Platform.is, token_fcm);
-
     if(!Platform.is.capacitor || !token_fcm) return;
     try {
       await api.fcm.registr({ token_fcm });

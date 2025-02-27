@@ -1,7 +1,7 @@
 <template>
   <div class="toolbar env-t">
     <div>
-      <button v-if="showBack" class="btn-back" type="button" @click="router.back">
+      <button v-if="showBack" class="btn-back" type="button" @click="back">
         <BaseIcon name="back" fit />
       </button>
     </div>
@@ -23,6 +23,14 @@
   }>();
 
   const router = useRouter();
+
+  function back() {
+    if(history.state.back) {
+      router.back();
+    } else {
+      router.replace('/');
+    }
+  }
 </script>
 
 <style scoped lang="scss">

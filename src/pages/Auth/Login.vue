@@ -1,45 +1,49 @@
 <template>
-  <q-page class="tw-container tw-grid env-t env-b">
-    <Form
-      class="tw-grid tw-content-between tw-h-full tw-grid-rows-[1fr_auto] tw-pt-10"
-      @submit="send"
-    >
-      <div>
-        <div class="tw-mb-10">
-          <h1 class="tw-mb-3 tw-text-center">Введите номер телефона</h1>
-          <div class="tw-text-center">Отправим код подтверждения</div>
+  <q-page class="env-b tw-grid">
+    <div class="tw-container tw-h-full tw-flex tw-flex-col">
+      <Toolbar showBack />
+      <Form
+        class="tw-grow tw-grid tw-content-between tw-h-full tw-grid-rows-[1fr_auto] tw-pt-8"
+        @submit="send"
+      >
+        <div>
+          <div class="tw-mb-10">
+            <h1 class="tw-mb-3 tw-text-center">Введите номер телефона</h1>
+            <div class="tw-text-center">Отправим код подтверждения</div>
+          </div>
+          <base-input
+            class="tw-mb-5"
+            label="Номер телефона"
+            name="phone"
+            type="tel"
+            maska="+7 (###)-###-##-##"
+            placeholder="+7 (000)-000-00-00"
+            :rules="loginSchema.phone"
+            v-model="form.phone"
+          />
         </div>
-        <base-input
-          class="tw-mb-5"
-          label="Номер телефона"
-          name="phone"
-          type="tel"
-          maska="+7 (###)-###-##-##"
-          placeholder="+7 (000)-000-00-00"
-          :rules="loginSchema.phone"
-          v-model="form.phone"
-        />
-      </div>
-      <div>
-        <BaseButton
-          type="submit"
-          text="Продолжить"
-          theme="gradient"
-          class="tw-mb-5"
-          :disabled="loading"
-        />
-        <div class="tw-text-t2 tw-text-card-descr tw-text-center">
-          Нажимая «Продолжить», я принимаю условия
-          <a href="#" class="tw-text-[#4D55FF]">
-            Пользовательского соглашения
-          </a>
+        <div>
+          <BaseButton
+            type="submit"
+            text="Продолжить"
+            theme="gradient"
+            class="tw-mb-5"
+            :disabled="loading"
+          />
+          <div class="tw-text-t2 tw-text-card-descr tw-text-center">
+            Нажимая «Продолжить», я принимаю условия
+            <a href="#" class="tw-text-[#4D55FF]">
+              Пользовательского соглашения
+            </a>
+          </div>
         </div>
-      </div>
-    </Form>
+      </Form>
+    </div>
   </q-page>
 </template>
 
 <script setup lang="ts">
+  import Toolbar from 'src/components/LayoutParts/Toolbar.vue';
   import { Form } from 'vee-validate';
   import { loginSchema } from 'src/schemas/auth';
   import usePostRequest from 'src/composables/usePostRequest';
