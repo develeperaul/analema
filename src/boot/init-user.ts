@@ -24,16 +24,10 @@ export default boot(async ({ app }) => {
       if(e.status === 401) {
         Token.remove();
       } else {
-        Notify.create({
-          type: 'negative',
-          message,
-        });
+        console.log(message);
       }
     } else {
-      Notify.create({
-        type: 'negative',
-        message,
-      });
+      console.log(message);
     }
 
     authStore.setUser(null);
