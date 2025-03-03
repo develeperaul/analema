@@ -36,6 +36,7 @@
   import { useBasketStore } from 'src/stores/basket';
   import { useQuasar } from 'quasar';
   import { useRouter } from 'vue-router';
+  import { Browser } from '@capacitor/browser';
 
   const api = useRepositories();
   const basketStore = useBasketStore();
@@ -70,7 +71,7 @@
     if(res.length <= 0) {
       router.push('/');
     } else if(res.length === 1) {
-      window.open(res[0].payment_url, '_blank');
+      Browser.open({ url: res[0].payment_url })
     } else {
       paymentLinks.value = res;
       showedPayment.value = true;
