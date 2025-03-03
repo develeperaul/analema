@@ -25,7 +25,7 @@
             />
           </div>
           <h2
-            class="tw-absolute tw-bottom-[80px] tw-text-center tw-w-full">
+            class="tw-absolute slide-pb tw-text-center tw-w-full">
             Покупайте, продавайте и <br />
             зарабатывайте вместе с нами
           </h2>
@@ -61,7 +61,7 @@
             />
           </div>
           <h2
-            class="tw-absolute tw-bottom-[80px] tw-text-center tw-w-full">
+            class="tw-absolute slide-pb tw-text-center tw-w-full">
             Каталог с уникальными <br />
             товарами и лучшими ценами
           </h2>
@@ -95,7 +95,7 @@
             />
           </div>
           <h2
-            class="tw-absolute tw-bottom-[80px] tw-text-center tw-w-full">
+            class="tw-absolute slide-pb tw-text-center tw-w-full">
             Экспресс-оценка товара <br />
             нейросетью за 1 минуту
           </h2>
@@ -131,7 +131,7 @@
               alt=""
             />
           </div>
-          <div class="tw-absolute tw-bottom-[80px] tw-text-center tw-w-full tw-px-4">
+          <div class="tw-absolute slide-pb tw-text-center tw-w-full tw-px-4">
             <h2>
               Зарабатывайте с нашей <br />
               реферальной программой
@@ -193,9 +193,13 @@ onMounted(() => {
 });
 </script>
 <style lang="scss">
+.slide-pb {
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 80px) !important;
+}
+
 .swiper-pagination {
   position: absolute;
-  bottom: 30px;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 30px) !important;
   display: flex;
   gap: 8px;
   left: 50%;
