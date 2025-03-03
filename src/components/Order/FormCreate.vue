@@ -54,8 +54,6 @@
   import { BasketItem } from 'src/repositories/basket';
   import { OrderCreateSuccess } from 'src/repositories/order';
   import { orderSchema } from 'src/schemas/order';
-  import { useQuasar } from 'quasar';
-  import { useRouter } from 'vue-router';
 
   const props = defineProps<{
     total: number,
@@ -88,9 +86,6 @@
     entrance: '',
   });
 
-  const $q = useQuasar();
-  const router = useRouter();
-
   const { loading, send } = usePostRequest(
     api.order.create,
     () => {
@@ -109,11 +104,6 @@
     },
     (res) => {
       emit('success', res.data);
-      router.push('/');
-      $q.notify({
-        type: 'positive',
-        message: 'Ваш заказ успешно создан!',
-      });
     },
     'Не удалось создать заказ',
   );

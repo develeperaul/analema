@@ -34,6 +34,8 @@
   import { OrderCreateSuccess } from 'src/repositories/order';
   import { useAuthStore } from 'src/stores/auth';
   import { useBasketStore } from 'src/stores/basket';
+  import { useQuasar } from 'quasar';
+  import { useRouter } from 'vue-router';
 
   const api = useRepositories();
   const basketStore = useBasketStore();
@@ -58,16 +60,25 @@
     }, 0);
   });
 
+  const $q = useQuasar();
+  const router = useRouter();
+
   const showedPayment = ref(false);
   const paymentLinks = ref<OrderCreateSuccess>([]);
 
   function onSuccess(res: OrderCreateSuccess) {
-    if(res.length > 1) {
+    if(res.length <= 0) {
+      router.push('/');
+    } else if(res.length === 1) {
+      window.open(res[0].payment_url, '_blank');
+    } else {
       paymentLinks.value = res;
       showedPayment.value = true;
-    } else {
-      window.open(res[0].payment_url, '_blank');
     }
     basketStore.clearSync();
+    $q.notify({
+      type: 'positive',
+      message: 'Ваш заказ успешно создан!',
+    });
   }
 </script>
