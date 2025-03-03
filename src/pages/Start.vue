@@ -15,20 +15,21 @@
             #b2b2ef 107.46%
           );
         ">
-        <div class="tw-grid tw-content-end tw-h-full tw-relative">
-          <div
-            class="tw-absolute tw-top-10 tw-left-1/2 tw-transform -tw-translate-x-1/2 tw-w-full">
+        <div class="tw-flex tw-flex-col tw-justify-between tw-h-full env-t">
+          <div></div>
+          <div>
             <img
-              class="tw-object-cover tw-mx-auto"
+              class="tw-w-full"
               src="~assets/images/slides/1.png"
-              alt="" />
+              alt=""
+            />
           </div>
-          <div class="tw-relative">
-            <h2
-              class="tw-absolute tw-text-center tw-bottom-[140px] tw-left-1/2 tw-transform -tw-translate-x-1/2 tw-w-full tw-px-4 tw-pb-4">
-              Покупайте, продавайте и <br />
-              зарабатывайте вместе с нами
-            </h2>
+          <h2
+            class="tw-absolute tw-bottom-[80px] tw-text-center tw-w-full">
+            Покупайте, продавайте и <br />
+            зарабатывайте вместе с нами
+          </h2>
+          <div>
             <svg
               width="100%"
               height="100%"
@@ -50,20 +51,21 @@
             #edc39b 107.51%
           );
         ">
-        <div class="tw-grid tw-content-end tw-h-full">
-          <div
-            class="tw-absolute tw-top-10 tw-left-1/2 tw-transform -tw-translate-x-1/2 tw-w-full">
+        <div class="tw-flex tw-flex-col tw-justify-between tw-h-full env-t">
+          <div></div>
+          <div>
             <img
-              class="tw-object-cover tw-mx-auto"
+              class="tw-w-full"
               src="~assets/images/slides/2.png"
-              alt="" />
+              alt=""
+            />
           </div>
-          <div class="tw-relative">
-            <h2
-              class="tw-absolute tw-text-center tw-bottom-[140px] tw-left-1/2 tw-transform -tw-translate-x-1/2 tw-w-full tw-px-4 tw-pb-4">
-              Каталог с уникальными <br />
-              товарами и лучшими ценами
-            </h2>
+          <h2
+            class="tw-absolute tw-bottom-[80px] tw-text-center tw-w-full">
+            Каталог с уникальными <br />
+            товарами и лучшими ценами
+          </h2>
+          <div>
             <svg
               width="100%"
               height="100%"
@@ -83,20 +85,21 @@
             #edc39b 107.51%
           );
         ">
-        <div class="tw-grid tw-content-end tw-h-full">
-          <div
-            class="tw-absolute tw-top-10 tw-left-1/2 tw-transform -tw-translate-x-1/2 tw-w-full">
+        <div class="tw-flex tw-flex-col tw-justify-between tw-h-full env-t">
+          <div></div>
+          <div>
             <img
-              class="tw-object-cover tw-mx-auto"
+              class="tw-w-full"
               src="~assets/images/slides/3.png"
-              alt="" />
+              alt=""
+            />
           </div>
-          <div class="tw-relative">
-            <h2
-              class="tw-absolute tw-text-center tw-bottom-[140px] tw-left-1/2 tw-transform -tw-translate-x-1/2 tw-w-full tw-px-4 tw-pb-4">
-              Экспресс-оценка товара <br />
-              нейросетью за 1 минуту
-            </h2>
+          <h2
+            class="tw-absolute tw-bottom-[80px] tw-text-center tw-w-full">
+            Экспресс-оценка товара <br />
+            нейросетью за 1 минуту
+          </h2>
+          <div>
             <svg
               width="100%"
               height="100%"
@@ -118,24 +121,24 @@
             #b2b2ef 107.46%
           );
         ">
-        <div class="tw-grid tw-content-end tw-h-full">
-          <div
-            class="tw-absolute tw-top-10 tw-left-1/2 tw-transform -tw-translate-x-1/2 tw-w-full">
+
+        <div class="tw-flex tw-flex-col tw-justify-between tw-h-full env-t">
+          <div></div>
+          <div>
             <img
-              class="tw-object-cover tw-mx-auto"
+              class="tw-w-full"
               src="~assets/images/slides/4.png"
-              alt="" />
+              alt=""
+            />
           </div>
-          <div class="tw-relative">
-            <div class="tw-absolute tw-text-center tw-bottom-[140px] tw-left-1/2 tw-transform -tw-translate-x-1/2 tw-w-full tw-px-4 tw-pb-4">
-              <h2>
-                Зарабатывайте с нашей <br />
-                реферальной программой
-              </h2>
-            </div>
-            <div class="tw-absolute tw-text-center tw-bottom-[40px] tw-left-1/2 tw-transform -tw-translate-x-1/2 tw-w-full tw-px-4">
-              <BaseButton class="tw-mt-6" text="Продолжить" to="/" />
-            </div>
+          <div class="tw-absolute tw-bottom-[80px] tw-text-center tw-w-full tw-px-4">
+            <h2>
+              Зарабатывайте с нашей <br />
+              реферальной программой
+            </h2>
+            <BaseButton class="tw-mt-6" text="Продолжить" to="/" />
+          </div>
+          <div>
             <svg
               width="100%"
               height="100%"
@@ -192,7 +195,7 @@ onMounted(() => {
 <style lang="scss">
 .swiper-pagination {
   position: absolute;
-  bottom: 120px;
+  bottom: 30px;
   display: flex;
   gap: 8px;
   left: 50%;
