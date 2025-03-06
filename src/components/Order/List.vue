@@ -14,9 +14,9 @@
 
 <script setup lang="ts">
   import ListItem from './ListItem.vue';
-  // import type { EstimateListItem } from 'src/repositories/order';
+  import type { OrderListItem } from 'src/repositories/order';
 
   defineProps<{
-    items: object[],
+    items: OrderListItem[],
   }>();
 </script>

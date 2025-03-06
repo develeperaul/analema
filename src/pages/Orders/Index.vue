@@ -8,7 +8,7 @@
     />
     <div class="tw-container">
       <ChipList class="tw-mb-5" :items="tabs" :activeItem="activeTab" @change:item="activeTab = $event" />
-      <OrdersList v-if="ordersRes.data.value" :items="ordersRes.data.value" />
+      <OrdersList v-if="ordersRes.data.value" :items="orders" />
     </div>
     <q-inner-loading :showing="ordersRes.loading.value" />
   </q-page>
@@ -37,11 +37,17 @@
 
   const api = useRepositories();
 
-  const ordersRes = useRequest(
-    api.order.list,
-    { watch: [ activeTab ] },
-  );
-  const { data: orders } = useDataOrAlert(ordersRes);
+  const ordersRes = useRequest(api.order.list);
+  const { data: ordersData } = useDataOrAlert(ordersRes);
+
+  const orders = computed(() => {
+    if(!ordersData.value) return [];
+    return ordersData.value.filter(order => {
+      if(!activeTab.value) return true;
+      if(activeTab.value.value === '2') return order.status === 'Выполнен';
+      else return order.status !== 'Выполнен';
+    });
+  });
 </script>
 
 <style scoped lang="scss">

@@ -10,13 +10,31 @@ export default function(http: AxiosInstance) {
       return http.get<Point[]>('points.php');
     },
     list() {
-      return http.get('order_list.php', {
+      return http.get<OrderListItem[]>('order_list.php', {
         params: {
           token: true,
         }
       });
     },
   }
+}
+
+export interface OrderListItem {
+  name: string,
+  id: string,
+  img: string,
+  price1: string,
+  order_id: string,
+  order_date: {
+    date: string,
+    timezone_type: number,
+    timezone: string
+  },
+  payment_url: string,
+  kol: string,
+  summ: string,
+  status: string,
+  status_code: string,
 }
 
 export interface OrderCreateBody {
