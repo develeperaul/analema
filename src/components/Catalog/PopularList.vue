@@ -22,10 +22,11 @@
   import PopularListItem from './PopularListItem.vue';
   import useRepositories from 'src/composables/useRepositories';
   import useRequest from 'src/composables/useRequest';
+  import useCache from 'src/composables/useCache';
   import useDataOrAlert from 'src/composables/useDataOrAlert';
 
   const api = useRepositories();
-  const productsRes = useRequest(api.catalog.showPopular);
+  const productsRes = useRequest(useCache('products.popular', api.catalog.showPopular));
   useDataOrAlert(productsRes);
 </script>
 

@@ -36,6 +36,7 @@ module.exports = configure(function (/* ctx */) {
       "favorites",
       "basket",
       "vee-validate",
+      "cache",
     ],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
