@@ -1,5 +1,5 @@
 <template>
-  <q-dialog transition-show="slide-left" transition-hide="slide-right" maximized v-model="value">
+  <q-dialog class="product-detailed" transition-show="slide-left" transition-hide="slide-right" maximized v-model="value">
     <div ref="cardRef" class="tw-bg-white page-pb" v-touch-swipe.mouse.right="close">
       <div class="tw-container">
         <Toolbar class="tw-mb-5" showBack :backFn="close">
@@ -86,5 +86,10 @@
     z-index: 9000;
     left: 0;
     bottom: env(safe-area-inset-bottom, 0px) !important;
+  }
+
+  :global(body.q-ios-padding .product-detailed .q-dialog__inner) {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
   }
 </style>
