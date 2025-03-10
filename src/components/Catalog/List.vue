@@ -11,6 +11,7 @@
         :item="item"
         :isInFavorite="favoritesStore.has(item.id)"
         @favorite:toggle="favoritesStore.toggle(item.id)"
+        @click="$emit('show:product', item.id)"
       />
     </div>
   </div>
@@ -23,6 +24,10 @@
 
   defineProps<{
     items: CatalogItem[],
+  }>();
+
+  defineEmits<{
+    (event: 'show:product', productId: string): void,
   }>();
 
   const favoritesStore = useFavoritesStore();

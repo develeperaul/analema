@@ -47,6 +47,7 @@ declare module 'vue' {
     ModalLoading: typeof import('./components/Estimates/ModalLoading.vue')['default']
     ModalLogout: typeof import('./components/Profile/ModalLogout.vue')['default']
     ModalPayment: typeof import('./components/Order/ModalPayment.vue')['default']
+    ModalProduct: typeof import('./components/Catalog/ModalProduct.vue')['default']
     ModalReject: typeof import('./components/Estimates/ModalReject.vue')['default']
     ModalRejectVideo: typeof import('./components/Estimates/ModalRejectVideo.vue')['default']
     ModalSuccess: typeof import('./components/Estimates/ModalSuccess.vue')['default']

@@ -10,6 +10,7 @@
         :item="item"
         :isInFavorite="favoritesStore.has(item.id)"
         @favorite:toggle="favoritesStore.toggle(item.id)"
+        @click.stop="$emit('show:product', item.id)"
       />
     </div>
   </div>
@@ -21,6 +22,10 @@
   import useRequest from 'src/composables/useRequest';
   import useRepositories from 'src/composables/useRepositories';
   import useDataOrAlert from 'src/composables/useDataOrAlert';
+
+  defineEmits<{
+    (event: 'show:product', productId: string): void,
+  }>();
 
   const favoritesStore = useFavoritesStore();
 

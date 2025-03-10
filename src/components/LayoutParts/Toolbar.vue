@@ -1,7 +1,7 @@
 <template>
   <div class="toolbar env-t">
     <div>
-      <button v-if="showBack" class="btn-back" type="button" @click="back">
+      <button v-if="showBack" class="btn-back" type="button" @click="backAction">
         <BaseIcon name="back" fit />
       </button>
     </div>
@@ -17,9 +17,10 @@
 <script setup lang="ts">
   import { useRouter } from 'vue-router';
 
-  defineProps<{
+  const props = defineProps<{
     title?: string,
     showBack?: boolean,
+    backFn?: () => void,
   }>();
 
   const router = useRouter();
@@ -31,6 +32,8 @@
       router.replace('/');
     }
   }
+
+  const backAction = props.backFn || back;
 </script>
 
 <style scoped lang="scss">

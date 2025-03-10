@@ -13,6 +13,7 @@
         v-if="itemsRes.data.value"
         class="tw-mt-5"
         :items="itemsRes.data.value"
+        @show:product="activeProduct = $event; showedProduct = true"
       />
     </div>
     <div
@@ -21,6 +22,12 @@
     >
       <q-inner-loading showing />
     </div>
+    <ModalProduct
+      v-if="activeProduct"
+      :id="activeProduct"
+      v-model="showedProduct"
+      @change:product="activeProduct = $event"
+    />
   </q-page>
 </template>
 
@@ -30,6 +37,7 @@
   import useDataOrAlert from 'src/composables/useDataOrAlert';
   import CatalogList from 'src/components/Catalog/List.vue';
   import SelectCategories from 'src/components/Catalog/SelectCategories.vue';
+  import ModalProduct from 'src/components/Catalog/ModalProduct.vue';
   import Toolbar from 'src/components/LayoutParts/Toolbar.vue';
   import ChipList, { type Item as ChipItem } from 'src/components/Base/ChipList.vue';
 
@@ -81,4 +89,7 @@
       itemsRes.send();
     }
   });
+
+  const activeProduct = ref<string | null>(null);
+  const showedProduct = ref(false);
 </script>

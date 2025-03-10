@@ -1,14 +1,14 @@
 <template>
-  <router-link class="catalog-item" :to="{ name: 'catalog.show', params: { id: item.id } }">
+  <article class="catalog-item">
     <div class="actions">
-      <FavoritesButton :active="isInFavorite" @click.prevent="$emit('favorite:toggle', item.id)" />
+      <FavoritesButton :active="isInFavorite" @click.stop="$emit('favorite:toggle', item.id)" />
     </div>
     <Image imgClass="tw-w-full" width="162" height="142" :src="item.img" />
     <div class="body">
       <div class="price">{{ $amount(item.price) }}</div>
       <div class="name">{{ item.name }}</div>
     </div>
-  </router-link>
+  </article>
 </template>
 
 <script setup lang="ts">
@@ -29,6 +29,7 @@
     position: relative;
     border-radius: 10px;
     overflow: hidden;
+    cursor: pointer;
     @apply tw-bg-card;
   }
 
