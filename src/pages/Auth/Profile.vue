@@ -47,7 +47,7 @@
     name: authStore.user!.name,
     last_name: authStore.user!.last_name,
     otch: authStore.user!.otch,
-    db: authStore.user!.db,
+    db: authStore.user!.db ?? '',
     email: authStore.user!.email,
   });
 
