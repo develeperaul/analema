@@ -88,7 +88,9 @@
     bottom: env(safe-area-inset-bottom, 0px) !important;
   }
 
-  :global(body.q-ios-padding .product-detailed .q-dialog__inner) {
+  :global(body.q-ios-padding .product-detailed .q-dialog__inner),
+  :global(body.q-ios-padding .product-detailed.fullscreen)
+  {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
   }
