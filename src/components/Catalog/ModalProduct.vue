@@ -94,4 +94,8 @@
     padding-top: 0 !important;
     padding-bottom: 0 !important;
   }
+
+  :global(body.q-ios-padding .product-detailed .q-dialog__inner > div) {
+    max-height: 100vh !important;
+  }
 </style>
