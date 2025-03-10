@@ -1,14 +1,7 @@
 <template>
   <q-page class="page-pb">
-    <div class="tw-container tw-pt-6">
-      <div class="tw-relative tw-flex tw-justify-center tw-mb-6">
-        <div
-          @click="router.go(-1)"
-          class="tw-absolute tw-left-0 tw-top-1/2 tw-transform -tw-translate-y-1/2">
-          <BaseIcon name="back" class="tw-w-[17px] tw-h-[17px]" />
-        </div>
-        <div class="tw-text-h1 tw-font-bold">Заказ № {{ id }}</div>
-      </div>
+    <div class="tw-container">
+      <Toolbar class="tw-mb-6" :title="`Заказ № ${id}`" showBack />
       <div v-if="data">
         <div class="tw-space-y-5">
           <div class="param">
