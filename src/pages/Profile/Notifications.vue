@@ -1,5 +1,5 @@
 <template>
-  <q-page class="env-t">
+  <q-page class="page-pb">
     <div class="tw-container">
       <Toolbar class="tw-mb-6" title="Push-уведомления" showBack />
       <div class="tw-space-y-4">
