@@ -53,6 +53,7 @@
     }
   }
   .invite {
+    z-index: 1;
     @apply tw-rounded-20 tw-overflow-hidden yellor-gr tw-px-4  tw-relative tw-grid;
     height: 105px;
     align-content: center;
@@ -63,6 +64,7 @@
       @apply tw-absolute tw-right-0 tw-top-0;
       width: 149px;
       height: 95px;
+      z-index: -1;
     }
   }
 }
