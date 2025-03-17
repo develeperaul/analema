@@ -16,6 +16,16 @@ export default function(http: AxiosInstance) {
         }
       });
     },
+    showCities() {
+      return http.get<CityItem[]>('citylist.php');
+    },
+    showBranches(cityId: string | number) {
+      return http.get<BranchItem[]>('filials.php', {
+        params: {
+          id: cityId,
+        }
+      });
+    }
   }
 }
 
@@ -63,4 +73,15 @@ export interface Point {
   address: string,
   city: string,
   geo: string,
+}
+
+
+export interface CityItem {
+  id: string,
+  name: string,
+}
+
+export interface BranchItem {
+  id: string,
+  name: string,
 }
