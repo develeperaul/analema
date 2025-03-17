@@ -13,6 +13,7 @@
       </div>
     </div>
     <div class="caption" v-if="caption">{{ caption }}</div>
+    <div class="tw-text-t1 tw-text-negative tw-mt-2" v-if="error">{{ error }}</div>
     <q-inner-loading :showing="loading" />
   </div>
 </template>
@@ -27,6 +28,7 @@
   defineProps<{
     label: string,
     caption?: string,
+    error?: string,
   }>();
 
   const api = useRepositories();

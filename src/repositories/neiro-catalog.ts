@@ -6,7 +6,7 @@ export default function(http: AxiosInstance) {
       return http.get<SectionItem[]>('neiro_catalog_sections.php');
     },
     showSubSections(sectionId: string | number) {
-      return http.get<SubSectionItem[]>('neiro_catalog_sections.php', {
+      return http.get<SubSectionItem[]>('neiro_catalog_subsections.php', {
         params: {
           id: sectionId,
         }
