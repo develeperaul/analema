@@ -13,7 +13,7 @@
             <div class="param-value">{{ data.status }}</div>
           </div>
           <div class="param">
-            <div class="param-label">Наименование товара</div>
+            <div class="param-label">Описание товара</div>
             <div class="param-value">{{ data.desc }}</div>
           </div>
           <div v-if="data.gallery.length > 0">
@@ -22,11 +22,11 @@
           </div>
         </div>
         <div class="estimate" v-if="data.price">
-          <div class="param tw-mb-5">
+          <div class="param">
             <div class="param-label">Стоимость товара</div>
             <div class="param-value">{{ $amount(data.price) }}</div>
           </div>
-          <div class="param" v-if="data.comment">
+          <div class="param tw-mt-5" v-if="data.comment">
             <div class="param-label">Комментарий</div>
             <div class="param-value">{{ data.comment }}</div>
           </div>
@@ -35,8 +35,8 @@
           <BaseButton
             v-if="data.status === 'Ожидает оценки'"
             text="Отменить сделку"
-            :disabled="loading"
-            @click="onAction('3')"
+            :disabled="loadingCancel"
+            @click="cancel"
           />
           <template v-if="data.price">
             <BaseButton
@@ -60,7 +60,7 @@
       v-model="showedReject"
       :loading="loading"
       @accept:video="onAction('2')"
-      @reject:video="showedRejectVideo = true"
+      @reject:video="onAction('3')"
     />
     <ModalAcceptVideo v-model="showedAcceptVideo" />
     <ModalRejectVideo v-model="showedRejectVideo" />
@@ -78,7 +78,7 @@
   import ModalReject from 'src/components/Estimates/ModalReject.vue';
   import ModalAcceptVideo from 'src/components/Estimates/ModalAcceptVideo.vue';
   import ModalRejectVideo from 'src/components/Estimates/ModalRejectVideo.vue';
-  import type { EventType } from 'src/repositories/estimates';
+  import type { EstimateNextStep } from 'src/repositories/neiro-estimates';
 
   const props = defineProps<{
     id: string,
@@ -92,13 +92,20 @@
 
   const data = computed(() => estimateRes.data.value?.[0] ?? null);
 
-  const activeEvent = ref<EventType | null>(null);
+  const activeEvent = ref<EstimateNextStep | null>(null);
+
+  const { loading: loadingCancel, send: cancel } = usePostRequest(
+    api.estimates.sendEvent,
+    () => ({ id: props.id, event: '3' as const }),
+    () => estimateRes.send(),
+    'Не удалось отменить сделку!',
+  );
 
   const { loading, send } = usePostRequest(
-    api.estimates.sendEvent,
+    api.neiroEstimates.finish,
     () => ({
       id: props.id,
-      event: activeEvent.value!,
+      next_step: activeEvent.value!,
     }),
     () => {
       if(activeEvent.value === '1') {
@@ -106,13 +113,13 @@
       } else if(activeEvent.value === '2') {
         showedAcceptVideo.value = true;
       } else {
-        estimateRes.send();
+        showedRejectVideo.value = true;
       }
     },
     'Не удалось выполнить действие.',
   );
 
-  function onAction(event: EventType) {
+  function onAction(event: EstimateNextStep) {
     activeEvent.value = event;
     send();
   }
