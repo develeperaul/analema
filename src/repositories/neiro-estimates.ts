@@ -6,13 +6,13 @@ export default function(http: AxiosInstance) {
     create(body: EstimateCreateBody) {
       return http.post<EstimateCreateRes>('online_selling_neiro.php', jsonFormData(body));
     },
-    showResult(body: EstimateShowResBody) {
+    finish(body: EstimateFinishBody) {
       return http.post<void>('online_selling_neiro_result.php', jsonFormData(body));
     }
   }
 }
 
-export interface EstimateShowResBody {
+export interface EstimateFinishBody {
   id: string | number,
   next_step: EstimateNextStep,
 }
@@ -30,5 +30,5 @@ export interface EstimateCreateBody {
 
 export interface EstimateCreateRes {
   id: number,
-  price: number,
+  price: number | false,
 }

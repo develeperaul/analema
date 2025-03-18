@@ -42,6 +42,13 @@ const routes: RouteRecordRaw[] = [
         props: true,
       },
       {
+        path: "estimates/:id/result",
+        name: "estimates.result",
+        component: () => import("pages/Estimates/Result.vue"),
+        meta: { parent: "home", auth: true },
+        props: true,
+      },
+      {
         path: "catalog",
         name: "catalog.index",
         component: () => import("pages/Catalog/Index.vue"),

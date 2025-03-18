@@ -6,7 +6,7 @@
       </button>
     </div>
     <div class="body">
-      <div class="icon-wrap" :class="iconWrapClass">
+      <div v-if="icon" class="icon-wrap" :class="iconWrapClass">
         <BaseIcon :name="icon" fit />
       </div>
       <h1 v-if="title" class="tw-text-h1 tw-text-el tw-font-bold tw-mt-3">
@@ -22,7 +22,7 @@
   const router = useRouter();
 
   defineProps<{
-    icon: string,
+    icon?: string,
     iconWrapClass?: string,
     title?: string,
     btnWrapClass?: string,

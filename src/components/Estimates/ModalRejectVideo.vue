@@ -10,7 +10,16 @@
             </div>
             <div class="h1 tw-text-center tw-mt-5 tw-mx-auto tw-max-w-[278px]">Предлагаем продолжить общение в чате WhatsApp</div>
           </div>
-          <BaseButton text="Поторговаться в чате WhatsApp" to="/" />
+          <div class=" tw-w-full">
+            <a
+              class="tw-py-[13px] tw-px-4 tw-text-center tw-w-full tw-block tw-bg-el tw-rounded-16 tw-text-white tw-font-medium tw-text-[16px] tw-leading-[1.3]"
+              href="https://api.whatsapp.com/send?phone=79177500267"
+              target="_blank"
+            >
+              Поторговаться в чате WhatsApp
+            </a>
+            <BaseButton class="tw-mt-3" text="На главную" to="/" border />
+          </div>
         </div>
       </div>
     </div>
@@ -33,7 +42,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding-bottom: 90px;
+    padding-bottom: 50px;
   }
 
   .img-wrap {

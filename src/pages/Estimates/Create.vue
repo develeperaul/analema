@@ -66,7 +66,7 @@
     <q-inner-loading
       :showing="sectionsRes.loading.value || subSectionsRes.loading.value || catalogRes.loading.value"
     />
-    <ModalLoading v-model="showedModal" @finish="onFinish" />
+    <ModalLoading v-model="showedModal" />
   </q-page>
 </template>
 
@@ -133,8 +133,13 @@
       neiro_add_type: activeSection.value?.additional ?? '',
       neiro_add_value: form.neiro_add_value,
     }),
-    () => {
-      showedModal.value = true;
+    (res) => {
+      showedModal.value = false;
+      if(!res.data.price) {
+        router.push({ name: 'estimates.index' });
+      } else {
+        router.push({ name: 'estimates.result', params: { id: res.data.id } });
+      }
     },
     'Не удалось создать заявку.',
   );
@@ -143,14 +148,11 @@
 
   const router = useRouter();
 
-  function onFinish() {
-    router.replace({ name: 'estimates.index' });
-  }
-
   function onSubmit() {
     if(form.files.length <= 0) {
       filesError.value = 'Добавьте хотя бы одно фото'
     } else {
+      showedModal.value = true;
       send();
     }
   }

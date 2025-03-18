@@ -4,10 +4,10 @@
       <div class="body">
         <img class="img" width="140" height="140" src="~/assets/images/alerts/monitor.svg" />
         <div class="text">
-          Онлайн-оценка займет около 10 минут...
+          Онлайн-оценка займет около 60 секунд...
         </div>
         <div class="progress">
-          <div class="progress__line" @animationend="$emit('finish')"></div>
+          <div class="progress__line"></div>
         </div>
       </div>
     </div>
@@ -18,10 +18,6 @@
   const value = defineModel({
     default: false,
   });
-
-  defineEmits<{
-    (event: 'finish'): void,
-  }>();
 </script>
 
 <style scoped lang="scss">
@@ -62,7 +58,7 @@
     @apply tw-bg-black;
 
     &__line {
-      animation: timeline 5000ms linear;
+      animation: timeline 60s linear infinite;
       width: 100%;
       height: 100%;
       @apply tw-bg-white;
