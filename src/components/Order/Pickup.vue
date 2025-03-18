@@ -1,0 +1,72 @@
+<template>
+  <q-skeleton
+    class="tw-w-full tw-h-[80px] tw-rounded-16"
+    v-if="citiesRes.loading.value"
+  />
+  <div v-else>
+    <div>
+      <div class="tw-mb-3 tw-font-bold tw-text-h2">Город</div>
+      <BaseRadio
+        v-for="city in citiesRes.data.value"
+        :key="city.id"
+        name="city"
+        :rules="schema.city"
+        :label="city.name"
+        :checkedValue="city.name"
+        v-model="activeCity"
+        @update:modelValue="activeCityId = city.id"
+      />
+      <div v-if="cityError" class="tw-text-negative tw-text-t1 tw-mt-2">{{ cityError }}</div>
+    </div>
+    <div class="tw-mt-6" v-if="activeCity">
+      <div class="tw-mb-3 tw-font-bold tw-text-h2">Точка самовывоза</div>
+      <BaseRadio
+        v-for="point in pointsRes.data.value"
+        :key="point.id"
+        name="point"
+        :rules="schema.point"
+        :label="point.name"
+        :checkedValue="point.name"
+        v-model="activePoint"
+      />
+      <div v-if="pointError" class="tw-text-negative tw-text-t1 tw-mt-2">{{ pointError }}</div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+  import useRepositories from 'src/composables/useRepositories';
+  import useRequest from 'src/composables/useRequest';
+  import useDataOrAlert from 'src/composables/useDataOrAlert';
+  import BaseRadio from 'src/components/Base/Radio.vue';
+  import { RuleExpression, useFieldError } from 'vee-validate';
+
+  defineProps<{
+    schema: {
+      city: RuleExpression<string>,
+      point: RuleExpression<string>,
+    },
+  }>();
+
+  const activeCity = defineModel('city', { default: '' });
+  const activePoint = defineModel('point', { default: '' });
+
+  const activeCityId = ref<string | null>(null);
+
+  const api = useRepositories();
+
+  const citiesRes = useRequest(() => api.order.showCities());
+  useDataOrAlert(citiesRes);
+
+  const pointsRes = useRequest(
+    () => api.order.showBranches(activeCityId.value!),
+    {
+      immediate: false,
+      watch: [ activeCity ],
+    },
+  );
+  useDataOrAlert(pointsRes);
+
+  const cityError = useFieldError('city');
+  const pointError = useFieldError('point');
+</script>

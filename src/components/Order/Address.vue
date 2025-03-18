@@ -4,7 +4,7 @@
     <BaseInput
       class="tw-w-full tw-mb-3"
       name="addr.address"
-      label="Адрес и номер дома"
+      label="Город, адрес и номер дома"
       :rules="schema.address"
       v-model="values.address"
       @change="onChangeAddress"

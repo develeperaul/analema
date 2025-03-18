@@ -10,9 +10,10 @@
       @change:active="form.delivery = ($event.value as OrderCreateBody['delivery'])"
     />
     <template v-if="form.delivery === '2'">
-      <Points
-        :rules="orderSchema.point"
-        v-model="form.point"
+      <Pickup
+        :schema="orderSchema.pickup"
+        v-model:city="pickup.city"
+        v-model:point="pickup.point"
       />
     </template>
     <template v-else>
@@ -45,7 +46,7 @@
 <script setup lang="ts">
   import usePostRequest from 'src/composables/usePostRequest';
   import useRepositories from 'src/composables/useRepositories';
-  import Points from 'src/components/Order/Points.vue';
+  import Pickup from 'src/components/Order/Pickup.vue';
   import Address from 'src/components/Order/Address.vue';
   import DateTime from 'src/components/Order/DateTime.vue';
   import type { OrderCreateBody } from 'src/repositories/order';
@@ -67,9 +68,8 @@
 
   const api = useRepositories();
 
-  const form: Omit<OrderCreateBody, 'tovars'> = reactive({
+  const form: Omit<OrderCreateBody, 'tovars' | 'point'> = reactive({
     delivery: '2',
-    point: '',
     address: '',
     date: '',
     time: '',
@@ -86,11 +86,17 @@
     entrance: '',
   });
 
+  const pickup = reactive({
+    city: '',
+    point: '',
+  });
+
   const { loading, send } = usePostRequest(
     api.order.create,
     () => {
       const body = form.delivery === '2' ?
       {
+        point: pickup.city + ', ' + pickup.point,
         address: '',
         date: '',
         time: '',
