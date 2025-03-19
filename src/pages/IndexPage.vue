@@ -2,7 +2,7 @@
   <q-page class="tw-container tw-pt-7 page-pb tw-flex tw-flex-col tw-gap-5">
     <router-link :to="{ name: 'estimates.create' }" class="online-scene">
       <div class="online-scene__title">Онлайн-оценка товаров</div>
-      <div class="online-scene__name">Получите деньги за 1 день</div>
+      <div class="online-scene__name">Получите деньги за 10 минут</div>
       <img src="~assets/images/wallet.png" alt="" class="online-scene__icon" />
     </router-link>
     <PopularList />
