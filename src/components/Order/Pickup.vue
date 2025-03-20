@@ -12,9 +12,9 @@
         name="city"
         :rules="schema.city"
         :label="city.name"
-        :checkedValue="city.name"
-        v-model="activeCity"
-        @update:modelValue="activeCityId = city.id"
+        :checkedValue="city.id"
+        v-model="activeCityId"
+        @update:modelValue="setActiveCity"
       />
       <div v-if="cityError" class="tw-text-negative tw-text-t1 tw-mt-2">{{ cityError }}</div>
     </div>
@@ -40,6 +40,7 @@
   import useDataOrAlert from 'src/composables/useDataOrAlert';
   import BaseRadio from 'src/components/Base/Radio.vue';
   import { RuleExpression, useFieldError } from 'vee-validate';
+  import { watch } from 'vue';
 
   defineProps<{
     schema: {
@@ -51,7 +52,7 @@
   const activeCity = defineModel('city', { default: '' });
   const activePoint = defineModel('point', { default: '' });
 
-  const activeCityId = ref<string | null>(null);
+  const activeCityId = ref<string>('');
 
   const api = useRepositories();
 
@@ -59,14 +60,22 @@
   useDataOrAlert(citiesRes);
 
   const pointsRes = useRequest(
-    () => api.order.showBranches(activeCityId.value!),
+    () => api.order.showBranches(activeCityId.value),
     {
       immediate: false,
-      watch: [ activeCity ],
+      watch: [ activeCityId ],
     },
   );
   useDataOrAlert(pointsRes);
 
   const cityError = useFieldError('city');
   const pointError = useFieldError('point');
+
+  function setActiveCity(id: string) {
+    activeCity.value = citiesRes.data.value?.find(city => city.id === id)?.name ?? '';
+  }
+
+  watch(pointsRes.data, () => {
+    activePoint.value = '';
+  });
 </script>
