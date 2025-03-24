@@ -133,8 +133,8 @@
       neiro_add_type: activeSection.value?.additional ?? '',
       neiro_add_value: form.neiro_add_value,
     }),
-    (res) => {
-      showedModal.value = false;
+    async (res) => {
+      await hideModal();
       if(!res.data.price) {
         router.push({ name: 'estimates.index' });
       } else {
@@ -147,6 +147,15 @@
   const showedModal = ref(false);
 
   const router = useRouter();
+
+  function hideModal() {
+    return new Promise<void>((res) => {
+      setTimeout(() => {
+        showedModal.value = false;
+        res();
+      }, 5000);
+    });
+  }
 
   function onSubmit() {
     if(form.files.length <= 0) {
