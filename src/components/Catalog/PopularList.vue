@@ -3,7 +3,7 @@
   <div v-else-if="productsRes.data.value && productsRes.data.value.length > 0" class="popular-block">
     <div class="badge">Хиты продаж</div>
     <p class="tw-text-h2 tw-font-bold tw-text-base tw-mb-[10px]">
-      Популярные товары
+      Товары недели
     </p>
     <div class="area">
       <div class="list">
