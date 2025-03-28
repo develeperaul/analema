@@ -2,12 +2,13 @@ import { ref } from 'vue';
 import type { AxiosResponse } from 'axios';
 import { type UnwrapRef, type WatchSource, watch } from 'vue';
 
-export type Params = {
+export type Params<T> = {
   immediate: boolean,
   watch: WatchSource[],
+  onSuccess: (res: AxiosResponse<T>) => void,
 }
 
-export default function<T, E>(fetchFn: (...args: any[]) => Promise<AxiosResponse<T>>, params: Partial<Params> = {}) {
+export default function<T, E>(fetchFn: (...args: any[]) => Promise<AxiosResponse<T>>, params: Partial<Params<T>> = {}) {
   params = Object.assign({}, {
     immediate: true,
   }, params);
@@ -21,6 +22,7 @@ export default function<T, E>(fetchFn: (...args: any[]) => Promise<AxiosResponse
       loading.value = true;
       const res = await fetchFn();
       data.value = res.data as UnwrapRef<T>;
+      if(params.onSuccess) params.onSuccess(res);
       return res;
     } catch(e) {
       data.value = null;

@@ -9,12 +9,20 @@
         @change:category="activeSection = $event"
       />
       <ChipList v-if="subSectionsItems.length > 0" class="tw-mt-4" :items="subSectionsItems" :activeItem="activeSubSection" @change:item="activeSubSection = $event" />
-      <CatalogList
-        v-if="itemsRes.data.value"
-        class="tw-mt-5"
-        :items="itemsRes.data.value"
-        @show:product="activeProduct = $event; showedProduct = true"
-      />
+      <template v-if="catalogItems">
+        <CatalogList
+          class="tw-mt-5"
+          :items="catalogItems"
+          @show:product="activeProduct = $event; showedProduct = true"
+        />
+        <BaseButton
+          v-if="!isEnd"
+          class="tw-mt-8"
+          text="Показать еще"
+          :disabled="itemsRes.loading.value"
+          @click="next"
+        />
+      </template>
     </div>
     <div
       v-if="sectionsRes.loading.value || itemsRes.loading.value || subSectionsRes.loading.value"
@@ -35,11 +43,13 @@
   import useRepositories from 'src/composables/useRepositories';
   import useRequest from 'src/composables/useRequest';
   import useDataOrAlert from 'src/composables/useDataOrAlert';
+  import usePaginate from 'src/composables/usePaginate';
   import CatalogList from 'src/components/Catalog/List.vue';
   import SelectCategories from 'src/components/Catalog/SelectCategories.vue';
   import ModalProduct from 'src/components/Catalog/ModalProduct.vue';
   import Toolbar from 'src/components/LayoutParts/Toolbar.vue';
   import ChipList, { type Item as ChipItem } from 'src/components/Base/ChipList.vue';
+  import { reactive } from 'vue';
 
   const api = useRepositories();
 
@@ -64,12 +74,15 @@
     return subSectionsRes.data.value.map(item => ({ label: item.name, value: item.id }));
   });
 
+  const paginator = reactive({ limit: 20, offset: 0 });
+
   const itemsRes = useRequest(
-    () => api.catalog.list(querySectionId.value),
+    () => api.catalog.listPag(querySectionId.value, { nPageSize: paginator.limit, nOffset: paginator.offset }),
     { immediate: false }
   );
   useDataOrAlert(itemsRes);
 
+  const { items: catalogItems, isEnd, next, reset } = usePaginate(itemsRes, paginator);
 
   watch(sectionsRes.data, (sections) => {
     if(sections && sections[0]) {
@@ -81,11 +94,13 @@
     if(activeSection.value) {
       subSectionsRes.send();
       activeSubSection.value = null;
+
     }
   });
 
   watch(querySectionId, () => {
     if(querySectionId.value) {
+      reset();
       itemsRes.send();
     }
   });
