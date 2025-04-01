@@ -6,29 +6,33 @@
   <div v-else>
     <div>
       <div class="tw-mb-3 tw-font-bold tw-text-h2">Город</div>
-      <BaseRadio
-        v-for="city in citiesRes.data.value"
-        :key="city.id"
-        name="city"
-        :rules="schema.city"
-        :label="city.name"
-        :checkedValue="city.id"
-        v-model="activeCityId"
-        @update:modelValue="setActiveCity"
-      />
+      <div class="tw-space-y-1">
+        <BaseRadio
+          v-for="city in citiesRes.data.value"
+          :key="city.id"
+          name="city"
+          :rules="schema.city"
+          :label="city.name"
+          :checkedValue="city.id"
+          v-model="activeCityId"
+          @update:modelValue="setActiveCity"
+        />
+      </div>
       <div v-if="cityError" class="tw-text-negative tw-text-t1 tw-mt-2">{{ cityError }}</div>
     </div>
     <div class="tw-mt-6" v-if="activeCity">
       <div class="tw-mb-3 tw-font-bold tw-text-h2">Точка самовывоза</div>
-      <BaseRadio
-        v-for="point in pointsRes.data.value"
-        :key="point.id"
-        name="point"
-        :rules="schema.point"
-        :label="point.name"
-        :checkedValue="point.name"
-        v-model="activePoint"
-      />
+      <div class="tw-space-y-1">
+        <BaseRadio
+          v-for="point in pointsRes.data.value"
+          :key="point.id"
+          name="point"
+          :rules="schema.point"
+          :label="point.name"
+          :checkedValue="point.name"
+          v-model="activePoint"
+        />
+      </div>
       <div v-if="pointError" class="tw-text-negative tw-text-t1 tw-mt-2">{{ pointError }}</div>
     </div>
   </div>
