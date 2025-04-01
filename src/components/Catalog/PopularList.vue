@@ -12,9 +12,16 @@
           v-for="item in productsRes.data.value"
           :key="item.id"
           :item="item"
+          @click="activeProduct = item.id; showedProduct = true"
         />
       </div>
     </div>
+    <ModalProduct
+      v-if="activeProduct"
+      :id="activeProduct"
+      v-model="showedProduct"
+      @change:product="activeProduct = $event"
+    />
   </div>
 </template>
 
@@ -24,10 +31,14 @@
   import useRequest from 'src/composables/useRequest';
   import useCache from 'src/composables/useCache';
   import useDataOrAlert from 'src/composables/useDataOrAlert';
+  import ModalProduct from 'src/components/Catalog/ModalProduct.vue';
 
   const api = useRepositories();
   const productsRes = useRequest(useCache('products.popular', api.catalog.showPopular));
   useDataOrAlert(productsRes);
+
+  const activeProduct = ref<string | null>(null);
+  const showedProduct = ref(false);
 </script>
 
 <style scoped lang="scss">
@@ -39,6 +50,7 @@
   .list-item {
     flex-shrink: 0;
     width: 115px;
+    cursor: pointer;
   }
 
   .area {

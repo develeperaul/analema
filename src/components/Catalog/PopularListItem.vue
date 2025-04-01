@@ -1,11 +1,11 @@
 <template>
-  <router-link class="item" :to="{ name: 'catalog.show', params: { id: item.id } }">
+  <article class="item">
     <Image class="tw-w-full" width="250" height="250" :src="item.img" />
     <div class="tw-p-2">
       <div class="tw-text-t2 tw-font-bold tw-text-base tw-mb-[2px]">{{ $amount(item.price) }}</div>
       <div class="tw-text-t3 tw-text-card-descr">{{ item.name }}</div>
     </div>
-  </router-link>
+  </article>
 </template>
 
 <script setup lang="ts">
