@@ -15,17 +15,17 @@
           :items="catalogItems"
           @show:product="activeProduct = $event; showedProduct = true"
         />
-        <BaseButton
-          v-if="!isEnd"
-          class="tw-mt-8"
-          text="Показать еще"
-          :disabled="itemsRes.loading.value"
-          @click="next"
-        />
+        <div class="tw-mt-8" v-if="itemsRes.data.value && itemsRes.loading.value">
+          <q-spinner
+            class="tw-mx-auto"
+            color="black"
+            size="32px"
+          />
+        </div>
       </template>
     </div>
     <div
-      v-if="sectionsRes.loading.value || itemsRes.loading.value || subSectionsRes.loading.value"
+      v-if="sectionsRes.loading.value || subSectionsRes.loading.value && (!itemsRes.data.value && itemsRes.loading.value)"
       class="tw-w-full tw-h-full tw-top-0 tw-left-0 tw-fixed tw-z-50"
     >
       <q-inner-loading showing />
@@ -50,6 +50,7 @@
   import Toolbar from 'src/components/LayoutParts/Toolbar.vue';
   import ChipList, { type Item as ChipItem } from 'src/components/Base/ChipList.vue';
   import { reactive } from 'vue';
+  import { useEndPageScroll } from 'src/composables/useEndPageScroll';
 
   const api = useRepositories();
 
@@ -83,6 +84,8 @@
   useDataOrAlert(itemsRes);
 
   const { items: catalogItems, isEnd, next, reset } = usePaginate(itemsRes, paginator);
+
+  useEndPageScroll(next, 200, isEnd, itemsRes.loading);
 
   watch(sectionsRes.data, (sections) => {
     if(sections && sections[0]) {
