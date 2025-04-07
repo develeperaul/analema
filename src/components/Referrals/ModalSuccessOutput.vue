@@ -1,6 +1,6 @@
 <template>
   <Modal v-model="showed">
-    <div class="tw-w-full tw-h-full tw-bg-white tw-p-4 tw-flex tw-flex-col tw-items-center tw-justify-between tw-pt-[40px] tw-pb-[60px]">
+    <div class="tw-w-full tw-h-full tw-max-w-[600px] tw-bg-white tw-p-4 tw-flex tw-flex-col tw-items-center tw-justify-between tw-pt-[40px] tw-pb-[60px]">
       <div></div>
       <div class="tw-text-center">
         <div class="tw-w-[80px] tw-h-[80px] tw-rounded-20 tw-bg-el tw-p-[15px] tw-mx-auto">

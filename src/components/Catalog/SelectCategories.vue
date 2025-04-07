@@ -92,6 +92,7 @@
   }
 
   .card {
+    max-width: 600px;
     padding: 20px;
     padding-bottom: 30px;
     border-radius: 20px 20px 0 0;

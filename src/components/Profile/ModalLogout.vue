@@ -29,6 +29,7 @@ w<template>
 
 <style scoped lang="scss">
   .card {
+    max-width: 600px;
     padding: 30px 20px;
     padding-top: 25px;
     @apply tw-w-full tw-rounded-20 tw-bg-white;
