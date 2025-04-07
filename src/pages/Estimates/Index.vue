@@ -16,7 +16,7 @@
         </div>
       </div>
     </div>
-    <div class="tw-container">
+    <div class="wrapper">
       <ChipList class="tw-mb-5" :items="tabs" :activeItem="activeTab" @change:item="activeTab = $event" />
       <EstimatesList
         v-if="estimatesRes.data.value"

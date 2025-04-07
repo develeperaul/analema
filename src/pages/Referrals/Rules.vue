@@ -1,6 +1,6 @@
 <template>
   <q-page class="page-pb">
-    <div class="tw-container">
+    <div class="wrapper">
       <Toolbar class="tw-mb-4" showBack title="Правила программы" />
       <p class="tw-text-t2 tw-text-base tw-mb-4">
         Цель нашей реферальной программы – привлечь как можно больше новых участников в наш проект, а также способствовать активному развитию и росту нашей компании.

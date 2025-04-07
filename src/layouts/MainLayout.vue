@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header class="tw-bg-white env-t">
-      <div class="tw-container tw-flex tw-items-center tw-justify-between">
+      <div class="wrapper tw-flex tw-items-center tw-justify-between">
         <img src="/logo.svg" alt="" width="119" height="12" />
         <router-link :to="{ name: 'notifications.index' }">
           <base-icon

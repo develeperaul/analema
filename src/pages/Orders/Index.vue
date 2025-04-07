@@ -6,7 +6,7 @@
       icon="shopping"
       iconWrapClass="tw-w-[50px] tw-h-[50px] tw-p-[10px]"
     />
-    <div class="tw-container">
+    <div class="wrapper">
       <ChipList class="tw-mb-5" :items="tabs" :activeItem="activeTab" @change:item="activeTab = $event" />
       <OrdersList v-if="ordersRes.data.value" :items="orders" />
     </div>

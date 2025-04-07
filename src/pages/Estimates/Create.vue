@@ -1,11 +1,11 @@
 <template>
   <q-page class="page-pb">
     <div class="purple-gr env-t tw-rounded-b-24 tw-mb-6">
-      <div class="tw-container tw-pb-8">
+      <div class="wrapper tw-pb-8">
         <BaseHeader title="Онлайн-оценка" back />
       </div>
     </div>
-    <div class="tw-container">
+    <div class="wrapper">
       <Form @submit="onSubmit" v-slot="{ errors }">
         <CategoriesList
           v-if="sectionsRes.data.value"

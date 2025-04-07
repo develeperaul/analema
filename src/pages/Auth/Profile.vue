@@ -1,5 +1,5 @@
 <template>
-  <q-page class="tw-container tw-grid env-t env-b">
+  <q-page class="wrapper tw-grid env-t env-b">
     <Form
       @submit="send"
       class="tw-grid tw-content-between tw-h-full tw-grid-rows-[1fr_auto] tw-pt-10">

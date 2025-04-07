@@ -61,13 +61,4 @@ module.exports = {
       24: "24px",
     },
   },
-  plugins: [
-    function ({ addComponents }) {
-      addComponents({
-        ".container": {
-          padding: "0 20px",
-        },
-      });
-    },
-  ],
 };

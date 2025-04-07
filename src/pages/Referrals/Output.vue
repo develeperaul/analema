@@ -1,6 +1,6 @@
 <template>
   <q-page class="page-pb tw-flex tw-flex-col">
-    <div class="tw-container tw-grow tw-flex tw-flex-col">
+    <div class="wrapper tw-grow tw-flex tw-flex-col">
       <Toolbar class="tw-mb-8" title="Вывод средств" showBack />
       <Form class="tw-grow tw-flex tw-flex-col" v-if="balanceRes.data.value" @submit="send">
         <div class="tw-mb-5">

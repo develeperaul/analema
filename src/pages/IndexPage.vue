@@ -1,5 +1,5 @@
 <template>
-  <q-page class="tw-container tw-pt-7 page-pb tw-flex tw-flex-col tw-gap-5">
+  <q-page class="wrapper tw-pt-7 page-pb tw-flex tw-flex-col tw-gap-5">
     <router-link :to="{ name: 'estimates.create' }" class="online-scene">
       <div class="online-scene__title">Продайте свой товар</div>
       <div class="online-scene__name">Получите деньги за 10 минут</div>

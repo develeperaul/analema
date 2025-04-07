@@ -1,6 +1,6 @@
 <template>
   <q-page class="page-pb">
-    <div class="tw-container">
+    <div class="wrapper">
       <Toolbar class="tw-mb-6" title="Мои данные" showBack>
         <template #actions>
           <button class="remove" @click="showedDelete = true">

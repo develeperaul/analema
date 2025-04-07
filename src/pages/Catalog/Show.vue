@@ -1,6 +1,6 @@
 <template>
   <q-page class="page-pb">
-    <div class="tw-container">
+    <div class="wrapper">
       <Toolbar class="tw-mb-5" showBack>
         <template #actions>
           <FavoritesButton

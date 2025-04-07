@@ -1,6 +1,6 @@
 <template>
   <q-page class="env-b tw-grid">
-    <div class="tw-container tw-h-full tw-flex tw-flex-col">
+    <div class="wrapper tw-h-full tw-flex tw-flex-col">
       <Toolbar showBack />
       <Form
         class="tw-grow tw-grid tw-content-between tw-h-full tw-grid-rows-[1fr_auto] tw-pt-8"

@@ -1,7 +1,7 @@
 <template>
   <q-dialog class="product-detailed" transition-show="slide-left" transition-hide="slide-right" maximized v-model="value">
     <div ref="cardRef" class="tw-bg-white page-pb" v-touch-swipe.mouse.right="close">
-      <div class="tw-container">
+      <div class="wrapper">
         <Toolbar class="tw-mb-5" showBack :backFn="close">
           <template #actions>
             <FavoritesButton

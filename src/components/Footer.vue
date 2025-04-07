@@ -1,6 +1,6 @@
 <template>
   <q-footer class="tw-bg-white env-b tw-pt-4.5 tw-border-t tw-border-border">
-    <div class="tw-container tw-flex tw-justify-between">
+    <div class="wrapper tw-flex tw-justify-between">
       <router-link
         to="/"
         v-slot="{ isActive }"

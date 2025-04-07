@@ -1,6 +1,6 @@
 <template>
   <q-page class="page-pb">
-    <div class="tw-container">
+    <div class="wrapper">
       <Toolbar class="tw-mb-8" showBack title="Реферальная программа" />
       <div v-if="balanceRes.data.value" class="tw-space-y-5">
         <CardBalance :balance="balanceRes.data.value" />

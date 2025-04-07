@@ -5,7 +5,7 @@
       iconWrapClass="tw-w-[80px] tw-h-[80px] tw-p-[14px]"
       icon="chain-2"
     />
-    <div class="tw-container">
+    <div class="wrapper">
       <div class="tw-rounded-20 tw-bg-bg tw-p-4 tw-pt-5 tw-pr-5 tw-pb-6 tw-mb-4" v-if="balanceRes.data.value">
         <p class="tw-text-h1 tw-font-bold tw-text-base tw-mb-3">Ссылка для приглашения</p>
         <FieldRefLink :balance="balanceRes.data.value" />

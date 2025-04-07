@@ -1,6 +1,6 @@
 <template>
   <q-page class="page-pb">
-    <div class="tw-container">
+    <div class="wrapper">
       <Toolbar class="tw-mb-6" title="Push-уведомления" showBack />
       <GroupsList v-if="items" :items="items" />
     </div>

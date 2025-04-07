@@ -1,7 +1,7 @@
 <template>
   <q-dialog v-model="value" maximized>
     <div class="card">
-      <div class="tw-container tw-h-full">
+      <div class="wrapper tw-h-full">
         <div class="body tw-h-full">
           <div></div>
           <div class="row1">

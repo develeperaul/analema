@@ -1,6 +1,6 @@
 <template>
   <q-page class="page-pb">
-    <div class="tw-container">
+    <div class="wrapper">
       <Toolbar class="tw-mb-6" :title="`Заказ № ${id}`" showBack />
       <div v-if="data">
         <div class="tw-space-y-5">

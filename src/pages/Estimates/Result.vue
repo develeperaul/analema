@@ -4,7 +4,7 @@
       class="bg-bar tw-mb-6"
       title="Результаты оценки"
     />
-    <div class="tw-container">
+    <div class="wrapper">
       <div v-if="data">
         <div class="tw-space-y-5">
           <div class="param">
