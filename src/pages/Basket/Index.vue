@@ -34,7 +34,7 @@
   import { OrderCreateSuccess } from 'src/repositories/order';
   import { useAuthStore } from 'src/stores/auth';
   import { useBasketStore } from 'src/stores/basket';
-  import { useQuasar } from 'quasar';
+  import { Platform, useQuasar } from 'quasar';
   import { useRouter } from 'vue-router';
   import { Browser } from '@capacitor/browser';
 
@@ -71,12 +71,15 @@
     if(res.length <= 0) {
       router.push('/');
     } else if(res.length === 1) {
-      Browser.open({ url: res[0].payment_url })
+      Platform.is.capacitor
+        ? Browser.open({ url: res[0].payment_url })
+        : window.open(res[0].payment_url, '_blank');
     } else {
       paymentLinks.value = res;
       showedPayment.value = true;
     }
     basketStore.clearSync();
+    basketRes.send();
     $q.notify({
       type: 'positive',
       message: 'Ваш заказ успешно создан!',
