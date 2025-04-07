@@ -1,17 +1,19 @@
 <template>
   <div class="toolbar-colored env-t">
-    <div class="tw-mb-4" :class="btnWrapClass">
-      <button class="btn-back" type="button" @click="router.back">
-        <BaseIcon name="back" fit />
-      </button>
-    </div>
-    <div class="body">
-      <div v-if="icon" class="icon-wrap" :class="iconWrapClass">
-        <BaseIcon :name="icon" fit />
+    <div class="wrapper">
+      <div class="tw-mb-4" :class="btnWrapClass">
+        <button class="btn-back" type="button" @click="router.back">
+          <BaseIcon name="back" fit />
+        </button>
       </div>
-      <h1 v-if="title" class="tw-text-h1 tw-text-el tw-font-bold tw-mt-3">
-        {{ title }}
-      </h1>
+      <div class="body">
+        <div v-if="icon" class="icon-wrap" :class="iconWrapClass">
+          <BaseIcon :name="icon" fit />
+        </div>
+        <h1 v-if="title" class="tw-text-h1 tw-text-el tw-font-bold tw-mt-3">
+          {{ title }}
+        </h1>
+      </div>
     </div>
   </div>
 </template>
