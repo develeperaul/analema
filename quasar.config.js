@@ -39,6 +39,10 @@ module.exports = configure(function (/* ctx */) {
       "cache",
     ],
 
+    htmlVariables: {
+      title: 'Аналемма | Покупайте и продавайте вместе с нами',
+    },
+
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
     css: ["app.scss"],
 
