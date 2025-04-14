@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@capacitor/browser": "^6.0.5",
+    "@capacitor/camera": "^6.1.2",
     "@quasar/extras": "^1.16.4",
     "@vee-validate/rules": "^4.14.7",
     "animate.css": "^4.1.1",
