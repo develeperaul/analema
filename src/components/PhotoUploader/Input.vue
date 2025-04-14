@@ -1,6 +1,12 @@
 <template>
-  <div class="file-input">
-    <input class="inp" type="file" accept="image/png, image/jpeg" @change="onChange">
+  <div v-if="$q.platform.is.capacitor" class="file-input" v-ripple @click="onChangeCapacitor">
+    <base-icon
+      class="icon"
+      name="add-photo"
+    />
+  </div>
+  <div v-else class="file-input" v-ripple>
+    <input class="inp" type="file" accept="image/png, image/jpeg" @change="onChangeNative">
     <base-icon
       class="icon"
       name="add-photo"
@@ -9,11 +15,52 @@
 </template>
 
 <script setup lang="ts">
+  import { Camera, CameraResultType } from '@capacitor/camera';
+  import { useQuasar } from 'quasar';
+
+  const $q = useQuasar();
+
   const emit = defineEmits<{
     (event: 'change:file', file: File): void,
   }>();
 
-  function onChange(e: Event) {
+  async function checkPerm() {
+    let status = await Camera.checkPermissions();
+    if(status.camera === 'prompt' || status.photos === 'prompt') {
+      status = await Camera.requestPermissions({ permissions: ['camera', 'photos'] })
+    }
+
+    if(status.camera !== 'granted' || status.photos !== 'granted') {
+      throw new Error('User denied permissions!');
+    }
+  }
+
+  async function onChangeCapacitor() {
+    try {
+      await checkPerm();
+
+      const photo = await Camera.getPhoto({
+        resultType: CameraResultType.DataUrl,
+        promptLabelHeader: 'Прикрепить фото',
+        promptLabelCancel: 'Отменить',
+        promptLabelPhoto: 'Из файлов',
+        promptLabelPicture: 'Снять фото',
+      });
+
+      if(!photo.dataUrl) return;
+
+      const fileName = 'app-photo';
+      const type = photo.dataUrl.slice(0, photo.dataUrl.indexOf(';')).replace('data:', '');
+
+      const res = await fetch(photo.dataUrl);
+      const blob = await res.blob();
+      emit('change:file', new File([blob], fileName, { type }));
+    } catch(e) {
+      console.log(e);
+    }
+  }
+
+  function onChangeNative(e: Event) {
     const input = e.target as HTMLInputElement;
     if(input.files && input.files.length > 0) {
       emit('change:file', input.files[0]);
@@ -41,6 +88,7 @@
     width: 100%;
     height: 100%;
     opacity: 0;
+    z-index: 10;
   }
 
   .icon {
