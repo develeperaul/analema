@@ -33,25 +33,7 @@
   .purple-yellor-gr {
     background: linear-gradient(166.55deg, #eed9fd -1.72%, #fff0a1 103.52%);
   }
-  .online-scene {
-    @apply tw-rounded-20 purple-gr tw-relative tw-grid tw-gap-2.5 tw-overflow-hidden;
-    padding: 22px 16px;
-    &__title {
-      @apply tw-text-t1 tw-text-white tw-rounded-20 tw-font-bold tw-w-fit;
-      padding: 6px 12px;
-      background: #181818;
-    }
-    &__name {
-      @apply tw-text-t2;
-      margin-left: 6px;
-    }
-    &__icon {
-      right: -18px;
-      position: absolute;
-      width: 105px;
-      height: 105px;
-    }
-  }
+
   .invite {
     z-index: 1;
     @apply tw-rounded-20 tw-overflow-hidden yellor-gr tw-px-4  tw-relative tw-grid;
