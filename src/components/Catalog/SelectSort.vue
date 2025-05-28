@@ -1,7 +1,10 @@
 <template>
-  <div class="select-ctrl" @click="showed = true">
+  <div class="select-ctrl" v-bind="$attrs" @click="showed = true">
     <span class="tw-grow">
-      {{ activeSection ? activeSection.name : 'Все категории' }}
+      {{
+        value === '1' ? 'Дешевле' :
+        value === '2' ? 'Дороже' : 'Сортировка'
+      }}
     </span>
     <span class="select-ctrl__icon-wrap" :class="{ 'select-ctrl__icon-wrap--showed': showed }">
       <BaseIcon fit name="down" />
@@ -15,22 +18,28 @@
       <div class="area">
         <div class="tw-space-y-3">
           <BaseRadio
-            key="all"
-            name="category"
-            label="Все категории"
+            key="any"
+            name="sort"
+            label="Любая сортировка"
             checkedValue=""
-            v-model="innerCategory"
+            :modelValue="innerValue !== undefined ? innerValue : ''"
+            @update:modelValue="innerValue = undefined"
           />
           <BaseRadio
-            v-for="section in sections"
-            name="category"
-            :label="section.name"
-            :checkedValue="section.id"
-            v-model="innerCategory"
+            name="sort"
+            label="Дешевле"
+            checkedValue="1"
+            v-model="innerValue"
+          />
+          <BaseRadio
+            name="sort"
+            label="Дороже"
+            checkedValue="2"
+            v-model="innerValue"
           />
         </div>
       </div>
-      <BaseButton class="tw-mt-8" type="button" text="Применить" @click="onChange" />
+      <BaseButton class="tw-mt-8" type="button" text="Применить" @click="apply" />
     </div>
   </BaseModal>
 </template>
@@ -39,42 +48,17 @@
   import BaseModal from 'src/components/Base/Modal.vue';
   import BaseRadio from 'src/components/Base/Radio.vue';
   import ButtonClose from 'src/components/Base/ButtonClose.vue';
-  import type { Section } from 'src/repositories/catalog';
 
-  interface Props {
-    category?: string,
-    sections: Section[],
-  }
+  type Value = '1' | '2';
 
-  const props = withDefaults(
-    defineProps<Props>(),
-    {
-      category: '',
-    }
-  );
-
-  const emit = defineEmits<{
-    (event: 'change:category', category: string): void,
-  }>();
-
+  const value = defineModel<Value>();
   const showed = ref(false);
+  const innerValue = ref<Value | undefined>(value.value);
 
-  const innerCategory = ref(props.category);
-
-  const activeSection = computed(() => {
-    return props.sections.find((section) => section.id === props.category) ?? null;
-  });
-
-  function onChange() {
-    emit('change:category', innerCategory.value);
+  function apply() {
+    value.value = innerValue.value;
     showed.value = false;
   }
-
-  watch(() => props.category, (value) => {
-    if(innerCategory.value !== value) {
-      innerCategory.value = value;
-    }
-  });
 </script>
 
 <style scoped lang="scss">

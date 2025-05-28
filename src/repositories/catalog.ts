@@ -26,13 +26,14 @@ export default function(http: AxiosInstance) {
         }
       });
     },
-    listPag(sectionId: string | number, params: PagParams) {
+    listPag(sectionId: string | number | null, params: PagParams) {
       return http.get<CatalogPag>('catalog_list_p.php', {
         params: {
           id: sectionId,
           nTopCount: 0,
           nPageSize: params.nPageSize,
           nOffset: params.nOffset,
+          sort: params.sort,
         }
       });
     },
@@ -55,6 +56,7 @@ export default function(http: AxiosInstance) {
 export interface PagParams {
   nPageSize: number,
   nOffset: number,
+  sort?: '1' | '2',
 }
 
 export type CatalogPag = [

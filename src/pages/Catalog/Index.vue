@@ -9,6 +9,7 @@
         @change:category="activeSection = $event"
       />
       <ChipList v-if="subSectionsItems.length > 0" class="tw-mt-4" :items="subSectionsItems" :activeItem="activeSubSection" @change:item="activeSubSection = $event" />
+      <SelectSort class="tw-mt-4" v-model="params.sort" />
       <template v-if="catalogItems">
         <CatalogList
           class="tw-mt-5"
@@ -46,16 +47,19 @@
   import usePaginate from 'src/composables/usePaginate';
   import CatalogList from 'src/components/Catalog/List.vue';
   import SelectCategories from 'src/components/Catalog/SelectCategories.vue';
+  import SelectSort from 'src/components/Catalog/SelectSort.vue';
   import ModalProduct from 'src/components/Catalog/ModalProduct.vue';
   import Toolbar from 'src/components/LayoutParts/Toolbar.vue';
   import ChipList, { type Item as ChipItem } from 'src/components/Base/ChipList.vue';
   import { reactive } from 'vue';
   import { useEndPageScroll } from 'src/composables/useEndPageScroll';
+  import type { PagParams } from 'src/repositories/catalog';
 
   const api = useRepositories();
 
   const activeSection = ref<string>('');
   const activeSubSection = ref<ChipItem | null>(null);
+  const params = ref<Pick<PagParams, 'sort'>>({});
 
   const querySectionId = computed(() => {
     return activeSubSection.value?.value ?? activeSection.value;
@@ -71,14 +75,21 @@
   useDataOrAlert(subSectionsRes);
 
   const subSectionsItems = computed(() => {
-    if(!subSectionsRes.data.value) return [];
+    if(!activeSection.value || !subSectionsRes.data.value) return [];
     return subSectionsRes.data.value.map(item => ({ label: item.name, value: item.id }));
   });
 
   const paginator = reactive({ limit: 20, offset: 0 });
 
   const itemsRes = useRequest(
-    () => api.catalog.listPag(querySectionId.value, { nPageSize: paginator.limit, nOffset: paginator.offset }),
+    () => api.catalog.listPag(
+      querySectionId.value !== '' ? querySectionId.value : null,
+      {
+        nPageSize: paginator.limit,
+        nOffset: paginator.offset,
+        sort: params.value.sort,
+      }
+    ),
     { immediate: false }
   );
   useDataOrAlert(itemsRes);
@@ -87,26 +98,18 @@
 
   useEndPageScroll(next, 200, isEnd, itemsRes.loading);
 
-  watch(sectionsRes.data, (sections) => {
-    if(sections && sections[0]) {
-      activeSection.value = sections[0].id;
-    }
-  });
-
   watch(activeSection, () => {
-    if(activeSection.value) {
-      subSectionsRes.send();
-      activeSubSection.value = null;
-
-    }
+    if(activeSection.value) subSectionsRes.send();
+    activeSubSection.value = null;
   });
 
   watch(querySectionId, () => {
-    if(querySectionId.value) {
-      reset();
-      itemsRes.send();
-    }
-  });
+    reset(); itemsRes.send();
+  }, { immediate: true });
+
+  watch(params, () => {
+    reset(); itemsRes.send();
+  }, { deep: true });
 
   const activeProduct = ref<string | null>(null);
   const showedProduct = ref(false);
