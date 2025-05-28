@@ -32,7 +32,7 @@
           />
           <div class="tw-text-t2 tw-text-card-descr tw-text-center">
             Нажимая «Продолжить», я принимаю условия
-            <a href="#" class="tw-text-[#4D55FF]">
+            <a :href="config.userAgrement" target="_blank" class="tw-text-[#4D55FF]">
               Пользовательского соглашения
             </a>
           </div>
@@ -50,6 +50,9 @@
   import useRepositories from 'src/composables/useRepositories';
   import { useRouter } from 'vue-router';
   import { useAuthStore } from 'src/stores/auth';
+  import { useConfig } from 'src/boot/config';
+
+  const config = useConfig();
 
   const authStore = useAuthStore();
 
