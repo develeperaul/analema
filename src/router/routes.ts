@@ -20,7 +20,6 @@ const routes: RouteRecordRaw[] = [
         path: "estimates/create",
         name: "estimates.create",
         component: () => import("pages/Estimates/Create.vue"),
-        meta: { auth: true },
       },
       {
         path: "orders",

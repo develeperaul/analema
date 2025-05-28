@@ -53,6 +53,21 @@
           :rules="createEstimateSchema.desc"
           v-model="form.desc"
         />
+
+        <template v-if="!authStore.user">
+          <p class="h2 tw-mb-3">Укажите ваш номер телефона</p>
+          <BaseInput
+            class="tw-mb-6"
+            label="Номер телефона"
+            name="phone"
+            type="tel"
+            maska="+7 (###)-###-##-##"
+            placeholder="+7 (000)-000-00-00"
+            :rules="createEstimateSchema.phone"
+            v-model="form.phone"
+          />
+        </template>
+
         <PhotoUploader
           class="tw-mb-8"
           label="Фотографии товара"
@@ -84,7 +99,9 @@
   import { createEstimateSchema } from 'src/schemas/estimates';
   import type { UploadedSuccess } from 'src/repositories/files';
   import { useRouter } from 'vue-router';
+  import { useAuthStore } from 'src/stores/auth';
 
+  const authStore = useAuthStore();
   const api = useRepositories();
   const sectionsRes = useRequest(api.neiroCatalog.showSections);
   useDataOrAlert(sectionsRes);
@@ -96,6 +113,7 @@
     sub_section: '',
     neiro_el: '',
     neiro_add_value: '',
+    phone: '',
   });
 
   const filesError = ref('');
@@ -132,13 +150,18 @@
       neiro_el: form.neiro_el,
       neiro_add_type: activeSection.value?.additional ?? '',
       neiro_add_value: form.neiro_add_value,
+      phone: form.phone,
     }),
     async (res) => {
       await hideModal();
-      if(!res.data.price) {
-        router.push({ name: 'estimates.index' });
+      if(!authStore.user) {
+        router.push({ name: 'home' });
       } else {
-        router.push({ name: 'estimates.result', params: { id: res.data.id } });
+        if(!res.data.price) {
+          router.push({ name: 'estimates.index' });
+        } else {
+          router.push({ name: 'estimates.result', params: { id: res.data.id } });
+        }
       }
     },
     'Не удалось создать заявку.',
