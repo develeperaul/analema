@@ -49,8 +49,13 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: "catalog",
-        name: "catalog.index",
+        name: "catalog.all",
         component: () => import("pages/Catalog/Index.vue"),
+      },
+      {
+        path: "catalog/categories",
+        name: "catalog.index",
+        component: () => import("pages/Catalog/Categories.vue"),
       },
       {
         path: "catalog/:id",

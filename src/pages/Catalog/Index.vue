@@ -54,10 +54,13 @@
   import { reactive } from 'vue';
   import { useEndPageScroll } from 'src/composables/useEndPageScroll';
   import type { PagParams } from 'src/repositories/catalog';
+  import { useRoute } from 'vue-router';
+
+  const initialCategory = (useRoute().query.category ?? '') as string;
 
   const api = useRepositories();
 
-  const activeSection = ref<string>('');
+  const activeSection = ref<string>(initialCategory);
   const activeSubSection = ref<ChipItem | null>(null);
   const params = ref<Pick<PagParams, 'sort'>>({});
 
@@ -101,7 +104,7 @@
   watch(activeSection, () => {
     if(activeSection.value) subSectionsRes.send();
     activeSubSection.value = null;
-  });
+  }, { immediate: true });
 
   watch(querySectionId, () => {
     reset(); itemsRes.send();

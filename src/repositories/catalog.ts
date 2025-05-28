@@ -69,6 +69,7 @@ export type CatalogPag = [
 export interface Section {
   id: string,
   name: string,
+  img: string | null,
 }
 
 export interface CatalogItem {
