@@ -1,5 +1,8 @@
 <template>
-  <div class="tw-space-y-5">
+  <div v-if="items.length === 0" class="tw-text-center tw-py-24">
+    Пока у Вас нет уведомлений
+  </div>
+  <div v-else class="tw-space-y-5">
     <div
       v-for="(items, date) in itemsGroups"
       :key="date"
