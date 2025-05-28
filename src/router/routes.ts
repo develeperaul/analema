@@ -69,7 +69,6 @@ const routes: RouteRecordRaw[] = [
         path: "basket",
         name: "basket.index",
         component: () => import("pages/Basket/Index.vue"),
-        meta: { auth: true },
       },
       {
         path: "notifications",

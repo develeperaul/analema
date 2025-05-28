@@ -8,6 +8,10 @@
           :items="basketRes.data.value"
           @basket:remove="removeItem"
         />
+        <div class="tw-mt-10" v-if="basketRes.data.value.length > 0 && !authStore.user">
+          <p class="tw-mb-4 tw-text-center">Чтобы оформить заказ<br>необходимо войти в&nbsp;профиль</p>
+          <BaseButton class="tw-w-full" text="Войти" :to="{ name: 'auth.login' }" />
+        </div>
         <FormCreate
           class="tw-mt-10"
           v-if="basketRes.data.value.length > 0 && authStore.user"
