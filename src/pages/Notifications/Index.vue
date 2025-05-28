@@ -2,7 +2,7 @@
   <q-page class="page-pb">
     <div class="wrapper">
       <Toolbar class="tw-mb-6" title="Push-уведомления" showBack />
-      <GroupsList v-if="items" :items="items" />
+      <GroupsList :items="items ?? []" />
     </div>
     <q-inner-loading :showing="itemsRes.loading.value" />
   </q-page>
