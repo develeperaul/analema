@@ -98,7 +98,7 @@
             <h2
               class="tw-absolute slide-pb tw-text-center tw-w-full">
               Экспресс-оценка товара <br />
-              нейросетью за 1 минуту
+              нейросетью за 30 секунд
             </h2>
             <div>
               <svg

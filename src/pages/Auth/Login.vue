@@ -8,8 +8,8 @@
       >
         <div>
           <div class="tw-mb-10">
-            <h1 class="tw-mb-3 tw-text-center">Введите номер телефона</h1>
-            <div class="tw-text-center">Отправим код подтверждения</div>
+            <h1 class="tw-mb-3 tw-text-center">Для использования всех возможностей приложения необходима авторизация</h1>
+            <div class="tw-text-center">Пожалуйста, введите номер телефона. Отправим код подверждения"</div>
           </div>
           <base-input
             class="tw-mb-5"
