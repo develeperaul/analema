@@ -1,7 +1,7 @@
 <template>
   <q-page class="page-pb">
     <div class="wrapper">
-      <Toolbar class="tw-mb-5" title="Каталог" />
+      <ToolbarCatalog class="tw-mb-5" title="Каталог" @show:sort="showedSort = true" />
       <SelectCategories
         v-if="sectionsRes.data.value"
         :sections="sectionsRes.data.value"
@@ -9,7 +9,7 @@
         @change:category="activeSection = $event"
       />
       <ChipList v-if="subSectionsItems.length > 0" class="tw-mt-4" :items="subSectionsItems" :activeItem="activeSubSection" @change:item="activeSubSection = $event" />
-      <SelectSort class="tw-mt-4" v-model="params.sort" />
+      <SelectSort v-model="params.sort" v-model:showed="showedSort" />
       <template v-if="catalogItems">
         <CatalogList
           class="tw-mt-5"
@@ -49,7 +49,7 @@
   import SelectCategories from 'src/components/Catalog/SelectCategories.vue';
   import SelectSort from 'src/components/Catalog/SelectSort.vue';
   import ModalProduct from 'src/components/Catalog/ModalProduct.vue';
-  import Toolbar from 'src/components/LayoutParts/Toolbar.vue';
+  import ToolbarCatalog from 'src/components/LayoutParts/ToolbarCatalog.vue';
   import ChipList, { type Item as ChipItem } from 'src/components/Base/ChipList.vue';
   import { reactive } from 'vue';
   import { useEndPageScroll } from 'src/composables/useEndPageScroll';
@@ -116,4 +116,5 @@
 
   const activeProduct = ref<string | null>(null);
   const showedProduct = ref(false);
+  const showedSort = ref(false);
 </script>

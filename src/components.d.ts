@@ -69,6 +69,8 @@ declare module 'vue' {
     Textarea: typeof import('./components/Base/Textarea.vue')['default']
     Toggle: typeof import('./components/Base/Toggle.vue')['default']
     Toolbar: typeof import('./components/LayoutParts/Toolbar.vue')['default']
+    'Toolbar copy': typeof import('./components/LayoutParts/Toolbar copy.vue')['default']
+    ToolbarCatalog: typeof import('./components/LayoutParts/ToolbarCatalog.vue')['default']
     ToolbarColored: typeof import('./components/LayoutParts/ToolbarColored.vue')['default']
   }
 }

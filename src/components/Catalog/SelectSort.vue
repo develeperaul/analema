@@ -1,15 +1,4 @@
 <template>
-  <div class="select-ctrl" v-bind="$attrs" @click="showed = true">
-    <span class="tw-grow">
-      {{
-        value === '1' ? 'Дешевле' :
-        value === '2' ? 'Дороже' : 'Сортировка'
-      }}
-    </span>
-    <span class="select-ctrl__icon-wrap" :class="{ 'select-ctrl__icon-wrap--showed': showed }">
-      <BaseIcon fit name="down" />
-    </span>
-  </div>
   <BaseModal v-model="showed" yPos="bottom" animation="slide-right">
     <div class="card">
       <div class="tw-text-right tw-mb-4">
@@ -52,7 +41,7 @@
   type Value = '1' | '2';
 
   const value = defineModel<Value>();
-  const showed = ref(false);
+  const showed = defineModel('showed', { default: false });
   const innerValue = ref<Value | undefined>(value.value);
 
   function apply() {
