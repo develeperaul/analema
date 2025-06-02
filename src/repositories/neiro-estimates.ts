@@ -6,6 +6,9 @@ export default function(http: AxiosInstance) {
     create(body: EstimateCreateBody) {
       return http.post<EstimateCreateRes>('online_selling_neiro.php', jsonFormData(body));
     },
+    createWeb(body: EstimateCreateBody) {
+      return http.post<EstimateCreateRes>('online_selling_neiro_web.php', jsonFormData(body));
+    },
     finish(body: EstimateFinishBody) {
       return http.post<void>('online_selling_neiro_result.php', jsonFormData(body));
     }

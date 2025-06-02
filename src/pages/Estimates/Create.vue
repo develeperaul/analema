@@ -142,7 +142,7 @@
   const activeSection = computed(() => sectionsRes.data.value?.find(s => s.id === form.section));
 
   const { loading, send } = usePostRequest(
-    api.neiroEstimates.create,
+    authStore.user ? api.neiroEstimates.create : api.neiroEstimates.createWeb,
     () => ({
       desc: form.desc,
       section: form.sub_section,
@@ -154,14 +154,10 @@
     }),
     async (res) => {
       await hideModal();
-      if(!authStore.user) {
-        router.push({ name: 'home' });
+      if(!res.data.price && authStore.user) {
+        router.push({ name: 'estimates.index' });
       } else {
-        if(!res.data.price) {
-          router.push({ name: 'estimates.index' });
-        } else {
-          router.push({ name: 'estimates.result', params: { id: res.data.id } });
-        }
+        router.push({ name: 'estimates.result', params: { id: res.data.id } });
       }
     },
     'Не удалось создать заявку.',
