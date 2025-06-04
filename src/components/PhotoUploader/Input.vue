@@ -49,8 +49,8 @@
 
       if(!photo.dataUrl) return;
 
-      const fileName = 'app-photo';
       const type = photo.dataUrl.slice(0, photo.dataUrl.indexOf(';')).replace('data:', '');
+      const fileName = 'app-photo' + (mimeTypesExt[type] ? `.${mimeTypesExt[type]}`: '');
 
       const res = await fetch(photo.dataUrl);
       const blob = await res.blob();
@@ -67,6 +67,11 @@
     }
     input.value = '';
   }
+
+  const mimeTypesExt: Record<string, string> = {
+    'image/jpeg': 'jpg',
+    'image/png': 'png',
+  };
 </script>
 
 <style scoped lang="scss">
