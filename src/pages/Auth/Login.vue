@@ -8,34 +8,43 @@
       >
         <div>
           <div class="tw-mb-10">
-            <h1 class="tw-mb-3 tw-text-center">Для использования всех возможностей приложения необходима авторизация</h1>
-            <div class="tw-text-center">Пожалуйста, введите номер телефона. Отправим код подверждения"</div>
+            <div class="tw-mb-4 tw-mx-auto tw-w-[80px] tw-h-[80px]">
+              <img class="tw-w-full" width="80px" height="80px" src="~/assets/images/battery.svg" />
+            </div>
+            <div class="tw-max-w-[222px] tw-mx-auto tw-text-center">
+              Для использования всех возможностей приложения необходима авторизация.
+            </div>
           </div>
-          <base-input
-            class="tw-mb-5"
-            label="Номер телефона"
-            name="phone"
-            type="tel"
-            maska="+7 (###)-###-##-##"
-            placeholder="+7 (000)-000-00-00"
-            :rules="loginSchema.phone"
-            v-model="form.phone"
-          />
+          <div>
+            <h1 class="tw-mb-3 tw-text-center">Введите номер телефона</h1>
+            <p class="tw-text-t1 tw-mb-5 tw-text-center">Отправим код подтверждения</p>
+            <base-input
+              class="tw-mb-5"
+              label="Номер телефона"
+              name="phone"
+              type="tel"
+              maska="+7 (###)-###-##-##"
+              placeholder="+7 (000)-000-00-00"
+              :rules="loginSchema.phone"
+              v-model="form.phone"
+            />
+          </div>
         </div>
-        <div>
+        <div class="tw-pb-5">
           <BaseButton
             type="submit"
             text="Продолжить"
             theme="gradient"
             class="tw-mb-5"
-            :disabled="loading"
+            :disabled="loading || !accepted"
           />
-          <div class="tw-text-t2 tw-text-card-descr tw-text-center">
-            Нажимая «Продолжить», я принимаю условия
-            <a :href="config.userAgrement" target="_blank" class="tw-text-[#4D55FF]">
-              Пользовательского соглашения
-            </a>
-          </div>
+          <BaseCheckbox v-model="accepted" checkedValue="ok" uncheckedValue="" label="">
+            <span class="accept-text">
+              Я соглашаюсь с
+              <a :href="config.userAgrement" target="_blank">Политикой конфиденциальности</a> и&nbsp;условиями
+              <a :href="config.userAgrement" target="_blank">Пользовательского соглашения</a>
+            </span>
+          </BaseCheckbox>
         </div>
       </Form>
     </div>
@@ -51,6 +60,7 @@
   import { useRouter } from 'vue-router';
   import { useAuthStore } from 'src/stores/auth';
   import { useConfig } from 'src/boot/config';
+  import BaseCheckbox from 'src/components/Base/Checkbox.vue';
 
   const config = useConfig();
 
@@ -62,6 +72,8 @@
     phone: '',
   });
 
+  const accepted = ref('');
+
   const { send, loading } = usePostRequest(
     useRepositories().auth.sendCode,
     () => form,
@@ -71,3 +83,16 @@
     }
   );
 </script>
+
+<style scoped lang="scss">
+  .accept-text {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.3;
+    @apply tw-text-card-descr;
+
+    a {
+      color: #4D55FF;
+    }
+  }
+</style>

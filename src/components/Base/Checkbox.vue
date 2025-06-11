@@ -5,9 +5,11 @@
       :class="[ value === checkedValue ? 'icon-checked' : 'icon-unchecked' ]"
     >
     </span>
-    <span class="label">
-      {{ label }}
-    </span>
+    <slot>
+      <span class="label">
+        {{ label }}
+      </span>
+    </slot>
   </div>
 </template>
 
@@ -44,12 +46,12 @@
   }
 
   .icon-checked {
-    background: url('src/assets/icons/checkbox-checked.svg');
+    background: url('../../assets/icons/checkbox-checked.svg');
     background-size: 100%;
   }
 
   .icon-unchecked {
-    background: url('src/assets/icons/checkbox-unchecked.svg');
+    background: url('../../assets/icons/checkbox-unchecked.svg');
     background-size: 100%;
   }
 </style>

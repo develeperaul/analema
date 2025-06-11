@@ -30,7 +30,9 @@ const props = withDefaults(
   width: 100%;
   height: 46px;
   &:disabled {
-    background-color: #cdcdcd;
+    background-color: #CCCCCC;
+    color: #717171;
+    opacity: 1 !important;
   }
   &__border {
     background-color: #fff;

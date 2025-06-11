@@ -6,7 +6,7 @@
         <div class="tw-mb-10">
           <h1 class="tw-mb-3 tw-text-center">Введите код подтверждения</h1>
           <div class="tw-text-center">
-            Отправили код на номер {{ authStore.userPhone }}
+            Отправили код на номер<br/>{{ authStore.userPhone }}
           </div>
         </div>
 
