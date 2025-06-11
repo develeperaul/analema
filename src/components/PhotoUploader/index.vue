@@ -3,12 +3,18 @@
     <div class="inp-label">{{ label }}</div>
     <div class="area">
       <div class="items">
-        <PhotoPreview
-          class="tw-shrink-0"
-          v-for="file in uploadedFiles"
-          :key="file.id"
-          :url="file.url"
-        />
+        <TransitionGroup
+          enter-active-class="animate__animated animate__zoomIn anim-delay"
+          leave-active-class="animate__animated animate__zoomOut anim-delay"
+        >
+          <PhotoPreview
+            class="tw-shrink-0"
+            v-for="file in uploadedFiles"
+            :key="file.id"
+            :url="file.url"
+            @remove="removeFile(file)"
+          />
+        </TransitionGroup>
         <FileInput class="tw-shrink-0" @change:file="onChnageFile" />
       </div>
     </div>
@@ -53,6 +59,10 @@
     currentFile.value = file;
     send();
   }
+
+  function removeFile(file: UploadedSuccess) {
+    uploadedFiles.value = uploadedFiles.value.filter(f => f.id !== file.id);
+  }
 </script>
 
 <style scoped lang="scss">
@@ -74,11 +84,16 @@
   }
 
   .area {
+    padding-top: 8px;
     max-width: 100%;
     overflow-y: hidden;
   }
 
   .uploader {
     position: relative;
+  }
+
+  .anim-delay {
+    --animate-duration: 300ms;
   }
 </style>
