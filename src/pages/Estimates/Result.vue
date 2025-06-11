@@ -7,6 +7,10 @@
     <div class="wrapper">
       <div v-if="data">
         <div class="tw-space-y-5">
+          <div class="estimate" v-if="data.price">
+            <div class="estimate-label">Стоимость товара</div>
+            <div class="estimate-value">{{ $amount(data.price) }}</div>
+          </div>
           <div class="param">
             <div class="param-label">Номер заявки</div>
             <div class="param-value">{{ data.id }}</div>
@@ -15,19 +19,13 @@
             <div class="param-label">Описание товара</div>
             <div class="param-value">{{ data.desc }}</div>
           </div>
+          <div class="param" v-if="data.comment">
+            <div class="param-label">Комментарий</div>
+            <div class="param-value">{{ data.comment }}</div>
+          </div>
           <div v-if="data.gallery.length > 0">
             <div class="h2 tw-mb-[10px]">Фотографии</div>
             <GalleryUploaded :items="data.gallery" />
-          </div>
-        </div>
-        <div class="estimate" v-if="data.price">
-          <div class="param">
-            <div class="param-label">Стоимость товара</div>
-            <div class="param-value">{{ $amount(data.price) }}</div>
-          </div>
-          <div class="param tw-mt-5" v-if="data.comment">
-            <div class="param-label">Комментарий</div>
-            <div class="param-value">{{ data.comment }}</div>
           </div>
         </div>
         <div class="actions" v-if="data.price">
@@ -135,6 +133,19 @@
   }
 
   .estimate {
-    @apply tw-bg-gray-light tw-p-4 tw-pb-5 tw-rounded-20 tw-mt-8;
+    padding: 12px 16px;
+    border-radius: 20px;
+    @apply tw-bg-gray-light;
+
+    &-label {
+      @apply tw-text-h2 tw-text-base tw-font-bold;
+    }
+
+    &-value {
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 1.3;
+      margin-top: 8px;
+    }
   }
 </style>
