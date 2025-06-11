@@ -29,6 +29,8 @@ export interface EstimateCreateBody {
   neiro_el: string,
   neiro_add_type: string,
   neiro_add_value: string,
+  recall: string,
+  rewhatsapp: string,
 }
 
 export interface EstimateCreateRes {

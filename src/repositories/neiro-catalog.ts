@@ -18,6 +18,14 @@ export default function(http: AxiosInstance) {
           id: sectionId,
         }
       });
+    },
+    search(sectionId: string | number, str: string) {
+      return http.get<SearchRes>('neiro_search.php', {
+        params: {
+          id: sectionId,
+          name: str,
+        }
+      });
     }
   }
 }
@@ -37,3 +45,17 @@ export interface CatalogItem {
   id: string,
   name: string,
 }
+
+export interface SearchBaseItem {
+  name: string,
+  section_id: string,
+  section_name: string,
+  id: string,
+}
+
+export interface SearchAltItem {
+  section_name: string,
+  id: string,
+}
+
+export type SearchRes = [ { base: SearchBaseItem[], alt: SearchAltItem[] } ];
