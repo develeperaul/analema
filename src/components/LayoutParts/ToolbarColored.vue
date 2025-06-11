@@ -2,7 +2,7 @@
   <div class="toolbar-colored env-t">
     <div class="wrapper">
       <div class="tw-mb-4" :class="btnWrapClass">
-        <button class="btn-back" type="button" @click="router.back">
+        <button class="btn-back" type="button" @click="back">
           <BaseIcon name="back" fit />
         </button>
       </div>
@@ -23,12 +23,25 @@
 
   const router = useRouter();
 
-  defineProps<{
+  const props = defineProps<{
     icon?: string,
     iconWrapClass?: string,
     title?: string,
     btnWrapClass?: string,
+    onBack?: () => void,
   }>();
+
+  function routerBack() {
+    router.back();
+  }
+
+  function back() {
+    if(props.onBack) {
+      props.onBack();
+    } else {
+      routerBack();
+    }
+  }
 </script>
 
 <style scoped lang="scss">
