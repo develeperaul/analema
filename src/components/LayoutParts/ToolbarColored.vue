@@ -1,16 +1,16 @@
 <template>
   <div class="toolbar-colored env-t">
     <div class="wrapper">
-      <div class="tw-mb-4" :class="btnWrapClass">
+      <div class="tw-mb-3" :class="btnWrapClass">
         <button class="btn-back" type="button" @click="back">
           <BaseIcon name="back" fit />
         </button>
       </div>
       <div class="body">
-        <div v-if="icon" class="icon-wrap" :class="iconWrapClass">
+        <div v-if="icon" class="icon-wrap tw-mb-3" :class="iconWrapClass">
           <BaseIcon :name="icon" fit />
         </div>
-        <h1 v-if="title" class="tw-text-h1 tw-text-el tw-font-bold tw-mt-3">
+        <h1 v-if="title" class="tw-text-h1 tw-text-el tw-font-bold">
           {{ title }}
         </h1>
       </div>
@@ -58,7 +58,7 @@
   .toolbar-colored {
     border-radius: 0 0 24px 24px;
     padding: 16px;
-    padding-bottom: 35px;
+    padding-bottom: 30px;
   }
 
   .body {
