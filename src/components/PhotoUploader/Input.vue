@@ -54,7 +54,7 @@
 
       const res = await fetch(photo.dataUrl);
       const blob = await res.blob();
-      emit('change:file', new File([blob], fileName, { type }));
+      emit('change:file', new File([blob], fileName));
     } catch(e) {
       console.log(e);
     }

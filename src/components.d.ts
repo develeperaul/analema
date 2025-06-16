@@ -73,12 +73,10 @@ declare module 'vue' {
     Radio2: typeof import('./components/Base/Radio2.vue')['default']
     SearchInput: typeof import('./components/Base/SearchInput.vue')['default']
     SelectCategories: typeof import('./components/Catalog/SelectCategories.vue')['default']
-    'SelectCategories copy': typeof import('./components/Catalog/SelectCategories copy.vue')['default']
     SelectSort: typeof import('./components/Catalog/SelectSort.vue')['default']
     Textarea: typeof import('./components/Base/Textarea.vue')['default']
     Toggle: typeof import('./components/Base/Toggle.vue')['default']
     Toolbar: typeof import('./components/LayoutParts/Toolbar.vue')['default']
-    'Toolbar copy': typeof import('./components/LayoutParts/Toolbar copy.vue')['default']
     ToolbarCatalog: typeof import('./components/LayoutParts/ToolbarCatalog.vue')['default']
     ToolbarColored: typeof import('./components/LayoutParts/ToolbarColored.vue')['default']
   }
