@@ -4,7 +4,7 @@
       <div class="body">
         <img class="img" width="140" height="140" src="~/assets/images/alerts/monitor.svg" />
         <div class="text">
-          Онлайн-оценка займет около 60 секунд...
+          Онлайн-оценка займет около 30 секунд...
         </div>
         <div class="progress">
           <div class="progress__line"></div>
