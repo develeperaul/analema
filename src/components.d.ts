@@ -51,6 +51,7 @@ declare module 'vue' {
     ListItem: typeof import('./components/Basket/ListItem.vue')['default']
     Modal: typeof import('./components/Base/Modal.vue')['default']
     ModalAcceptVideo: typeof import('./components/Estimates/ModalAcceptVideo.vue')['default']
+    ModalCreatedSuccess: typeof import('./components/Order/ModalCreatedSuccess.vue')['default']
     ModalDelete: typeof import('./components/Profile/ModalDelete.vue')['default']
     ModalLoading: typeof import('./components/Estimates/ModalLoading.vue')['default']
     ModalLogout: typeof import('./components/Profile/ModalLogout.vue')['default']

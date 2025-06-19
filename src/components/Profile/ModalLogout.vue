@@ -1,4 +1,4 @@
-w<template>
+<template>
   <Modal v-model="showed" yPos="bottom" xPos="center" animation="slide-right">
     <div class="card">
       <div class="tw-text-right tw-mb-4">
