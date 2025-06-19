@@ -21,6 +21,7 @@
           @success="onSuccess"
         />
       </template>
+      <ModalCreatedSuccess v-model:showed="showedSuccessCreated" :links="paymentLinks"  />
       <ModalPayment v-model="showedPayment" :links="paymentLinks" />
       <q-inner-loading :showing="basketRes.loading.value" />
     </div>
@@ -35,12 +36,12 @@
   import useDataOrAlert from 'src/composables/useDataOrAlert';
   import FormCreate from 'src/components/Order/FormCreate.vue';
   import ModalPayment from 'src/components/Order/ModalPayment.vue';
+  import ModalCreatedSuccess from 'src/components/Order/ModalCreatedSuccess.vue';
   import { OrderCreateSuccess } from 'src/repositories/order';
   import { useAuthStore } from 'src/stores/auth';
   import { useBasketStore } from 'src/stores/basket';
-  import { Platform, useQuasar } from 'quasar';
+  import { useQuasar } from 'quasar';
   import { useRouter } from 'vue-router';
-  import { Browser } from '@capacitor/browser';
 
   const api = useRepositories();
   const basketStore = useBasketStore();
@@ -69,15 +70,15 @@
   const router = useRouter();
 
   const showedPayment = ref(false);
+  const showedSuccessCreated = ref(false);
   const paymentLinks = ref<OrderCreateSuccess>([]);
 
   function onSuccess(res: OrderCreateSuccess) {
     if(res.length <= 0) {
       router.push('/');
     } else if(res.length === 1) {
-      Platform.is.capacitor
-        ? Browser.open({ url: res[0].payment_url })
-        : window.open(res[0].payment_url, '_blank');
+      showedSuccessCreated.value = true;
+      paymentLinks.value = res;
     } else {
       paymentLinks.value = res;
       showedPayment.value = true;
