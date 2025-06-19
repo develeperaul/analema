@@ -54,7 +54,7 @@
         </defs>
       </svg>
     </div>
-    <div v-if="errorMessage" class="tw-text-t2 tw-text-[#616161] tw-mt-1.5">
+    <div v-if="errorMessage" class="tw-text-t2 tw-text-negative tw-mt-1">
       {{ errorMessage }}
     </div>
   </div>

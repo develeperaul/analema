@@ -2,7 +2,7 @@
   <div>
     <label class="h2 tw-block tw-w-full tw-mb-3">{{ label }}</label>
     <textarea class="inp" v-model="value" :placeholder="placeholder"></textarea>
-    <div class="tw-text-negative tw-text-sm tw-mt-1" v-if="errorMessage">{{ errorMessage }}</div>
+    <div class="tw-text-negative tw-text-t2 tw-mt-1" v-if="errorMessage">{{ errorMessage }}</div>
   </div>
 </template>
 
