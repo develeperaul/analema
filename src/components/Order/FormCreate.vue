@@ -23,14 +23,14 @@
         :values="addr"
         @change:fullAddress="form.address = $event"
       />
-      <DateTime
+      <!-- <DateTime
         class="tw-mb-4"
         :schema="orderSchema"
         v-model:date="form.date"
         v-model:time="form.time"
-      />
-      <p class=" tw-text-t2 tw-text-card-descr">
-        Курьер дополнительно свяжется с вами. При себе необходимо иметь паспорт
+      /> -->
+      <p class="tw-text-t2 tw-text-card-descr">
+        Наш менеджер свяжется с Вами, чтобы обговорить детали доставки
       </p>
     </template>
     <div class="tw-pt-10">
@@ -38,7 +38,7 @@
         <span>Итого к оплате</span>
         <span>{{ $amount(total) }}</span>
       </div>
-      <BaseButton type="submit" text="Перейти к оплате" :disabled="loading" />
+      <BaseButton type="submit" text="Оформить заказ" :disabled="loading" />
     </div>
   </Form>
 </template>
