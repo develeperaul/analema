@@ -24,6 +24,9 @@
           <router-link :to="{ name: 'profile.notifications' }" custom v-slot="{ href, navigate }">
             <NavItem icon="notification" text="Push-уведомления" tag="a" :href="href" @click="navigate" />
           </router-link>
+          <router-link :to="{ name: 'profile.callback' }" custom v-slot="{ href, navigate }">
+            <NavItem icon="callback" text="Связаться с нами" tag="a" :href="href" @click="navigate" />
+          </router-link>
           <NavItem
             class="logout"
             icon="logout"

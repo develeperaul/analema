@@ -109,6 +109,12 @@ const routes: RouteRecordRaw[] = [
         component: () => import("pages/Profile/Notifications.vue"),
         meta: { auth: true },
       },
+      {
+        path: "callback",
+        name: "profile.callback",
+        component: () => import("pages/Profile/Callback.vue"),
+        meta: { auth: true },
+      },
     ],
   },
 

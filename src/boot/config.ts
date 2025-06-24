@@ -5,6 +5,7 @@ import { inject } from 'vue';
 function makeConfig() {
   return {
     userAgrement: 'https://analemmatrade.ru/useragr.pdf',
+    hotlinePhone: '8 (800) 511-88-80',
   };
 }
 

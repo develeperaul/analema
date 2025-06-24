@@ -9,6 +9,9 @@ export default function(http: AxiosInstance) {
     update(body: Partial<ProfileDataBody>) {
       return http.post('update_profile.php', jsonFormData(body));
     },
+    createRequest(body: CreateRequestBody) {
+      return http.post('create_req.php', jsonFormData(body));
+    },
   }
 }
 
@@ -44,4 +47,9 @@ interface Avatar {
   width: number,
   height: number,
   size: number,
+}
+
+export interface CreateRequestBody {
+  email: string,
+  text: string,
 }
