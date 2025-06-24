@@ -8,7 +8,7 @@
     />
     <div class="wrapper">
       <ChipList class="tw-mb-5" :items="tabs" :activeItem="activeTab" @change:item="activeTab = $event" />
-      <OrdersList v-if="ordersRes.data.value" :items="orders" />
+      <OrdersList v-if="ordersRes.data.value" :items="orders" :emptyText="emptyText" />
     </div>
     <q-inner-loading :showing="ordersRes.loading.value" />
   </q-page>
@@ -47,6 +47,12 @@
       if(activeTab.value.value === '2') return order.status === 'Выполнен';
       else return order.status !== 'Выполнен';
     });
+  });
+
+  const emptyText = computed(() => {
+    if(activeTab.value?.value === '1') return 'У вас нет активных заказов';
+    if(activeTab.value?.value === '2') return 'У вас нет завершенных заказов';
+    return 'У вас нет заказов';
   });
 </script>
 
