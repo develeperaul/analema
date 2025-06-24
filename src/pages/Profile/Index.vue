@@ -5,10 +5,13 @@
       <CardNamePhone class="tw-mb-6" />
       <div class="tw-space-y-4">
         <template v-if="authStore.user">
+          <router-link :to="{ name: 'estimates.index' }" custom v-slot="{ href, navigate }">
+            <NavItem class="favorites" icon="neiro" text="Мои оценки" tag="a" :href="href" @click="navigate" />
+          </router-link>
           <router-link :to="{ name: 'orders.index' }" custom v-slot="{ href, navigate }">
             <NavItem class="favorites" icon="basket-minus" text="Мои покупки" tag="a" :href="href" @click="navigate" />
           </router-link>
-          <router-link :to="{ name: 'estimates.index' }" custom v-slot="{ href, navigate }">
+          <router-link :to="{ name: 'estimates.finished' }" custom v-slot="{ href, navigate }">
             <NavItem class="favorites" icon="basket-plus" text="Мои продажи" tag="a" :href="href" @click="navigate" />
           </router-link>
           <router-link :to="{ name: 'catalog.favorites' }" custom v-slot="{ href, navigate }">

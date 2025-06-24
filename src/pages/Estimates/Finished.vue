@@ -2,7 +2,9 @@
   <q-page class="page-pb">
     <ToolbarColored
       class="bg-bar tw-mb-6"
-      title="Мои оценки"
+      icon="shopping"
+      iconWrapClass="tw-w-[50px] tw-h-[50px] tw-p-[10px]"
+      title="Мои продажи"
     />
     <div class="wrapper">
       <ChipList class="tw-mb-5" :items="tabs" :activeItem="activeTab" @change:item="activeTab = $event" />
@@ -27,12 +29,16 @@
   const tabs: ChipItem[] = [
     {
       label: 'Активные',
-      value: '1',
+      value: '2',
     },
     {
       label: 'Завершенные',
-      value: '2',
+      value: '4',
     },
+    {
+      label: 'Отмененные',
+      value: '3',
+    }
   ];
 
   const activeTab = ref<ChipItem | null>(tabs[0]);
@@ -44,7 +50,7 @@
   });
 
   const estimatesRes = useRequest(
-    () => api.estimates.list({ ...filter.value, type: '1' }),
+    () => api.estimates.list({ ...filter.value, type: '2' }),
     { watch: [ activeTab ] },
   );
   useDataOrAlert(estimatesRes);

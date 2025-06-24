@@ -8,7 +8,7 @@
         text="Мои покупки"
         :to="{ name: 'orders.index' }"
       />
-      <LinkCard icon="box" text="Мои продажи" :to="{ name: 'estimates.index' }" />
+      <LinkCard icon="box" text="Мои продажи" :to="{ name: 'estimates.finished' }" />
     </div>
     <!-- <router-link :to="{ name: 'referrals.index' }" class="invite">
       <div class="invite__title">

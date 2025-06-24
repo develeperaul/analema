@@ -42,9 +42,11 @@ export interface CreateEstimateSuccess {
 
 export interface EstimateListParams {
   status?: Status,
+  type?: EstimateListType,
 }
 
 export type Status = '1' | '2' | '3';
+export type EstimateListType = '1' | '2';
 
 export interface EstimateListItem {
   id: string,
