@@ -14,6 +14,7 @@
         :schema="orderSchema.pickup"
         v-model:city="pickup.city"
         v-model:point="pickup.point"
+        v-model:payment="form.payment"
       />
     </template>
     <template v-else>
