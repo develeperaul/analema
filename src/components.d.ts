@@ -61,7 +61,7 @@ declare module 'vue' {
     ModalProduct: typeof import('./components/Catalog/ModalProduct.vue')['default']
     ModalReject: typeof import('./components/Estimates/ModalReject.vue')['default']
     ModalRejectVideo: typeof import('./components/Estimates/ModalRejectVideo.vue')['default']
-    ModalSuccess: typeof import('./components/Estimates/ModalSuccess.vue')['default']
+    ModalSuccess: typeof import('./components/Callback/ModalSuccess.vue')['default']
     ModalSuccessOutput: typeof import('./components/Referrals/ModalSuccessOutput.vue')['default']
     MyEmail: typeof import('./components/Callback/MyEmail.vue')['default']
     NavItem: typeof import('./components/Profile/NavItem.vue')['default']

@@ -1,6 +1,6 @@
 <template>
   <div class="toolbar env-t">
-    <div>
+    <div class="actions">
       <button v-if="showBack" class="btn-back" type="button" @click="backAction">
         <BaseIcon name="back" fit />
       </button>
@@ -52,5 +52,9 @@
 
   .title {
     @apply tw-text-h1 tw-font-bold tw-text-base;
+  }
+
+  .actions {
+    min-width: 32px;
   }
 </style>

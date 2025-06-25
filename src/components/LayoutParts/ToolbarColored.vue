@@ -1,18 +1,18 @@
 <template>
   <div class="toolbar-colored env-t">
     <div class="wrapper">
-      <div class="tw-mb-3" :class="btnWrapClass">
+      <div class="body-wrap">
         <button class="btn-back" type="button" @click="back">
           <BaseIcon name="back" fit />
         </button>
-      </div>
-      <div class="body">
-        <div v-if="icon" class="icon-wrap tw-mb-3" :class="iconWrapClass">
-          <BaseIcon :name="icon" fit />
+        <div class="body">
+          <div v-if="icon" class="icon-wrap tw-mb-3" :class="iconWrapClass">
+            <BaseIcon :name="icon" fit />
+          </div>
+          <h1 v-if="title" class="tw-text-h1 tw-text-el tw-font-bold tw-text-center">
+            {{ title }}
+          </h1>
         </div>
-        <h1 v-if="title" class="tw-text-h1 tw-text-el tw-font-bold">
-          {{ title }}
-        </h1>
       </div>
     </div>
   </div>
@@ -27,7 +27,6 @@
     icon?: string,
     iconWrapClass?: string,
     title?: string,
-    btnWrapClass?: string,
     onBack?: () => void,
   }>();
 
@@ -45,7 +44,14 @@
 </script>
 
 <style scoped lang="scss">
+  .body-wrap {
+    position: relative;
+    padding: 0 48px;
+  }
+
   .btn-back {
+    position: absolute;
+    left: 0;
     width: 32px;
     height: 32px;
     padding: 6px;
@@ -57,13 +63,14 @@
 
   .toolbar-colored {
     border-radius: 0 0 24px 24px;
-    padding: 16px;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
   }
 
   .body {
+    padding-top: 4px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-height: 32px;
   }
 </style>
