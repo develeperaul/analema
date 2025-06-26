@@ -19,6 +19,27 @@
           <!-- <Image class="tw-w-[100px] tw-rounded-10 tw-overflow-hidden" :src="item.img" /> -->
         </div>
       </div>
+      <div class="param">
+        <div class="param-label">Способ доставки</div>
+        <div class="param-value">{{ item.delivery }}</div>
+      </div>
+      <div class="param">
+        <div class="param-label">Адрес</div>
+        <div class="param-value">
+          {{ item.delivery === 'Самовывоз' ? item.adr_sam : item.adr_dost }}
+        </div>
+      </div>
+      <div class="param" v-if="item.payment_url">
+        <div class="param-value tw-pt-4">
+          <a
+            class="tw-block tw-w-full tw-text-center tw-bg-[#181818] tw-rounded-16 tw-text-white tw-py-[13px] tw-px-8 tw-text-t1"
+            :href="item.payment_url"
+            target="_blank"
+          >
+            Оплатить
+          </a>
+        </div>
+      </div>
     </template>
   </Card>
 </template>

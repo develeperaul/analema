@@ -41,6 +41,9 @@ export interface OrderListItem {
     timezone: string
   },
   payment_url: string,
+  delivery: string,
+  adr_sam: string,
+  adr_dost: string,
   kol: string,
   summ: string,
   status: string,
