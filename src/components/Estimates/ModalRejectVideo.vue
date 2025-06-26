@@ -13,7 +13,7 @@
           <div class=" tw-w-full">
             <a
               class="tw-py-[13px] tw-px-4 tw-text-center tw-w-full tw-block tw-bg-el tw-rounded-16 tw-text-white tw-font-medium tw-text-[16px] tw-leading-[1.3]"
-              href="https://api.whatsapp.com/send?phone=79177500267"
+              :href="`https://api.whatsapp.com/send?phone=${config.whatsappTradePhone}`"
               target="_blank"
             >
               Поторговаться в чате WhatsApp
@@ -27,9 +27,13 @@
 </template>
 
 <script setup lang="ts">
+  import { useConfig } from 'src/boot/config';
+
   const value = defineModel({
     default: false,
   });
+
+  const config = useConfig();
 </script>
 
 <style scoped lang="scss">
