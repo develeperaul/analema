@@ -1,9 +1,12 @@
 <template>
+  <DialogOffline />
   <router-view />
 </template>
 
 <script setup lang="ts">
-defineOptions({
-  name: 'App'
-});
+  import DialogOffline from './components/Dialog/Offline.vue';
+
+  defineOptions({
+    name: 'App'
+  });
 </script>

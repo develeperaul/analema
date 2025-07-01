@@ -65,6 +65,7 @@ declare module 'vue' {
     ModalSuccessOutput: typeof import('./components/Referrals/ModalSuccessOutput.vue')['default']
     MyEmail: typeof import('./components/Callback/MyEmail.vue')['default']
     NavItem: typeof import('./components/Profile/NavItem.vue')['default']
+    Offline: typeof import('./components/Dialog/Offline.vue')['default']
     PersonalList: typeof import('./components/Catalog/PersonalList.vue')['default']
     PhotoUploader: typeof import('./components/PhotoUploader/index.vue')['default']
     Pickup: typeof import('./components/Order/Pickup.vue')['default']
