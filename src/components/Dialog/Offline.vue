@@ -1,7 +1,7 @@
 <template>
   <q-dialog maximized v-model="value">
     <div class="tw-bg-white tw-py-8 tw-px-5 tw-flex tw-flex-col tw-justify-center tw-items-center">
-      <div class="tw-max-w-[600px] tw-text-center">
+      <div class="tw-max-w-[420px] tw-w-full tw-text-center">
         <Transition
           enter-active-class="animate__animated animate__fadeIn animate__faster"
           leave-active-class="animate__animated animate__fadeOut animate__faster"

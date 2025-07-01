@@ -84,6 +84,7 @@ declare module 'vue' {
     Toolbar: typeof import('./components/LayoutParts/Toolbar.vue')['default']
     ToolbarCatalog: typeof import('./components/LayoutParts/ToolbarCatalog.vue')['default']
     ToolbarColored: typeof import('./components/LayoutParts/ToolbarColored.vue')['default']
+    Update: typeof import('./components/Dialog/Update.vue')['default']
   }
 }
 
