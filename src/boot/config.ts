@@ -7,7 +7,7 @@ function makeConfig() {
     userAgrement: 'https://analemmatrade.ru/useragr.pdf',
     hotlinePhone: '8 (800) 511-88-80',
     whatsappTradePhone: '79870327141',
-    creditHref: 'https://analemmatrade.ru',
+    creditHref: 'https://analemmatrade.ru/zaym-pod-zalog',
   };
 }
 
