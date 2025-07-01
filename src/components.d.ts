@@ -28,6 +28,7 @@ declare module 'vue' {
     ChipList: typeof import('./components/Base/ChipList.vue')['default']
     CodeInput: typeof import('./components/CodeInput.vue')['default']
     Cooldown: typeof import('./components/Base/Cooldown.vue')['default']
+    CreditBanner: typeof import('./components/Home/CreditBanner.vue')['default']
     Data: typeof import('./components/Estimates/Steps/Data.vue')['default']
     DateTime: typeof import('./components/Order/DateTime.vue')['default']
     Description: typeof import('./components/Catalog/Description.vue')['default']

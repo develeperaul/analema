@@ -10,6 +10,7 @@
       />
       <LinkCard icon="box" text="Мои продажи" :to="{ name: 'estimates.finished' }" />
     </div>
+    <CreditBanner />
     <!-- <router-link :to="{ name: 'referrals.index' }" class="invite">
       <div class="invite__title">
         Приглашайте друзей <br />
@@ -24,4 +25,5 @@
   import PopularList from 'src/components/Catalog/PopularList.vue';
   import LinkCard from 'src/components/Home/LinkCard.vue';
   import EstimateBanner from 'src/components/Home/EstimateBanner.vue';
+  import CreditBanner from 'src/components/Home/CreditBanner.vue';
 </script>

@@ -24,6 +24,7 @@
           <router-link :to="{ name: 'profile.notifications' }" custom v-slot="{ href, navigate }">
             <NavItem icon="notification" text="Push-уведомления" tag="a" :href="href" @click="navigate" />
           </router-link>
+          <NavItem icon="rub" text="Займ под залог" tag="a" :href="config.creditHref" target="_blank" />
           <router-link :to="{ name: 'profile.callback' }" custom v-slot="{ href, navigate }">
             <NavItem icon="callback" text="Связаться с нами" tag="a" :href="href" @click="navigate" />
           </router-link>
@@ -53,10 +54,13 @@
 </template>
 
 <script setup lang="ts">
+  import { useConfig } from 'src/boot/config';
   import CardNamePhone from 'src/components/Profile/CardNamePhone.vue';
   import ModalLogout from 'src/components/Profile/ModalLogout.vue';
   import NavItem from 'src/components/Profile/NavItem.vue';
   import { useAuthStore } from 'src/stores/auth';
+
+  const config = useConfig();
 
   const authStore = useAuthStore();
 
