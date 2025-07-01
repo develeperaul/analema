@@ -12,6 +12,7 @@ import createNotificationsRepo from 'src/repositories/notifications';
 import createFcmRepo from 'src/repositories/fcm';
 import createNeiroCatalogRepo from 'src/repositories/neiro-catalog';
 import createNeiroEstimatesRepo from 'src/repositories/neiro-estimates';
+import createSystemRepo from 'src/repositories/system';
 import { InjectionKey } from 'vue';
 import * as Token from 'src/utils/token';
 
@@ -39,6 +40,7 @@ export function createRepositories(http: AxiosInstance) {
     'fcm': createFcmRepo(http),
     'neiroCatalog': createNeiroCatalogRepo(http),
     'neiroEstimates': createNeiroEstimatesRepo(http),
+    'system': createSystemRepo(http),
   };
 
   return repositories;
