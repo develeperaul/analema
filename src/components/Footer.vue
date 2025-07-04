@@ -26,6 +26,18 @@
         </span>
       </router-link>
       <router-link
+        :to="{ name: 'estimates.create' }"
+        v-slot="{ isActive }"
+        class="tw-grid tw-justify-items-center tw-gap-1 tw-text-t3">
+        <base-icon
+          name="menu-neiro"
+          class="tw-w-5 tw-h-5"
+          :class="[isActive ? 'tw-text-black' : 'tw-text-gray']" />
+        <span :class="[isActive ? 'tw-text-black' : 'tw-text-gray']">
+          Оценка
+        </span>
+      </router-link>
+      <router-link
         :to="{ name: 'basket.index' }"
         v-slot="{ isActive }"
         class="tw-grid tw-justify-items-center tw-gap-1 tw-text-t3 tw-relative">
