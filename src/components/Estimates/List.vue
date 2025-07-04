@@ -1,6 +1,6 @@
 <template>
   <p v-if="items.length === 0" class="tw-text-center tw-text-t1 tw-text-base tw-py-10">
-    Ничего не найдено
+    {{ emptyText }}
   </p>
   <div v-else class="tw-space-y-4">
     <ListItem
@@ -18,5 +18,6 @@
 
   defineProps<{
     items: EstimateListItem[],
+    emptyText: string,
   }>();
 </script>

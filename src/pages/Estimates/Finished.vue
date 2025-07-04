@@ -11,6 +11,7 @@
       <EstimatesList
         v-if="estimatesRes.data.value"
         :items="estimatesRes.data.value"
+        :emptyText="emptyText"
       />
     </div>
     <q-inner-loading :showing="estimatesRes.loading.value" />
@@ -54,6 +55,13 @@
     { watch: [ activeTab ] },
   );
   useDataOrAlert(estimatesRes);
+
+  const emptyText = computed(() => {
+    if(activeTab.value?.value === '2') return 'У Вас нет активных продаж';
+    if(activeTab.value?.value === '4') return 'У Вас нет завершенных продаж';
+    if(activeTab.value?.value === '3') return 'У Вас нет отмененных продаж';
+    return 'У Вас нет продаж';
+  });
 </script>
 
 <style scoped lang="scss">

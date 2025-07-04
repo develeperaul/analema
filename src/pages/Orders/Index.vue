@@ -50,9 +50,9 @@
   });
 
   const emptyText = computed(() => {
-    if(activeTab.value?.value === '1') return 'У вас нет активных заказов';
-    if(activeTab.value?.value === '2') return 'У вас нет завершенных заказов';
-    return 'У вас нет заказов';
+    if(activeTab.value?.value === '1') return 'У Вас нет активных заказов';
+    if(activeTab.value?.value === '2') return 'У Вас нет завершенных заказов';
+    return 'У Вас нет заказов';
   });
 </script>
 
