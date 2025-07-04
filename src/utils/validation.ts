@@ -7,3 +7,13 @@ export const phoneTest = [
     return res;
   },
 ] as const;
+
+export const emailTest = [
+  'custom-email',
+  'Пожалуйста, укажите корректный E-mail',
+  (value?: string) => {
+    if(!value) return true;
+    const res = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value);
+    return res;
+  },
+] as const;
