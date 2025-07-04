@@ -15,10 +15,10 @@
             <div class="param-label">Номер заявки</div>
             <div class="param-value">{{ data.id }}</div>
           </div>
-          <div class="param">
+          <!-- <div class="param">
             <div class="param-label">Описание товара</div>
             <div class="param-value">{{ data.desc }}</div>
-          </div>
+          </div> -->
           <div class="param" v-if="data.comment">
             <div class="param-label">Комментарий</div>
             <div class="param-value">{{ data.comment }}</div>

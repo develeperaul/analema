@@ -12,10 +12,10 @@
             <div class="param-label">Статус</div>
             <div class="param-value">{{ data.status }}</div>
           </div>
-          <div class="param">
+          <!-- <div class="param">
             <div class="param-label">Описание товара</div>
             <div class="param-value">{{ data.desc }}</div>
-          </div>
+          </div> -->
           <div v-if="data.gallery.length > 0">
             <div class="h2 tw-mb-[10px]">Фотографии</div>
             <GalleryUploaded :items="data.gallery" />
