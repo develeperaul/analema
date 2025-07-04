@@ -5,7 +5,7 @@
         <ButtonClose @click="value = false" />
       </div>
       <p class="tw-mb-5">
-        Мы готовы к торгу, если сейчас вы сможете выйти на видеозвонок с нами
+        Мы готовы к торгу, если сейчас Вы сможете выйти на видеозвонок с нами
       </p>
       <BaseButton class="tw-mb-3" text="Заказать видеозвонок" :disabled="loading" @click="$emit('accept:video')" />
       <BaseButton border text="Не готов к видеозвонку" :disabled="loading" @click="$emit('reject:video')" />
