@@ -23,18 +23,18 @@
   import useDataOrAlert from 'src/composables/useDataOrAlert';
   import EstimatesList from 'src/components/Estimates/List.vue';
   import ChipList, { type Item as ChipItem } from 'src/components/Base/ChipList.vue';
-  import type { EstimateListParams, Status } from 'src/repositories/estimates';
+  import type { SalesListParams, SalesStatus } from 'src/repositories/estimates';
 
   const api = useRepositories();
 
   const tabs: ChipItem[] = [
     {
       label: 'Активные',
-      value: '2',
+      value: '1',
     },
     {
       label: 'Завершенные',
-      value: '4',
+      value: '2',
     },
     {
       label: 'Отмененные',
@@ -45,20 +45,20 @@
   const activeTab = ref<ChipItem | null>(tabs[0]);
 
   const filter = computed(() => {
-    const res: EstimateListParams = {};
-    if(activeTab.value) res.status = activeTab.value.value as Status;
+    const res: SalesListParams = {};
+    if(activeTab.value) res.status = activeTab.value.value as SalesStatus;
     return res;
   });
 
   const estimatesRes = useRequest(
-    () => api.estimates.list({ ...filter.value, type: '2' }),
+    () => api.estimates.sales({ ...filter.value, type: '2' }),
     { watch: [ activeTab ] },
   );
   useDataOrAlert(estimatesRes);
 
   const emptyText = computed(() => {
-    if(activeTab.value?.value === '2') return 'У Вас нет активных продаж';
-    if(activeTab.value?.value === '4') return 'У Вас нет завершенных продаж';
+    if(activeTab.value?.value === '1') return 'У Вас нет активных продаж';
+    if(activeTab.value?.value === '2') return 'У Вас нет завершенных продаж';
     if(activeTab.value?.value === '3') return 'У Вас нет отмененных продаж';
     return 'У Вас нет продаж';
   });
