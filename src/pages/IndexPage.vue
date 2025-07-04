@@ -11,13 +11,13 @@
       <LinkCard icon="box" text="Мои продажи" :to="{ name: 'estimates.finished' }" />
     </div>
     <CreditBanner />
-    <!-- <router-link :to="{ name: 'referrals.index' }" class="invite">
+    <router-link :to="{ name: 'referrals.index' }" class="invite">
       <div class="invite__title">
         Приглашайте друзей <br />
         и зарабатывайте
       </div>
       <img src="~assets/images/hands.png" alt="" class="invite__icon" />
-    </router-link> -->
+    </router-link>
   </q-page>
 </template>
 
