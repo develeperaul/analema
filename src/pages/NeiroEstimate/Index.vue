@@ -37,16 +37,18 @@
         />
         <StepJewelryForm
           v-else-if="currentStep === 'jewelry-form'"
+          :form="form"
           @estimate="send"
         />
         <StepCoinForm
           v-else-if="currentStep === 'coin-form'"
+          :form="form"
           @estimate="send"
         />
         <StepResult
-          v-else-if="currentStep === 'result'"
+          v-else-if="currentStep === 'result' || currentStep === 'coin-res'"
           :id="estimateCreatedRes!.id.toString()"
-          :isCoin="assessmentRes?.[0]?.moneta === 1"
+          :coinStep="currentStep === 'coin-res'"
           @show:coinForm="currentStep = 'coin-form'"
         />
       </Transition>
@@ -78,7 +80,7 @@
 
   const steps = [
     'upload-photos', 'identify-product', 'identify-failed', 'search-0', 'search-1',
-    'product-form', 'jewelry-form', 'coin-form', 'result',
+    'product-form', 'jewelry-form', 'coin-form', 'coin-res', 'result',
   ] as const;
   const currentStep = ref<typeof steps[number]>('upload-photos');
   const showedAssessProccess = ref(false);
@@ -105,7 +107,7 @@
       const assessItem = assessmentRes.value[0];
       if(assessItem) {
         if(assessItem.moneta === 1) {
-          currentStep.value = 'result';
+          currentStep.value = 'coin-res';
           const price = parseFloat(assessItem.price);
           estimateCreatedRes.value = {
             id: assessItem.id!,

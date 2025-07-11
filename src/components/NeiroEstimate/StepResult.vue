@@ -36,7 +36,7 @@
         @click="showedReject = true"
       />
       <BaseButton
-        v-if="isCoin"
+        v-if="coinStep"
         border
         text="Это другая монета"
         @click="emit('show:coinForm')"
@@ -70,7 +70,7 @@
 
   const props = defineProps<{
     id: string,
-    isCoin: boolean,
+    coinStep: boolean,
   }>();
 
   const emit = defineEmits<{
