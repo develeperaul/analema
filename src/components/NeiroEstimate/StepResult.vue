@@ -35,6 +35,7 @@
       />
       <BaseButton
         border
+        class="tw-mb-3"
         text="Хочу поторговаться"
         :disabled="loading"
         @click="showedReject = true"

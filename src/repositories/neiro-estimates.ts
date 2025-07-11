@@ -55,6 +55,9 @@ export interface EstimateCreateBody2 {
   rewhatsapp: string,
   free_flow: string,
   images: string[],
+  neiro_add_metall: string,
+  neiro_add_brilliant: string,
+  neiro_add_proba: string,
 }
 
 export interface EstimateCreateRes {

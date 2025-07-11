@@ -94,6 +94,9 @@
     recall: '',
     rewhatsapp: '',
     neiro_add_value: '',
+    neiro_add_metall: '',
+    neiro_add_brilliant: '',
+    neiro_add_proba: '',
   });
 
   const { send: sendPhotos } = usePostRequest(
@@ -137,10 +140,12 @@
 
       let free_flow = '';
       let neiro_el = '';
+      let neiro_add_type = '3';
       if(
         assessItem?.moneta === 1 ||
         assessItem?.uvelirka === 1 && form.activeProduct === null && form.freeFlow === ''
       ) {
+        neiro_add_type = '1',
         neiro_el = assessItem.neiro_el.toString();
       } else if(form.activeProduct) {
         neiro_el = form.activeProduct.id;
@@ -155,7 +160,10 @@
         neiro_add_value: form.neiro_add_value,
         recall: form.recall,
         rewhatsapp: form.rewhatsapp,
-        neiro_add_type: '3',
+        neiro_add_type,
+        neiro_add_metall: form.neiro_add_metall,
+        neiro_add_brilliant: form.neiro_add_brilliant,
+        neiro_add_proba: form.neiro_add_proba,
       }
     },
     (res) => {

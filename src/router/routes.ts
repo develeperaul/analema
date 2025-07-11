@@ -17,9 +17,14 @@ const routes: RouteRecordRaw[] = [
     component: () => import("layouts/NoHeadLayout.vue"),
     children: [
       {
+        path: "neiro-estimate",
+        name: "neiro-estimate.index",
+        component: () => import("pages/NeiroEstimate/Index.vue"),
+      },
+      {
         path: "estimates/create",
         name: "estimates.create",
-        component: () => import("pages/Estimates/Create2.vue"),
+        component: () => import("pages/NeiroEstimate/Index.vue"),
       },
       {
         path: "orders",
