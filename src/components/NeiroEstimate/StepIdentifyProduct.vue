@@ -1,15 +1,17 @@
 <template>
   <div>
-    <RobotMessage class="tw-mb-4">
-      <div v-if="loadingMessage">...</div>
-      <div v-else-if="robotMeesage">{{ messageText }}</div>
-    </RobotMessage>
+    <RobotMessage class="tw-mb-14">{{ messageText }}</RobotMessage>
     <div v-if="form.uploadedFiles.length > 0">
-      <Image :src="form.uploadedFiles[0].url" alt="" />
+      <Image
+        class="tw-w-[150px] tw-mx-auto tw-rounded-20 tw-overflow-hidden"
+        width="150"
+        height="150"
+        :src="form.uploadedFiles[0].url"
+      />
     </div>
-    <div class="tw-mt-8">
-      <BaseButton class="tw-mb-2" text="Нет" @click="emit('answer:no')" />
-      <BaseButton text="Да" @click="emit('answer:yes')" />
+    <div class="tw-mt-8 tw-flex tw-gap-[10px]">
+      <BaseButton border text="Нет" @click="emit('answer:no')" />
+      <BaseButton2 @click="emit('answer:yes')">Да</BaseButton2>
     </div>
   </div>
 </template>
@@ -18,6 +20,7 @@
   import RobotMessage from './RobotMessage.vue';
   import useRequest from 'src/composables/useRequest';
   import useRepositories from 'src/composables/useRepositories';
+  import BaseButton2 from 'src/components/Base/Button2.vue';
   import type { NeiroForm } from './model/types';
   import type { AssessSuccessRes } from 'src/repositories/neiro-estimates';
 

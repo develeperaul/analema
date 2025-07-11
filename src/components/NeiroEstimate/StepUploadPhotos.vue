@@ -1,16 +1,14 @@
 <template>
   <div>
-    <RobotMessage class="tw-mb-4">
-      <div v-if="loadingMessage">...</div>
-      <div v-else-if="robotMeesage">{{ messageText }}</div>
-    </RobotMessage>
-    <PhotoUploader v-model:uploaded="form.uploadedFiles" />
+    <RobotMessage class="tw-mb-14">{{ messageText }}</RobotMessage>
+    <PhotoUploader v-model:uploaded="form.uploadedFiles" :maxFiles="3" />
     <BaseButton
       v-if="form.uploadedFiles.length > 0"
-      class="tw-mt-8"
-      text="Продолжить"
+      class="tw-mt-10"
       @click="emit('next')"
-    />
+    >
+      Продолжить
+    </BaseButton>
   </div>
 </template>
 
@@ -19,6 +17,7 @@
   import PhotoUploader from './PhotoUploader.vue';
   import useRequest from 'src/composables/useRequest';
   import useRepositories from 'src/composables/useRepositories';
+  import BaseButton from 'src/components/Base/Button2.vue';
   import type { NeiroForm } from './model/types';
   import { useAuthStore } from 'src/stores/auth';
   import { computed } from 'vue';

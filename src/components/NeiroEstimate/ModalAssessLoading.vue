@@ -2,9 +2,9 @@
   <q-dialog v-model="value" maximized>
     <div class="card">
       <div class="body">
-        <img class="img" width="140" height="140" src="~/assets/images/alerts/monitor.svg" />
+        <img class="img" width="108" height="94" src="./ui/images/neiro-loading.svg" />
         <div class="text">
-          Онлайн-оценка займет около 30 секунд...
+          Распознаю Ваш товар.<br/>Это займет не более 30 секунд.
         </div>
         <div class="progress">
           <div class="progress__line"></div>
@@ -36,7 +36,7 @@
   }
 
   .img {
-    width: 140px;
+    width: 108px;
     margin: 0 auto;
   }
 

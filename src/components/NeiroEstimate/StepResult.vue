@@ -1,5 +1,9 @@
 <template>
   <div v-if="data">
+    <RobotMessage class="tw-mb-4">
+      <div v-if="loadingMessage">...</div>
+      <div v-else-if="robotMeesage">{{ robotMeesage[0].text ?? '' }}</div>
+    </RobotMessage>
     <div class="tw-space-y-5">
       <div class="estimate" v-if="data.price">
         <div class="estimate-label">Стоимость товара</div>
@@ -66,6 +70,7 @@
   import ModalReject from 'src/components/Estimates/ModalReject.vue';
   import ModalAcceptVideo from 'src/components/Estimates/ModalAcceptVideo.vue';
   import ModalRejectVideo from 'src/components/Estimates/ModalRejectVideo.vue';
+  import RobotMessage from './RobotMessage.vue';
   import type { EstimateNextStep } from 'src/repositories/neiro-estimates';
 
   const props = defineProps<{
@@ -114,6 +119,13 @@
   const showedReject = ref(false);
   const showedAcceptVideo = ref(false);
   const showedRejectVideo = ref(false);
+
+  const {
+    data: robotMeesage,
+    loading: loadingMessage
+  } = useRequest(
+    () => api.neiroEstimates.showRobotMessage({ type: '9' }),
+  );
 </script>
 
 <style scoped lang="scss">

@@ -1,10 +1,11 @@
 <template>
   <div>
     <RobotMessage class="tw-mb-4">
-      <div v-if="loadingMessage">...</div>
-      <div v-else-if="robotMeesage">{{ messageText }}</div>
+      {{ messageText }}
     </RobotMessage>
-    <BaseButton text="Ввести вручную" @click="emit('next')" />
+    <BaseButton class="tw-mt-14" @click="emit('next')">
+      Ввести вручную
+    </BaseButton>
   </div>
 </template>
 
@@ -12,6 +13,7 @@
   import RobotMessage from './RobotMessage.vue';
   import useRequest from 'src/composables/useRequest';
   import useRepositories from 'src/composables/useRepositories';
+  import BaseButton from 'src/components/Base/Button2.vue';
 
   const emit = defineEmits<{
     (event: 'next'): void,

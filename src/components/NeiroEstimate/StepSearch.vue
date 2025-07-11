@@ -1,16 +1,15 @@
 <template>
   <div>
-    <RobotMessage class="tw-mb-4">
-      <div v-if="loadingMessage">...</div>
-      <div v-else-if="robotMeesage">{{ robotMeesage[0].text ?? '' }}</div>
-    </RobotMessage>
+    <RobotMessage class="tw-mb-8">{{ robotMeesage?.[0].text ?? '' }}</RobotMessage>
     <SearchInput
+      class="tw-mb-5"
       label=""
       v-model="searchText"
     />
-    <div class="tw-space-x-2 tw-space-y-2">
+    <div class="items">
       <button
-        :class="{ 'tw-underline': item.id === form.activeProduct?.id }"
+        class="item"
+        :class="{ 'item--active': item.id === form.activeProduct?.id }"
         v-for="item in items"
         :key="item.id"
         @click="changeProduct(item)"
@@ -18,11 +17,19 @@
         {{ item.section_name }} - {{ item.name }}
       </button>
     </div>
-    <BaseButton text="Продолжить" @click="emit('next', searchText)" />
+    <BaseButton2
+      class="tw-mt-8"
+      :disabled="searchText === '' && form.activeProduct === null"
+      @click="emit('next', searchText)"
+    >
+      Продолжить
+    </BaseButton2>
   </div>
 </template>
 
 <script setup lang="ts">
+  import BaseButton2 from 'src/components/Base/Button2.vue';
+  import RobotMessage from './RobotMessage.vue';
   import SearchInput from 'src/components/Base/SearchInput.vue';
   import useRepositories from 'src/composables/useRepositories';
   import useRequest from 'src/composables/useRequest';
@@ -93,3 +100,22 @@
     () => api.neiroEstimates.showRobotMessage({ type: props.isIdentified ? '4' : '5' }),
   );
 </script>
+
+<style scoped lang="scss">
+  .items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .item {
+    background: #F6F6F6;
+    border-radius: 100px;
+    padding: 12px 16px;
+    @apply tw-text-t1 tw-text-black;
+
+    &--active {
+      @apply tw-bg-tab tw-text-white;
+    }
+  }
+</style>
