@@ -6,12 +6,25 @@ export default function(http: AxiosInstance) {
     create(body: EstimateCreateBody) {
       return http.post<EstimateCreateRes>('online_selling_neiro.php', jsonFormData(body));
     },
+    create2(body: EstimateCreateBody2) {
+      return http.post<EstimateCreateRes>('online_selling_neiro.php', jsonFormData(body));
+    },
     createWeb(body: EstimateCreateBody) {
       return http.post<EstimateCreateRes>('online_selling_neiro_web.php', jsonFormData(body));
     },
     finish(body: EstimateFinishBody) {
       return http.post<void>('online_selling_neiro_result.php', jsonFormData(body));
-    }
+    },
+    showRobotMessage(params: { type: number | string }) {
+      return http.get<[ RobotMessage ]>('phazes.php', {
+        params: {
+          type: params.type,
+        },
+      });
+    },
+    assessPhotos(body: AssessPhotosBody) {
+      return http.post<AssessSuccessRes>('assessment.php', jsonFormData(body));
+    },
   }
 }
 
@@ -31,9 +44,41 @@ export interface EstimateCreateBody {
   neiro_add_value: string,
   recall: string,
   rewhatsapp: string,
+  free_flow?: string,
+  images?: string[],
+}
+export interface EstimateCreateBody2 {
+  neiro_el: string,
+  neiro_add_type: string,
+  neiro_add_value: string,
+  recall: string,
+  rewhatsapp: string,
+  free_flow: string,
+  images: string[],
 }
 
 export interface EstimateCreateRes {
   id: number,
   price: number | false,
 }
+
+export type RobotMessage = { text: string };
+
+export type AssessPhotosBody = {
+  images: string[],
+};
+
+export interface AssessSuccessResItem {
+  id?: number,
+  debug: string,
+  section_id: string,
+  section_level: string,
+  sostoyanie: string,
+  neiro_el: number,
+  uvelirka: 1 | 0,
+  moneta: 1 | 0,
+  name: string,
+  price: string,
+};
+
+export type AssessSuccessRes = [ AssessSuccessResItem? ];

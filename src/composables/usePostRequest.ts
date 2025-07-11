@@ -5,7 +5,8 @@ export default function<K, T extends (body: K) => Promise<any>>(
   fetchFn: T,
   getBody: () => K,
   onSuccess: (res: Awaited<ReturnType<T>>) => void = () => {},
-  errorText?: string
+  errorText?: string,
+  onFailed?: (e: unknown) => void,
 ) {
   const loading = ref(false);
 
@@ -16,6 +17,8 @@ export default function<K, T extends (body: K) => Promise<any>>(
       onSuccess(res);
       return res;
     } catch(e) {
+      console.log(e);
+      if(onFailed) onFailed(e);
       Notify.create({
         type: 'negative',
         message: errorText ?? 'Не удалось выполнить запрос!',
