@@ -14,7 +14,10 @@
   }>();
 
   const fullPath = computed(() => {
-    if(props.src) return process.env.FILES_BASE + props.src;
+    if(props.src) {
+      if(props.src.match(/^https?/) !== null) return props.src;
+      return process.env.FILES_BASE + props.src;
+    };
     return props.fallback ?? '/items/fallback-product.jpg';
   });
 </script>

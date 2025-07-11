@@ -10,6 +10,7 @@
   }>();
 
   const path = computed(() => {
+    if(props.url.match(/^https?/) !== null) return props.url;
     return process.env.FILES_BASE + props.url;
   });
 </script>
