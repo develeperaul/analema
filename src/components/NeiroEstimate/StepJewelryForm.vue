@@ -11,22 +11,22 @@
     />
     <div class="h2 tw-mb-3">Выберите металл</div>
     <div class="tw-space-y-2 tw-mb-6">
-      <BaseRadio
-        v-for="proba in [ ...metalTypes, unknownMetal ]"
+      <BaseSelect
         name="neiro_add_metall"
-        :label="proba"
-        :checkedValue="proba"
+        label="Металл"
+        :options="[
+          ...metalTypes, unknownMetal,
+        ]"
         v-model="form.neiro_add_metall"
       />
     </div>
     <template v-if="form.neiro_add_metall === metalTypes[0]">
       <div class="h2 tw-mb-3">Выберите пробу</div>
       <div class="tw-space-y-2 tw-mb-6">
-        <BaseRadio
-          v-for="proba in goldProbs"
+        <BaseSelect
           name="neiro_add_proba"
-          :label="proba"
-          :checkedValue="proba"
+          label="Проба"
+          :options="goldProbs"
           v-model="form.neiro_add_proba"
         />
       </div>
@@ -93,6 +93,7 @@
   import RobotMessage from './RobotMessage.vue';
   import BaseCheckbox from 'src/components/Base/Checkbox.vue';
   import BaseRadio from 'src/components/Base/Radio.vue';
+  import BaseSelect from 'src/components/Base/Select.vue';
   import { useAuthStore } from 'src/stores/auth';
   import { metalTypes, goldProbs, unknownMetal } from './model/contants';
   import type { NeiroForm } from './model/types';

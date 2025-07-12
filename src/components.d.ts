@@ -83,6 +83,7 @@ declare module 'vue' {
     RobotMessage: typeof import('./components/NeiroEstimate/RobotMessage.vue')['default']
     S: typeof import('./components/NeiroEstimate/s.vue')['default']
     SearchInput: typeof import('./components/Base/SearchInput.vue')['default']
+    Select: typeof import('./components/Base/Select.vue')['default']
     SelectCategories: typeof import('./components/Catalog/SelectCategories.vue')['default']
     SelectSort: typeof import('./components/Catalog/SelectSort.vue')['default']
     StepCoinForm: typeof import('./components/NeiroEstimate/StepCoinForm.vue')['default']
