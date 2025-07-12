@@ -12,4 +12,5 @@ export interface NeiroForm {
   neiro_add_metall: string,
   neiro_add_brilliant: string,
   neiro_add_proba: string,
+  phone: string,
 };

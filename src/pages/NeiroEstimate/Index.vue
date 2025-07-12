@@ -73,9 +73,10 @@
   import type { AssessSuccessRes, EstimateCreateRes } from 'src/repositories/neiro-estimates';
   import { reactive } from 'vue';
   import { useConfig } from 'src/boot/config';
+  import { useAuthStore } from 'src/stores/auth';
 
+  const authStore = useAuthStore();
   const config = useConfig();
-
   const api = useRepositories();
 
   const steps = [
@@ -97,6 +98,7 @@
     neiro_add_metall: '',
     neiro_add_brilliant: '',
     neiro_add_proba: '',
+    phone: '',
   });
 
   const { send: sendPhotos } = usePostRequest(
@@ -133,7 +135,7 @@
   }
 
   const { loading, send } = usePostRequest(
-    api.neiroEstimates.create2,
+    authStore.user ? api.neiroEstimates.create2 : api.neiroEstimates.createWeb2,
     () => {
       const images = form.uploadedFiles.map(f => f.url);
       const assessItem = assessmentRes.value?.[0];
@@ -164,6 +166,7 @@
         neiro_add_metall: form.neiro_add_metall,
         neiro_add_brilliant: form.neiro_add_brilliant,
         neiro_add_proba: form.neiro_add_proba,
+        phone: form.phone,
       }
     },
     (res) => {

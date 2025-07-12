@@ -57,7 +57,7 @@
         />
       </div>
     </template>
-    <div class="tw-mb-6">
+    <div>
       <BaseCheckbox
         class="tw-mb-4"
         label="Перезвоните мне после оценки"
@@ -72,6 +72,16 @@
         uncheckedValue=""
       />
     </div>
+    <BaseInput
+      v-if="!authStore.user"
+      class="tw-mt-6"
+      label="Номер телефона"
+      name="phone"
+      type="tel"
+      maska="+7 (###)-###-##-##"
+      placeholder="+7 (000)-000-00-00"
+      v-model="form.phone"
+    />
     <BaseButton class="tw-mt-8" @click="emit('estimate')">
       Оценить
     </BaseButton>
@@ -83,6 +93,7 @@
   import RobotMessage from './RobotMessage.vue';
   import BaseCheckbox from 'src/components/Base/Checkbox.vue';
   import BaseRadio from 'src/components/Base/Radio.vue';
+  import { useAuthStore } from 'src/stores/auth';
   import { metalTypes, goldProbs, unknownMetal } from './model/contants';
   import type { NeiroForm } from './model/types';
 
@@ -93,4 +104,6 @@
   const emit = defineEmits<{
     (event: 'estimate'): void,
   }>();
+
+  const authStore = useAuthStore();
 </script>

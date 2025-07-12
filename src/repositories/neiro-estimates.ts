@@ -12,6 +12,9 @@ export default function(http: AxiosInstance) {
     createWeb(body: EstimateCreateBody) {
       return http.post<EstimateCreateRes>('online_selling_neiro_web.php', jsonFormData(body));
     },
+    createWeb2(body: EstimateCreateBody2) {
+      return http.post<EstimateCreateRes>('online_selling_neiro_web.php', jsonFormData(body));
+    },
     finish(body: EstimateFinishBody) {
       return http.post<void>('online_selling_neiro_result.php', jsonFormData(body));
     },
@@ -44,8 +47,7 @@ export interface EstimateCreateBody {
   neiro_add_value: string,
   recall: string,
   rewhatsapp: string,
-  free_flow?: string,
-  images?: string[],
+  phone?: string,
 }
 export interface EstimateCreateBody2 {
   neiro_el: string,
@@ -58,6 +60,7 @@ export interface EstimateCreateBody2 {
   neiro_add_metall: string,
   neiro_add_brilliant: string,
   neiro_add_proba: string,
+  phone?: string,
 }
 
 export interface EstimateCreateRes {
