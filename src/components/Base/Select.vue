@@ -31,17 +31,19 @@
   </Modal>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="T extends string | number | Record<string, unknown>">
   import { ref, computed } from 'vue';
 
   const props = defineProps<{
     label: string,
-    options: any[],
-    labelKey?: string,
-    valueKey?: string,
+    options: T[],
+    labelKey?: T extends Record<string, unknown> ? keyof T : never,
+    valueKey?: T extends Record<string, unknown> ? keyof T : never,
   }>();
 
-  const value = defineModel<any>();
+  type Model = T | string | number | null;
+
+  const value = defineModel<Model>();
 
   defineOptions({
     inheritAttrs: false,
@@ -49,12 +51,12 @@
 
   const showed = ref(false);
 
-  function onChange(option: string) {
-    if(typeof option === 'string' || typeof option === 'number') {
+  function onChange(option: T) {
+    if(isStrOrNum(option)) {
       value.value = option;
     } else {
-      if(props.valueKey && props.valueKey in option) {
-        value.value = option[props.valueKey];
+      if(props.valueKey && props.valueKey in (option as object)) {
+        value.value = option[props.valueKey] as Model;
       } else {
         value.value = option;
       }
@@ -64,37 +66,43 @@
 
   const displayLabel = computed(() => {
     if(!value.value) return props.label;
-    if(typeof value.value === 'string' || typeof value.value === 'number') {
+    if(isStrOrNum(value.value)) {
       return value.value;
-    } else if(props.labelKey && props.labelKey in value.value) {
+    } else if(props.labelKey && props.labelKey in (value.value as object)) {
       return value.value[props.labelKey];
     }
     return props.label;
   });
 
-  const optionLabel = (option: any) => {
-    if(typeof option === 'string' || typeof option === 'number') {
+  const optionLabel = (option: T) => {
+    if(isStrOrNum(option)) {
       return option;
-    } else if(props.labelKey && props.labelKey in option) {
+    } else if(props.labelKey && props.labelKey in (option as object)) {
       return option[props.labelKey];
     }
     return option;
   };
 
-  const isActive = (option: any) => {
-    if(typeof option === 'string' || typeof option === 'number') {
+  const isActive = (option: T) => {
+    if(!value.value) return false;
+
+    if(isStrOrNum(option)) {
       return value.value === option;
-    } else if(props.valueKey && props.valueKey in option) {
+    } else if(props.valueKey && props.valueKey in (option as object)) {
       return option[props.valueKey] === value.value;
     } else if(
       typeof value.value === 'object'
-      && props.labelKey && props.labelKey in option
-      && props.labelKey in value.value
+      && props.labelKey && props.labelKey in (option as object)
+      && props.labelKey in (value.value as object)
     ) {
       return option[props.labelKey] === value.value[props.labelKey];
     }
     return value.value === option;
   };
+
+  function isStrOrNum(value: unknown) {
+    return typeof value === 'string' || typeof value === 'number';
+  }
 </script>
 
 <style scoped lang="scss">
