@@ -15,6 +15,14 @@
           imgClass="tw-w-full tw-h-full tw-object-cover"
           :src="file.url"
         />
+        <div class="preview__actions">
+          <button class="tw-w-[28px] tw-h-[28px]" type="button" @click="remove(file)">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 0C6.28009 0 0 6.28009 0 14C0 21.7199 6.28009 28 14 28C21.7199 28 28 21.7199 28 14C28 6.28009 21.7199 0 14 0Z" fill="black"/>
+              <path d="M18.4643 17.0512C18.8553 17.4423 18.8553 18.0742 18.4643 18.4653C18.2693 18.6603 18.0134 18.7583 17.7572 18.7583C17.5012 18.7583 17.2452 18.6603 17.0502 18.4653L14.0453 15.4602L11.0403 18.4653C10.8453 18.6603 10.5893 18.7583 10.3334 18.7583C10.0772 18.7583 9.82121 18.6603 9.62621 18.4653C9.23528 18.0742 9.23528 17.4423 9.62621 17.0512L12.6313 14.0462L9.62621 11.0413C9.23528 10.6502 9.23528 10.0183 9.62621 9.62718C10.0173 9.23625 10.6492 9.23625 11.0403 9.62718L14.0453 12.6323L17.0502 9.62718C17.4413 9.23625 18.0732 9.23625 18.4643 9.62718C18.8553 10.0183 18.8553 10.6502 18.4643 11.0413L15.4592 14.0462L18.4643 17.0512Z" fill="white"/>
+            </svg>
+          </button>
+        </div>
       </div>
       <div key="input" class="input-secondary" v-ripple v-if="!(maxFiles && uploadedFiles.length >= maxFiles)">
         <input class="native-input" type="file" accept="image/png, image/jpeg" @change="onChange">
@@ -86,6 +94,10 @@
   function reset() {
     if(input.value) input.value.value = '';
     currentFile.value = null;
+  }
+
+  function remove(file: UploadedSuccess) {
+    uploadedFiles.value = uploadedFiles.value.filter(f => f.id !== file.id);
   }
 </script>
 
@@ -163,6 +175,7 @@
     }
 
     &__actions {
+      position: absolute;
       display: flex;
       align-items: center;
       justify-content: center;
