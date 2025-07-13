@@ -8,6 +8,9 @@
         </svg>
       </span>
     </div>
+    <div v-if="errorMessage" class="tw-text-t2 tw-text-negative tw-mt-1">
+      {{ errorMessage }}
+    </div>
   </div>
   <Modal
     yPos="bottom"
@@ -32,18 +35,29 @@
 </template>
 
 <script setup lang="ts" generic="T extends string | number | Record<string, unknown>">
+  import { useField, type RuleExpression } from "vee-validate";
   import { ref, computed } from 'vue';
 
+  type Model = T | string | number | null;
+
   const props = defineProps<{
+    modelValue?: Model,
+    name: string;
+    rules?: RuleExpression<any>;
     label: string,
     options: T[],
     labelKey?: T extends Record<string, unknown> ? keyof T : never,
     valueKey?: T extends Record<string, unknown> ? keyof T : never,
   }>();
 
-  type Model = T | string | number | null;
+  const emit = defineEmits<{
+    (e: 'update:modelValue', val: Model): void;
+  }>();
 
-  const value = defineModel<Model>();
+  const { errorMessage, value } = useField<Model | undefined>(props.name, props.rules, {
+    syncVModel: true,
+    initialValue: props.modelValue,
+  });
 
   defineOptions({
     inheritAttrs: false,
