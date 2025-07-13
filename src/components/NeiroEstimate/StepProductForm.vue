@@ -15,8 +15,9 @@
     <InputAddValue
       class="tw-mb-6"
       additional="3"
-      rules=""
+      :rules="schema.neiro_add_value"
       v-model="form.neiro_add_value"
+      :error="addVErr"
     />
     <div>
       <BaseCheckbox
@@ -42,8 +43,9 @@
       maska="+7 (###)-###-##-##"
       placeholder="+7 (000)-000-00-00"
       v-model="form.phone"
+      :rules="schema.phone"
     />
-    <BaseButton class="tw-mt-8" @click="emit('estimate')">
+    <BaseButton class="tw-mt-8" :disabled="loading" @click="emit('estimate')">
       Оценить
     </BaseButton>
   </div>
@@ -58,10 +60,13 @@
   import { useAuthStore } from 'src/stores/auth';
   import type { NeiroForm } from './model/types';
   import type { AssessSuccessRes } from 'src/repositories/neiro-estimates';
+  import { schema } from './model/schema';
+  import { useFieldError } from 'vee-validate';
 
   const props = defineProps<{
     form: NeiroForm,
     assessmentRes: AssessSuccessRes,
+    loading: boolean,
   }>();
 
   const emit = defineEmits<{
@@ -78,4 +83,6 @@
   } = useRequest(
     () => api.neiroEstimates.showRobotMessage({ type: '7' }),
   );
+
+  const addVErr = useFieldError('neiro_add_value')
 </script>

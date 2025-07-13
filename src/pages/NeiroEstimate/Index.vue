@@ -2,56 +2,61 @@
   <q-page class="page-pb">
     <ToolbarColored class="purple-gr tw-mb-6" title="Онлайн-оценка" />
     <div class="wrapper">
-      <Transition
-        mode="out-in"
-        enter-active-class="animate__animated animate__fadeIn animate__faster"
-        leave-active-class="animate__animated animate__fadeOut animate__faster"
-      >
-        <StepUploadPhotos
-          v-if="currentStep === 'upload-photos'"
-          :form="form"
-          @next="showedAssessProccess = true; sendPhotos()"
-        />
-        <StepIdentifyProduct
-          v-else-if="currentStep === 'identify-product'"
-          :form="form"
-          :assessmentRes="assessmentRes!"
-          @answer:no="currentStep = 'search-0'"
-          @answer:yes="onIdentifyYes"
-        />
-        <StepIdentifyFailed
-          v-else-if="currentStep === 'identify-failed'"
-          @next="currentStep = 'search-0'"
-        />
-        <StepSearch v-else-if="currentStep === 'search-0' || currentStep === 'search-1'"
-          :isIdentified="currentStep === 'search-1'"
-          :form="form"
-          :assessmentRes="assessmentRes!"
-          @next="form.freeFlow = $event; currentStep = 'product-form'"
-        />
-        <StepProductForm
-          v-else-if="currentStep === 'product-form'"
-          :form="form"
-          :assessmentRes="assessmentRes!"
-          @estimate="send"
-        />
-        <StepJewelryForm
-          v-else-if="currentStep === 'jewelry-form'"
-          :form="form"
-          @estimate="send"
-        />
-        <StepCoinForm
-          v-else-if="currentStep === 'coin-form'"
-          :form="form"
-          @estimate="send"
-        />
-        <StepResult
-          v-else-if="currentStep === 'result' || currentStep === 'coin-res'"
-          :id="estimateCreatedRes!.id.toString()"
-          :coinStep="currentStep === 'coin-res'"
-          @show:coinForm="currentStep = 'coin-form'"
-        />
-      </Transition>
+      <VForm ref="formRef" as="div">
+        <Transition
+          mode="out-in"
+          enter-active-class="animate__animated animate__fadeIn animate__faster"
+          leave-active-class="animate__animated animate__fadeOut animate__faster"
+        >
+          <StepUploadPhotos
+            v-if="currentStep === 'upload-photos'"
+            :form="form"
+            @next="showedAssessProccess = true; sendPhotos()"
+          />
+          <StepIdentifyProduct
+            v-else-if="currentStep === 'identify-product'"
+            :form="form"
+            :assessmentRes="assessmentRes!"
+            @answer:no="currentStep = 'search-0'"
+            @answer:yes="onIdentifyYes"
+          />
+          <StepIdentifyFailed
+            v-else-if="currentStep === 'identify-failed'"
+            @next="currentStep = 'search-0'"
+          />
+          <StepSearch v-else-if="currentStep === 'search-0' || currentStep === 'search-1'"
+            :isIdentified="currentStep === 'search-1'"
+            :form="form"
+            :assessmentRes="assessmentRes!"
+            @next="form.freeFlow = $event; currentStep = 'product-form'"
+          />
+          <StepProductForm
+            v-else-if="currentStep === 'product-form'"
+            :form="form"
+            :assessmentRes="assessmentRes!"
+            :loading="loading"
+            @estimate="submit"
+          />
+          <StepJewelryForm
+            v-else-if="currentStep === 'jewelry-form'"
+            :form="form"
+            :loading="loading"
+            @estimate="submit"
+          />
+          <StepCoinForm
+            v-else-if="currentStep === 'coin-form'"
+            :form="form"
+            :loading="loading"
+            @estimate="submit"
+          />
+          <StepResult
+            v-else-if="currentStep === 'result' || currentStep === 'coin-res'"
+            :id="estimateCreatedRes!.id.toString()"
+            :coinStep="currentStep === 'coin-res'"
+            @show:coinForm="currentStep = 'coin-form'"
+          />
+        </Transition>
+      </VForm>
     </div>
     <ModalAssessLoading v-model="showedAssessProccess" />
   </q-page>
@@ -69,6 +74,7 @@
   import StepCoinForm from 'src/components/NeiroEstimate/StepCoinForm.vue';
   import StepResult from 'src/components/NeiroEstimate/StepResult.vue';
   import ModalAssessLoading from 'src/components/NeiroEstimate/ModalAssessLoading.vue';
+  import { Form as VForm } from 'vee-validate';
   import type { NeiroForm } from 'src/components/NeiroEstimate/model/types';
   import type { AssessSuccessRes, EstimateCreateRes } from 'src/repositories/neiro-estimates';
   import { reactive } from 'vue';
@@ -176,4 +182,14 @@
     },
     'Не удалось завершить оценку!',
   );
+
+  const formRef = ref<InstanceType<typeof VForm> | null>(null);
+
+  async function submit() {
+    if(!formRef.value) return;
+    const res = await formRef.value.validate();
+    if(res.valid) {
+      send();
+    }
+  }
 </script>

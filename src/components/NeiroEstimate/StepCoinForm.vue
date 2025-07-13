@@ -18,6 +18,7 @@
           ...metalTypes, unknownMetal,
         ]"
         v-model="form.neiro_add_metall"
+        :rules="schema.neiro_add_metall"
       />
     </div>
     <div class="h2 tw-mb-3">Введите вес изделия</div>
@@ -26,6 +27,7 @@
       label="Вес в граммах"
       name="neiro_add_value"
       v-model="form.neiro_add_value"
+      :rules="schema.neiro_add_value"
     />
     <div>
       <BaseCheckbox
@@ -51,8 +53,9 @@
       maska="+7 (###)-###-##-##"
       placeholder="+7 (000)-000-00-00"
       v-model="form.phone"
+      :rules="schema.phone"
     />
-    <BaseButton class="tw-mt-8" @click="emit('estimate')">
+    <BaseButton class="tw-mt-8" :disabled="loading" @click="emit('estimate')">
       Оценить
     </BaseButton>
   </div>
@@ -66,9 +69,11 @@
   import { useAuthStore } from 'src/stores/auth';
   import { metalTypes, unknownMetal } from './model/contants';
   import type { NeiroForm } from './model/types';
+  import { schema } from './model/schema';
 
   const props = defineProps<{
     form: NeiroForm,
+    loading: boolean,
   }>();
 
   const emit = defineEmits<{
