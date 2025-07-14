@@ -24,22 +24,41 @@
           </button>
         </div>
       </div>
-      <div key="input" class="input-secondary" v-ripple v-if="!(maxFiles && uploadedFiles.length >= maxFiles)">
-        <input class="native-input" type="file" accept="image/png, image/jpeg" @change="onChange">
+      <div
+        key="input"
+        class="input-secondary"
+        v-ripple
+        v-if="!(maxFiles && uploadedFiles.length >= maxFiles)"
+        @click="onChangeCapacitor"
+      >
+        <input
+          v-if="!$q.platform.is.capacitor"
+          class="native-input"
+          type="file"
+          accept="image/png, image/jpeg"
+          @change="onChangeNative"
+        >
         <base-icon
           class="input-secondary__icon"
           name="add-photo"
         />
       </div>
     </div>
-    <div class="input-primary" v-ripple v-if="uploadedFiles.length === 0">
+    <div class="input-primary" v-ripple v-if="uploadedFiles.length === 0" @click="onChangeCapacitor">
       <div class="input-primary__img-wrap">
         <img width="60" height="60" src="./ui/images/camera.svg" alt="камера" />
       </div>
       <div class="input-primary__label">
         Загрузите фото<br>товара
       </div>
-      <input class="native-input" ref="input" type="file"  accept="image/png, image/jpeg" @change="onChange" />
+      <input
+        v-if="!$q.platform.is.capacitor"
+        class="native-input"
+        ref="input"
+        type="file"
+        accept="image/png, image/jpeg"
+        @change="onChangeNative"
+      />
     </div>
     <q-inner-loading :showing="loading" />
   </div>
@@ -50,13 +69,15 @@
   import useRepositories from 'src/composables/useRepositories';
   import usePostRequest from 'src/composables/usePostRequest';
   import type { UploadedSuccess } from 'src/repositories/files';
+  import { useQuasar } from 'quasar';
+  import { Camera, CameraResultType } from '@capacitor/camera';
 
   defineProps<{
     maxFiles?: number,
   }>();
 
+  const $q = useQuasar();
   const api = useRepositories();
-
   const input = ref<HTMLInputElement | null>(null);
   const currentFile = ref<File | null>(null);
   const uploadedFiles = defineModel<UploadedSuccess[]>('uploaded', { default: [] });
@@ -77,7 +98,56 @@
     },
   );
 
-  function onChange(e: Event) {
+  function reset() {
+    if(input.value) input.value.value = '';
+    currentFile.value = null;
+  }
+
+  function remove(file: UploadedSuccess) {
+    uploadedFiles.value = uploadedFiles.value.filter(f => f.id !== file.id);
+  }
+
+  async function checkPerm() {
+    let status = await Camera.checkPermissions();
+    if(status.camera === 'prompt' || status.photos === 'prompt') {
+      status = await Camera.requestPermissions({ permissions: ['camera', 'photos'] })
+    }
+
+    if(status.camera !== 'granted' || status.photos !== 'granted') {
+      throw new Error('User denied permissions!');
+    }
+  }
+
+  async function onChangeCapacitor() {
+    if(!$q.platform.is.capacitor) return;
+    try {
+      await checkPerm();
+
+      const photo = await Camera.getPhoto({
+        resultType: CameraResultType.DataUrl,
+        promptLabelHeader: 'Прикрепить фото',
+        promptLabelCancel: 'Отменить',
+        promptLabelPhoto: 'Из файлов',
+        promptLabelPicture: 'Снять фото',
+      });
+
+      if(!photo.dataUrl) return;
+
+      const type = photo.dataUrl.slice(0, photo.dataUrl.indexOf(';')).replace('data:', '');
+      const fileName = 'app-photo' + (mimeTypesExt[type] ? `.${mimeTypesExt[type]}`: '');
+
+      const res = await fetch(photo.dataUrl);
+      const blob = await res.blob();
+      const file = new File([blob], fileName);
+      currentFile.value = file;
+      send();
+    } catch(e) {
+      console.log(e);
+      reset();
+    }
+  }
+
+  function onChangeNative(e: Event) {
     const fileInput = e.target as HTMLInputElement;
     const fileList = fileInput.files;
     if(!fileList || fileList.length === 0) {
@@ -91,14 +161,10 @@
     }
   }
 
-  function reset() {
-    if(input.value) input.value.value = '';
-    currentFile.value = null;
-  }
-
-  function remove(file: UploadedSuccess) {
-    uploadedFiles.value = uploadedFiles.value.filter(f => f.id !== file.id);
-  }
+  const mimeTypesExt: Record<string, string> = {
+    'image/jpeg': 'jpg',
+    'image/png': 'png',
+  };
 </script>
 
 
