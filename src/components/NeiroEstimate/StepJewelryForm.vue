@@ -106,6 +106,7 @@
   import type { NeiroForm } from './model/types';
   import { schema } from './model/schema';
   import { useFieldError } from 'vee-validate';
+  import { watch } from 'vue';
 
   const props = defineProps<{
     form: NeiroForm,
@@ -119,4 +120,10 @@
   const authStore = useAuthStore();
 
   const brilErr = useFieldError('neiro_add_brilliant');
+
+  watch(() => props.form.neiro_add_metall, () => {
+    props.form.neiro_add_proba = '';
+    props.form.neiro_add_value = '';
+    props.form.neiro_add_brilliant = '';
+  });
 </script>

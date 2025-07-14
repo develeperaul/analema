@@ -94,6 +94,7 @@ const { name, rules, modelValue } = toRefs(props);
 const { errorMessage, value, meta } = useField(name, rules, {
   validateOnValueUpdate: false,
   initialValue: modelValue,
+  syncVModel: true,
 });
 watch(value, (val) => {
   if (props.unMask) emitsInput("update:modelValue", mask.unmasked(val.toString()));
