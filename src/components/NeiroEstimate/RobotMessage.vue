@@ -1,7 +1,7 @@
 <template>
   <div class="robot">
     <div class="img-wrap">
-      <img width="80" height="80" src="./ui/images/neiro.svg" alt="нейросеть" />
+      <img width="80" height="80" src="./ui/images/loading-anim.gif" alt="нейросеть" />
     </div>
     <div class="message">
       <slot></slot>
@@ -21,6 +21,7 @@
   }
 
   .img-wrap {
+    background: #D9D9D9;
     width: 80px;
     flex-shrink: 0;
   }
