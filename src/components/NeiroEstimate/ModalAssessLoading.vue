@@ -2,7 +2,7 @@
   <q-dialog v-model="value" maximized>
     <div class="card">
       <div class="body">
-        <img class="img" width="108" height="94" src="./ui/images/neiro-loading.svg" />
+        <img class="img" width="400" height="400" src="./ui/images/loading-anim.gif" />
         <div class="text">
           Распознаю Ваш товар.<br/>Это займет не более 30 секунд.
         </div>
