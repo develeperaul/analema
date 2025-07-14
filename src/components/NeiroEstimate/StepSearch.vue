@@ -1,6 +1,11 @@
 <template>
   <div>
-    <RobotMessage class="tw-mb-8">{{ robotMeesage?.[0].text ?? '' }}</RobotMessage>
+    <RobotMessage class="tw-mb-8">
+      <div v-if="isIdentified && assessmentRes[0]" class="tw-mb-2">
+        {{ assessmentRes[0].sostoyanie }}
+      </div>
+      <div>{{ robotMeesage?.[0].text ?? '' }}</div>
+    </RobotMessage>
     <SearchInput
       class="tw-mb-5"
       label=""
