@@ -24,8 +24,8 @@
     </div>
     <BaseButton2
       class="tw-mt-8"
-      :disabled="searchText === '' && form.activeProduct === null"
-      @click="emit('next', searchText)"
+      :disabled="loading || (searchText === '' && form.activeProduct === null)"
+      @click="next"
     >
       Продолжить
     </BaseButton2>
@@ -92,10 +92,23 @@
     if(val !== '') send();
   }));
 
+  watch(items, () => {
+    canResetProduct();
+  });
+
+  function canResetProduct() {
+    const item = items.value.find(item => item.id === props.form.activeProduct?.id);
+    if(!item) props.form.activeProduct = null;
+  }
 
   function changeProduct(item: SearchBaseItem) {
     props.form.activeProduct = item;
     searchText.value = item.section_name + ' ' + item.name;
+  }
+
+  function next() {
+    canResetProduct();
+    emit('next', searchText.value);
   }
 
   const {

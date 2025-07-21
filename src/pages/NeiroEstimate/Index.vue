@@ -1,6 +1,6 @@
 <template>
   <q-page class="page-pb">
-    <ToolbarColored class="purple-gr tw-mb-6" title="Онлайн-оценка" />
+    <ToolbarColored class="purple-gr tw-mb-6" title="Онлайн-оценка" :onBack="onBack" />
     <div class="wrapper">
       <VForm ref="formRef" as="div">
         <Transition
@@ -17,18 +17,18 @@
             v-else-if="currentStep === 'identify-product'"
             :form="form"
             :assessmentRes="assessmentRes!"
-            @answer:no="currentStep = 'search-0'"
-            @answer:yes="onIdentifyYes"
+            @answer:no="currentStep = 'search-0'; pushPreviews('identify-product')"
+            @answer:yes="onIdentifyYes(); pushPreviews('identify-product')"
           />
           <StepIdentifyFailed
             v-else-if="currentStep === 'identify-failed'"
-            @next="currentStep = 'search-0'"
+            @next="currentStep = 'search-0'; pushPreviews('identify-failed')"
           />
           <StepSearch v-else-if="currentStep === 'search-0' || currentStep === 'search-1'"
             :isIdentified="currentStep === 'search-1'"
             :form="form"
             :assessmentRes="assessmentRes!"
-            @next="form.freeFlow = $event; currentStep = 'product-form'"
+            @next="form.freeFlow = $event; pushPreviews(currentStep); currentStep = 'product-form'"
           />
           <StepProductForm
             v-else-if="currentStep === 'product-form'"
@@ -53,7 +53,7 @@
             v-else-if="currentStep === 'result' || currentStep === 'coin-res'"
             :id="estimateCreatedRes!.id.toString()"
             :coinStep="currentStep === 'coin-res'"
-            @show:coinForm="currentStep = 'coin-form'"
+            @show:coinForm="pushPreviews('coin-res'); currentStep = 'coin-form'"
           />
         </Transition>
       </VForm>
@@ -80,6 +80,7 @@
   import { reactive } from 'vue';
   import { useConfig } from 'src/boot/config';
   import { useAuthStore } from 'src/stores/auth';
+  import { useRouter } from 'vue-router';
 
   const authStore = useAuthStore();
   const config = useConfig();
@@ -89,6 +90,7 @@
     'upload-photos', 'identify-product', 'identify-failed', 'search-0', 'search-1',
     'product-form', 'jewelry-form', 'coin-form', 'coin-res', 'result',
   ] as const;
+  const previewsSteps: (typeof steps[number])[] = [];
   const currentStep = ref<typeof steps[number]>('upload-photos');
   const showedAssessProccess = ref(false);
   const assessmentRes = ref<AssessSuccessRes | null>(null);
@@ -116,6 +118,7 @@
       showedAssessProccess.value = false;
       assessmentRes.value = res.data;
       const assessItem = assessmentRes.value[0];
+      pushPreviews('upload-photos');
       if(assessItem) {
         if(assessItem.moneta === 1) {
           currentStep.value = 'coin-res';
@@ -178,6 +181,7 @@
     (res) => {
       console.log(res.data);
       estimateCreatedRes.value = res.data;
+      pushPreviews(currentStep.value);
       currentStep.value = 'result';
     },
     'Не удалось завершить оценку!',
@@ -190,6 +194,34 @@
     const res = await formRef.value.validate();
     if(res.valid) {
       send();
+    }
+  }
+
+  function pushPreviews(step: typeof steps[number]) {
+    previewsSteps.push(step);
+  }
+
+  const router = useRouter();
+
+  function onBack() {
+    const step = previewsSteps.pop();
+    if(step && currentStep.value !== 'result') {
+      resetState(currentStep.value);
+      currentStep.value = step;
+    } else {
+      router.back();
+    }
+  }
+
+  function resetState(step: typeof steps[number]) {
+    if(step === 'search-1' || step === 'search-0') {
+      form.activeProduct = null;
+      form.freeFlow = '';
+    } else if(step === 'product-form' || step === 'jewelry-form' || step === 'coin-form') {
+      form.neiro_add_value = '';
+      form.neiro_add_brilliant = '';
+      form.neiro_add_metall = '';
+      form.neiro_add_proba = '';
     }
   }
 </script>
