@@ -19,7 +19,7 @@
         :key="item.id"
         @click="changeProduct(item)"
       >
-        {{ item.section_name }} - {{ item.name }}
+        {{ item.section_name }} {{ item.name }}
       </button>
     </div>
     <BaseButton2

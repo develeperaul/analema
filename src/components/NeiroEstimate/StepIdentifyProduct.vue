@@ -10,8 +10,8 @@
       />
     </div>
     <div class="tw-mt-8 tw-flex tw-gap-[10px]">
-      <BaseButton border text="Нет" @click="emit('answer:no')" />
-      <BaseButton2 @click="emit('answer:yes')">Да</BaseButton2>
+      <BaseButton class="!tw-p-0" border text="Нет" @click="emit('answer:no')" />
+      <BaseButton2 class="!tw-p-0" @click="emit('answer:yes')">Да</BaseButton2>
     </div>
   </div>
 </template>

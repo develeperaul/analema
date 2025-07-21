@@ -24,7 +24,7 @@
   const {
     data: robotMeesage,
     loading: loadingMessage
-  } = useRequest(() => api.neiroEstimates.showRobotMessage({ type: '5' }));
+  } = useRequest(() => api.neiroEstimates.showRobotMessage({ type: '6' }));
 
   const messageText = computed(() => {
     if(!robotMeesage.value) return '';

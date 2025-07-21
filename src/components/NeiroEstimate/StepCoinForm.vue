@@ -1,7 +1,7 @@
 <template>
   <div>
     <RobotMessage class="tw-mb-8">
-      Чтобы оценить Ваше украшение, мне нужна дополнительная информация
+      {{ robotMeesage?.[0].text ?? '' }}
     </RobotMessage>
     <Image
       class="tw-rounded-20 tw-overflow-hidden tw-w-[100px] tw-mb-6"
@@ -21,7 +21,7 @@
         :rules="schema.neiro_add_metall"
       />
     </div>
-    <div class="h2 tw-mb-3">Введите вес изделия</div>
+    <div class="h2 tw-mb-3">Введите вес монеты</div>
     <BaseInput
       class="tw-mb-6"
       label="Вес в граммах"
@@ -66,6 +66,7 @@
   import RobotMessage from './RobotMessage.vue';
   import BaseCheckbox from 'src/components/Base/Checkbox.vue';
   import BaseSelect from 'src/components/Base/Select.vue';
+  import useRepositories from 'src/composables/useRepositories';
   import { useAuthStore } from 'src/stores/auth';
   import { metalTypes, unknownMetal } from './model/contants';
   import type { NeiroForm } from './model/types';
@@ -81,4 +82,10 @@
   }>();
 
   const authStore = useAuthStore();
+
+  const api = useRepositories();
+
+  const {
+    data: robotMeesage,
+  } = useRequest(() => api.neiroEstimates.showRobotMessage({ type: '10' }));
 </script>
