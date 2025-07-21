@@ -13,6 +13,7 @@
       :src="form.uploadedFiles[0].url"
     />
     <InputAddValue
+      v-if="form.activeProduct && form.activeProduct.complect"
       class="tw-mb-6"
       additional="3"
       :rules="schema.neiro_add_value"

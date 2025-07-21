@@ -51,6 +51,7 @@ export interface SearchBaseItem {
   section_id: string,
   section_name: string,
   id: string,
+  complect: boolean,
 }
 
 export interface SearchAltItem {
