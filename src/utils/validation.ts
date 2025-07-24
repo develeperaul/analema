@@ -17,3 +17,40 @@ export const emailTest = [
     return res;
   },
 ] as const;
+
+export const dateTest = [
+  'custom-date',
+  'Пожалуйста, укажите корректную дату',
+  (value?: string) => {
+    if(!value) return true;
+
+    const [dayStr, monthStr, yearStr] = value.split('.');
+
+    if(!dayStr || !monthStr || !yearStr) return false;
+
+    const day = parseInt(dayStr);
+    const month = parseInt(monthStr);
+    const year = parseInt(yearStr);
+
+    if(
+      isNaN(day) || day <= 0 ||
+      isNaN(month) || month <= 0 || month > 12 ||
+      isNaN(year) || year < 1000
+    ) {
+      return false;
+    }
+
+    const daysInMonths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    const monthInd = month - 1;
+
+    let daysCount = daysInMonths[monthInd];
+
+    if(monthInd === 1 && isVesokosYear(year)) daysCount = 29;
+    if(day > daysCount) return false;
+    return true;
+  },
+] as const;
+
+function isVesokosYear(year: number) {
+  return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
+}

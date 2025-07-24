@@ -7,7 +7,7 @@
       <BaseInput name="name" label="Имя" :rules="profileSchema.name" v-model="form.name" />
       <BaseInput name="last_name" label="Фамилия" :rules="profileSchema.last_name" v-model="form.last_name" />
       <BaseInput name="otch" label="Отчество" :rules="profileSchema.otch" v-model="form.otch" />
-      <BaseInput name="db" label="Дата рождения" :rules="profileSchema.db" v-model="form.db" />
+      <BaseInput name="db" label="Дата рождения" maska="##.##.####" :rules="profileSchema.db" v-model="form.db" />
       <BaseInput name="email" label="E-mail" :rules="profileSchema.email" v-model="form.email" />
     </div>
     <BaseButton class="tw-mt-8" type="submit" text="Сохранить" />
