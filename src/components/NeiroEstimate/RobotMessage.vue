@@ -21,7 +21,6 @@
   }
 
   .img-wrap {
-    background: #D9D9D9;
     width: 80px;
     flex-shrink: 0;
   }
