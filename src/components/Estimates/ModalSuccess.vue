@@ -3,14 +3,16 @@
     <div class="card">
       <div class="wrapper tw-h-full">
         <div class="body tw-h-full">
-          <div></div>
+          <div class="tw-w-full tw-pt-4">
+            <ButtonBack @click="$emit('close')" />
+          </div>
           <div class="row1">
             <div class="img-wrap">
               <img width="203" height="165" src="~assets/images/alerts/phone.svg" />
             </div>
-            <div class="h1 tw-mt-5 tw-mb-3">Мы свяжемся с вами</div>
+            <div class="h1 tw-mt-5 tw-mb-3">Мы свяжемся с Вами,</div>
             <div class="tw-mx-auto tw-max-w-[265px]">
-              Чтобы назначить дату и время встречи с курьером
+              чтобы назначить дату и&nbsp;время встречи с&nbsp;курьером или договориться о&nbsp;передаче товара в&nbsp;магазин
             </div>
             <div class="tw-mt-8 tw-text-t2 tw-text-card-descr">
               Заказ № {{ estimateId }}
@@ -24,8 +26,14 @@
 </template>
 
 <script setup lang="ts">
+  import ButtonBack from 'src/components/Base/ButtonBack.vue'
+
   defineProps<{
     estimateId: string,
+  }>();
+
+  defineEmits<{
+    (event: 'close'): void,
   }>();
 
   const value = defineModel({

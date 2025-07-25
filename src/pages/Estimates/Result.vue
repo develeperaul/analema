@@ -2,7 +2,7 @@
   <q-page class="page-pb">
     <ToolbarColored
       class="bg-bar tw-mb-6"
-      title="Результаты оценки"
+      title="Результат онлайн-оценки нейросетью"
     />
     <div class="wrapper">
       <div v-if="data">

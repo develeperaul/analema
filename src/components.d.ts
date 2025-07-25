@@ -14,6 +14,7 @@ declare module 'vue' {
     BasePlural: typeof import('./components/Base/BasePlural.vue')['default']
     Button: typeof import('./components/Basket/Button.vue')['default']
     Button2: typeof import('./components/Base/Button2.vue')['default']
+    ButtonBack: typeof import('./components/Base/ButtonBack.vue')['default']
     ButtonClose: typeof import('./components/Base/ButtonClose.vue')['default']
     ButtonGroups: typeof import('./components/Base/ButtonGroups.vue')['default']
     Card: typeof import('./components/Base/Card.vue')['default']

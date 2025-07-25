@@ -47,15 +47,15 @@
         @click="emit('show:coinForm')"
       />
     </div>
-    <ModalSuccess v-model="showedSuccess" :estimateId="id" />
+    <ModalSuccess v-model="showedSuccess" :estimateId="id" @close="showedSuccess = false" />
     <ModalReject
       v-model="showedReject"
       :loading="loading"
       @accept:video="onAction('2')"
       @reject:video="onAction('3')"
     />
-    <ModalAcceptVideo v-model="showedAcceptVideo" />
-    <ModalRejectVideo v-model="showedRejectVideo" />
+    <ModalAcceptVideo v-model="showedAcceptVideo" @close="showedAcceptVideo = false" />
+    <ModalRejectVideo v-model="showedRejectVideo" @close="showedRejectVideo = false" />
     <q-inner-loading :showing="estimateRes.loading.value" />
   </div>
 </template>

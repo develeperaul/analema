@@ -3,7 +3,9 @@
     <div class="card">
       <div class="wrapper tw-h-full">
         <div class="body tw-h-full">
-          <div></div>
+          <div class="tw-w-full tw-pt-4">
+            <ButtonBack @click="$emit('close')" />
+          </div>
           <div class="row1">
             <div class="img-wrap">
               <img width="203" height="165" src="~assets/images/alerts/whatsapp.svg" />
@@ -27,11 +29,16 @@
 </template>
 
 <script setup lang="ts">
+  import ButtonBack from 'src/components/Base/ButtonBack.vue'
   import { useConfig } from 'src/boot/config';
 
   const value = defineModel({
     default: false,
   });
+
+  defineEmits<{
+    (event: 'close'): void,
+  }>();
 
   const config = useConfig();
 </script>
