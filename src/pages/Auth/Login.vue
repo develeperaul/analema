@@ -36,15 +36,15 @@
             text="Продолжить"
             theme="gradient"
             class="tw-mb-5"
-            :disabled="loading || !accepted"
+            :disabled="loading"
           />
-          <BaseCheckbox v-model="accepted" checkedValue="ok" uncheckedValue="" label="">
+          <!-- <BaseCheckbox v-model="accepted" checkedValue="ok" uncheckedValue="" label="">
             <span class="accept-text">
               Я соглашаюсь с
               <a :href="config.userAgrement" target="_blank">Политикой конфиденциальности</a> и&nbsp;условиями
               <a :href="config.userAgrement" target="_blank">Пользовательского соглашения</a>
             </span>
-          </BaseCheckbox>
+          </BaseCheckbox> -->
         </div>
       </Form>
     </div>
@@ -60,7 +60,7 @@
   import { useRouter } from 'vue-router';
   import { useAuthStore } from 'src/stores/auth';
   import { useConfig } from 'src/boot/config';
-  import BaseCheckbox from 'src/components/Base/Checkbox.vue';
+  // import BaseCheckbox from 'src/components/Base/Checkbox.vue';
 
   const config = useConfig();
 
@@ -72,7 +72,7 @@
     phone: '',
   });
 
-  const accepted = ref('');
+  // const accepted = ref('');
 
   const { send, loading } = usePostRequest(
     useRepositories().auth.sendCode,
