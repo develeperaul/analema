@@ -15,7 +15,7 @@
               Мы свяжемся с Вами по видеозвонку
             </div>
           </div>
-          <BaseButton text="На главную" to="/" />
+          <BaseButton text="На главную" @click="$reload" />
         </div>
       </div>
     </div>

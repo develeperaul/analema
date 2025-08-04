@@ -1,5 +1,5 @@
 <template>
-  <q-page class="page-pb">
+  <div class="page-pb">
     <ToolbarColored class="purple-gr tw-mb-6" title="Онлайн-оценка" :onBack="onBack" />
     <div class="wrapper">
       <VForm ref="formRef" as="div">
@@ -59,7 +59,7 @@
       </VForm>
     </div>
     <ModalAssessLoading v-model="showedAssessProccess" />
-  </q-page>
+  </div>
 </template>
 
 <script setup lang="ts">

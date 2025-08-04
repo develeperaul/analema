@@ -76,7 +76,7 @@ module.exports = configure(function (/* ctx */) {
 
       // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
 
-      // publicPath: '/',
+      publicPath: '/neyro-otsenka/spa',
       // analyze: true,
       env: {
         API_BASE: 'https://analemmatrade.ru/api',
@@ -132,7 +132,7 @@ module.exports = configure(function (/* ctx */) {
           iconDirs: [path.resolve(process.cwd(), "src/assets/icons")],
           // Specify symbolId format
           symbolId: "icon-[dir]-[name]",
-          inject: "body-last" | "body-first",
+          inject: "body-last",
           customDomId: "__svg__icons__dom__",
         }),
       ],

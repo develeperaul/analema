@@ -20,7 +20,7 @@
             >
               Поторговаться в чате WhatsApp
             </a>
-            <BaseButton class="tw-mt-3" text="На главную" to="/" border />
+            <BaseButton class="tw-mt-3" text="На главную" border @click="$reload" />
           </div>
         </div>
       </div>

@@ -18,7 +18,7 @@
               Заказ № {{ estimateId }}
             </div>
           </div>
-          <BaseButton text="На главную" to="/" />
+          <BaseButton text="На главную" @click="$reload" />
         </div>
       </div>
     </div>
