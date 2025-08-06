@@ -82,8 +82,10 @@
     data: robotMeesage,
     loading: loadingMessage
   } = useRequest(
-    () => api.neiroEstimates.showRobotMessage({ type: '7' }),
+    () => api.neiroEstimates.showRobotMessage({
+      type: props.form.activeProduct?.complect === true ? '7' : '8',
+    }),
   );
 
-  const addVErr = useFieldError('neiro_add_value')
+  const addVErr = useFieldError('neiro_add_value');
 </script>
