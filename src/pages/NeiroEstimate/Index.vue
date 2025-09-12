@@ -109,7 +109,7 @@
     neiro_add_metall: '',
     neiro_add_brilliant: '',
     neiro_add_proba: '',
-    phone: '',
+    phone: '+7',
   });
 
   const { send: sendPhotos } = usePostRequest(
