@@ -26,14 +26,14 @@
   import { ref } from 'vue';
 
   const $q = useQuasar();
-  const value = ref(true);
+  const value = ref(false);
   const system = useSystem();
   const api = useRepositories();
   const storeLink = $q.platform.is.ios ? system.appStoreLink : system.googlePlayLink;
 
   const res = useRequest(api.system.version, {
     onSuccess() {
-      // value.value = hasCriticalUpdate();
+      value.value = hasCriticalUpdate();
     },
   });
 
