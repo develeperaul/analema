@@ -4,7 +4,7 @@
       {{ robotMeesage?.[0].text ?? '' }}
     </RobotMessage>
     <div class="tw-text-t1 tw-mb-6">
-      {{ form.activeProduct ? `${form.activeProduct.section_name} - ${form.activeProduct.name}` : form.freeFlow }}
+      {{ form.freeFlow }}
     </div>
     <Image
       class="tw-rounded-20 tw-overflow-hidden tw-w-[100px] tw-mb-6"
