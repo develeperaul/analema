@@ -26,7 +26,14 @@ export default function(http: AxiosInstance) {
           name: str,
         }
       });
-    }
+    },
+    searchCloud(str: string) {
+      return http.get<SearchCloudRes>('neiro_search_cloud.php', {
+        params: {
+          name: str,
+        }
+      });
+    },
   }
 }
 
@@ -59,4 +66,16 @@ export interface SearchAltItem {
   id: string,
 }
 
+export interface SearchCloudBaseItem {
+  name: string,
+  section_id: string,
+  section_name: string,
+  id: string,
+  complect: boolean,
+  cloud_long: string,
+  cloud_short: string,
+  type: string,
+}
+
 export type SearchRes = [ { base: SearchBaseItem[], alt: SearchAltItem[] } ];
+export type SearchCloudRes = [ { base: SearchCloudBaseItem[], alt: SearchAltItem[] } ];

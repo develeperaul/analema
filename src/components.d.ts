@@ -91,7 +91,6 @@ declare module 'vue' {
     StepJewelryForm: typeof import('./components/NeiroEstimate/StepJewelryForm.vue')['default']
     StepProductForm: typeof import('./components/NeiroEstimate/StepProductForm.vue')['default']
     StepResult: typeof import('./components/NeiroEstimate/StepResult.vue')['default']
-    StepResultUnknown: typeof import('./components/NeiroEstimate/StepResultUnknown.vue')['default']
     StepSearch: typeof import('./components/NeiroEstimate/StepSearch.vue')['default']
     StepUploadPhotos: typeof import('./components/NeiroEstimate/StepUploadPhotos.vue')['default']
     Textarea: typeof import('./components/Base/Textarea.vue')['default']

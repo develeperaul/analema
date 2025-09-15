@@ -14,12 +14,11 @@
     <div class="items">
       <button
         class="item"
-        :class="{ 'item--active': item.id === form.activeProduct?.id }"
         v-for="item in items"
         :key="item.id"
         @click="changeProduct(item)"
       >
-        {{ item.section_name }} {{ item.name }}
+        {{ item.cloud_short }}
       </button>
     </div>
     <BaseButton2
@@ -42,7 +41,7 @@
   import { ref, computed, watch } from 'vue';
   import type { NeiroForm } from './model/types';
   import type { AssessSuccessRes } from 'src/repositories/neiro-estimates';
-  import type { SearchBaseItem } from 'src/repositories/neiro-catalog';
+  import type { SearchCloudBaseItem } from 'src/repositories/neiro-catalog';
   //@ts-ignore
   import { throttle } from 'throttle-debounce';
 
@@ -61,7 +60,7 @@
   const searchText = ref('');
 
   const res = useRequest(
-    () => api.neiroCatalog.search('', searchText.value),
+    () => api.neiroCatalog.searchCloud(searchText.value),
     {
       immediate: false,
     },
@@ -71,7 +70,7 @@
 
   const items = computed(() => {
     if(!data.value) return [];
-    return data.value[0].base.slice(0, 6);
+    return data.value[0].base.slice(0, 10);
   });
 
   const sectionName = computed(() => {
@@ -101,9 +100,9 @@
     if(!item) props.form.activeProduct = null;
   }
 
-  function changeProduct(item: SearchBaseItem) {
+  function changeProduct(item: SearchCloudBaseItem) {
     props.form.activeProduct = item;
-    searchText.value = item.section_name + ' ' + item.name;
+    searchText.value = item.cloud_long;
   }
 
   function next() {
