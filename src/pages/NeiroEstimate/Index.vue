@@ -59,6 +59,7 @@
       </VForm>
     </div>
     <ModalAssessLoading v-model="showedAssessProccess" />
+    <ModalUnknownResult v-model="showedUnknownResult" />
   </div>
 </template>
 
@@ -74,6 +75,7 @@
   import StepCoinForm from 'src/components/NeiroEstimate/StepCoinForm.vue';
   import StepResult from 'src/components/NeiroEstimate/StepResult.vue';
   import ModalAssessLoading from 'src/components/NeiroEstimate/ModalAssessLoading.vue';
+  import ModalUnknownResult from 'src/components/NeiroEstimate/ModalUnknownResult.vue';
   import { Form as VForm } from 'vee-validate';
   import type { NeiroForm } from 'src/components/NeiroEstimate/model/types';
   import type { AssessSuccessRes, EstimateCreateRes } from 'src/repositories/neiro-estimates';
@@ -93,6 +95,7 @@
   const previewsSteps: (typeof steps[number])[] = [];
   const currentStep = ref<typeof steps[number]>('upload-photos');
   const showedAssessProccess = ref(false);
+  const showedUnknownResult = ref(false);
   const assessmentRes = ref<AssessSuccessRes | null>(null);
   const estimateCreatedRes = ref<EstimateCreateRes | null>(null);
 
@@ -106,7 +109,7 @@
     neiro_add_metall: '',
     neiro_add_brilliant: '',
     neiro_add_proba: '',
-    phone: '',
+    phone: '+7',
   });
 
   const { send: sendPhotos } = usePostRequest(
@@ -181,8 +184,12 @@
     (res) => {
       console.log(res.data);
       estimateCreatedRes.value = res.data;
-      pushPreviews(currentStep.value);
-      currentStep.value = 'result';
+      if(!res.data.price) {
+        showedUnknownResult.value = true;
+      } else {
+        pushPreviews(currentStep.value);
+        currentStep.value = 'result';
+      }
     },
     'Не удалось завершить оценку!',
   );

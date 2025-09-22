@@ -3,7 +3,7 @@ import { InjectionKey, inject } from 'vue';
 
 function initSystem() {
   return {
-    version: '1.4.1',
+    version: '1.4.2',
     googlePlayLink: 'https://play.google.com/store/apps/details?id=ru.analemma.gold',
     appStoreLink: 'https://apps.apple.com/ru/app/id1642881271',
   };

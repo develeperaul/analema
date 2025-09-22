@@ -66,6 +66,7 @@ declare module 'vue' {
     ModalRejectVideo: typeof import('./components/Estimates/ModalRejectVideo.vue')['default']
     ModalSuccess: typeof import('./components/Callback/ModalSuccess.vue')['default']
     ModalSuccessOutput: typeof import('./components/Referrals/ModalSuccessOutput.vue')['default']
+    ModalUnknownResult: typeof import('./components/NeiroEstimate/ModalUnknownResult.vue')['default']
     MyEmail: typeof import('./components/Callback/MyEmail.vue')['default']
     NavItem: typeof import('./components/Profile/NavItem.vue')['default']
     Offline: typeof import('./components/Dialog/Offline.vue')['default']

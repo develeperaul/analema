@@ -1,5 +1,5 @@
 <template>
-  <div v-if="$q.platform.is.capacitor" class="file-input" v-ripple @click="onChangeCapacitor">
+  <div v-if="$q.platform.is.android" class="file-input" v-ripple @click="onChangeCapacitor">
     <base-icon
       class="icon"
       name="add-photo"
