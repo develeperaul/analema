@@ -114,9 +114,15 @@ watch(value, (val) => {
     @apply tw-rounded-20 tw-bg-[#F6F6F6] tw-text-t1 tw-px-5 tw-pt-5 tw-w-full tw-outline-none tw-pr-10;
     height: 56px;
   }
-  input::placeholder {
-    @apply tw-text-t1 tw-text-gray tw-opacity-0;
+
+  .input::placeholder {
+    color: transparent;
+    @apply tw-text-t1;
   }
+  .input:focus::placeholder {
+    @apply tw-text-gray;
+  }
+
   .input__wrapper {
     @apply tw-relative;
     input:focus + label,
