@@ -18,9 +18,9 @@
             <NavItem class="favorites" icon="heart-2" text="Избранное" tag="a" :href="href" @click="navigate" />
           </router-link>
 
-          <router-link :to="{ name: 'referrals.index' }" custom v-slot="{ href, navigate }">
+          <!-- <router-link :to="{ name: 'referrals.index' }" custom v-slot="{ href, navigate }">
             <NavItem class="favorites" icon="chain-3" text="Реферальная программа" tag="a" :href="href" @click="navigate" />
-          </router-link>
+          </router-link> -->
           <router-link :to="{ name: 'profile.notifications' }" custom v-slot="{ href, navigate }">
             <NavItem icon="notification" text="Push-уведомления" tag="a" :href="href" @click="navigate" />
           </router-link>
