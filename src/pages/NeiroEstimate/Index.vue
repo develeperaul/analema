@@ -53,6 +53,7 @@
             v-else-if="currentStep === 'result' || currentStep === 'coin-res'"
             :id="estimateCreatedRes!.id.toString()"
             :coinStep="currentStep === 'coin-res'"
+            :hideActions="form.phone === ''"
             @show:coinForm="pushPreviews('coin-res'); currentStep = 'coin-form'"
           />
         </Transition>
