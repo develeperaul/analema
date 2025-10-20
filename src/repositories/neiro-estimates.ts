@@ -34,6 +34,7 @@ export default function(http: AxiosInstance) {
 export interface EstimateFinishBody {
   id: string | number,
   next_step: EstimateNextStep,
+  comment?: string,
 }
 
 export type EstimateNextStep = '1' | '2' | '3';

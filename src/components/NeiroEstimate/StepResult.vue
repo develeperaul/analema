@@ -26,7 +26,7 @@
         <GalleryUploaded :items="data.gallery" />
       </div>
     </div>
-    <div class="actions" v-if="data.price">
+    <div class="actions" v-if="!hideActions && data.price">
       <BaseButton
         class="tw-mb-3"
         text="Я согласен"
@@ -48,14 +48,11 @@
       />
     </div>
     <ModalSuccess v-model="showedSuccess" :estimateId="id" @close="showedSuccess = false" />
-    <ModalReject
+    <ModalOfferPrice
       v-model="showedReject"
       :loading="loading"
-      @accept:video="onAction('2')"
-      @reject:video="onAction('3')"
+      @ok="onAction('2', $event)"
     />
-    <ModalAcceptVideo v-model="showedAcceptVideo" @close="showedAcceptVideo = false" />
-    <ModalRejectVideo v-model="showedRejectVideo" @close="showedRejectVideo = false" />
     <q-inner-loading :showing="estimateRes.loading.value" />
   </div>
 </template>
@@ -64,19 +61,17 @@
   import { useRouter } from 'vue-router';
   import useRequest from 'src/composables/useRequest';
   import useDataOrAlert from 'src/composables/useDataOrAlert';
-  import ToolbarColored from 'src/components/LayoutParts/ToolbarColored.vue';
   import GalleryUploaded from 'src/components/GalleryUploaded/index.vue';
   import usePostRequest from 'src/composables/usePostRequest';
   import ModalSuccess from 'src/components/Estimates/ModalSuccess.vue';
-  import ModalReject from 'src/components/Estimates/ModalReject.vue';
-  import ModalAcceptVideo from 'src/components/Estimates/ModalAcceptVideo.vue';
-  import ModalRejectVideo from 'src/components/Estimates/ModalRejectVideo.vue';
+  import ModalOfferPrice from 'src/components/Estimates/ModalOfferPrice.vue';
   import RobotMessage from './RobotMessage.vue';
   import type { EstimateNextStep } from 'src/repositories/neiro-estimates';
 
   const props = defineProps<{
     id: string,
     coinStep: boolean,
+    hideActions: boolean,
   }>();
 
   const emit = defineEmits<{
@@ -92,34 +87,29 @@
   const data = computed(() => estimateRes.data.value?.[0] ?? null);
 
   const activeEvent = ref<EstimateNextStep | null>(null);
+  const comment = ref('');
 
   const { loading, send } = usePostRequest(
     api.neiroEstimates.finish,
     () => ({
       id: props.id,
       next_step: activeEvent.value!,
+      ...(activeEvent.value === '2' ? { comment: comment.value } : {}),
     }),
     () => {
-      if(activeEvent.value === '1') {
-        showedSuccess.value = true;
-      } else if(activeEvent.value === '2') {
-        showedAcceptVideo.value = true;
-      } else {
-        showedRejectVideo.value = true;
-      }
+      showedSuccess.value = true;
     },
     'Не удалось выполнить действие.',
   );
 
-  function onAction(event: EstimateNextStep) {
+  function onAction(event: EstimateNextStep, text?: string) {
     activeEvent.value = event;
+    if(text) comment.value = text;
     send();
   }
 
   const showedSuccess = ref(false);
   const showedReject = ref(false);
-  const showedAcceptVideo = ref(false);
-  const showedRejectVideo = ref(false);
 
   const {
     data: robotMeesage,
