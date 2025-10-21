@@ -26,7 +26,7 @@
         <GalleryUploaded :items="data.gallery" />
       </div>
     </div>
-    <div class="actions" v-if="!hideActions && data.price">
+    <div class="actions" v-if="data.price">
       <BaseButton
         class="tw-mb-3"
         text="Я согласен"
@@ -71,7 +71,6 @@
   const props = defineProps<{
     id: string,
     coinStep: boolean,
-    hideActions: boolean,
   }>();
 
   const emit = defineEmits<{
