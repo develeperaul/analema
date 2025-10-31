@@ -31,7 +31,6 @@
   import BaseButton from 'src/components/Base/Button2.vue';
   import useRepositories from 'src/composables/useRepositories';
   import useRequest from 'src/composables/useRequest';
-  import { useAuthStore } from 'src/stores/auth';
   import type { NeiroForm } from './model/types';
   import type { AssessSuccessRes } from 'src/repositories/neiro-estimates';
   import { schema } from './model/schema';
@@ -46,8 +45,6 @@
   const emit = defineEmits<{
     (event: 'estimate'): void,
   }>();
-
-  const authStore = useAuthStore();
 
   const api = useRepositories();
 

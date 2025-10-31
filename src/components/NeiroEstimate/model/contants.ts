@@ -13,3 +13,5 @@ export const metalTypes = [
 ];
 
 export const unknownMetal = 'Другое';
+
+export const weightArticleHref = 'https://analemmatrade.ru/novosti/kak-uznat-ves-yuvelirnogo-izdeliya-v-domashnikh-usloviyakh/';

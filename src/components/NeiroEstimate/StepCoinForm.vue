@@ -21,7 +21,12 @@
         :rules="schema.neiro_add_metall"
       />
     </div>
-    <div class="h2 tw-mb-3">Введите вес монеты</div>
+    <div class="h2 tw-mb-3 tw-flex tw-gap-3 tw-items-center">
+      <span>Введите вес монеты</span>
+      <a class="tw-w-6 tw-h-6" :href="weightArticleHref" target="_blank">
+        <BaseIcon name="help" fit />
+      </a>
+    </div>
     <BaseInput
       class="tw-mb-6"
       label="Вес в граммах"
@@ -40,8 +45,7 @@
   import RobotMessage from './RobotMessage.vue';
   import BaseSelect from 'src/components/Base/Select.vue';
   import useRepositories from 'src/composables/useRepositories';
-  import { useAuthStore } from 'src/stores/auth';
-  import { metalTypes, unknownMetal } from './model/contants';
+  import { metalTypes, unknownMetal, weightArticleHref } from './model/contants';
   import type { NeiroForm } from './model/types';
   import { schema } from './model/schema';
 
