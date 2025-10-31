@@ -35,9 +35,11 @@ export interface EstimateFinishBody {
   id: string | number,
   next_step: EstimateNextStep,
   comment?: string,
+  summ?: string,
+  phone?: string,
 }
 
-export type EstimateNextStep = '1' | '2' | '3';
+export type EstimateNextStep = '1' | '2' | '3' | '4';
 
 export interface EstimateCreateBody {
   files: number[],
@@ -54,14 +56,11 @@ export interface EstimateCreateBody2 {
   neiro_el: string,
   neiro_add_type: string,
   neiro_add_value: string,
-  recall: string,
-  rewhatsapp: string,
   free_flow: string,
   images: string[],
   neiro_add_metall: string,
   neiro_add_brilliant: string,
   neiro_add_proba: string,
-  phone?: string,
 }
 
 export interface EstimateCreateRes {

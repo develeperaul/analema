@@ -103,13 +103,10 @@
     uploadedFiles: [],
     activeProduct: null,
     freeFlow: '',
-    recall: '',
-    rewhatsapp: '',
     neiro_add_value: '',
     neiro_add_metall: '',
     neiro_add_brilliant: '',
     neiro_add_proba: '',
-    phone: '+7',
   });
 
   const { send: sendPhotos } = usePostRequest(
@@ -172,13 +169,10 @@
         free_flow,
         neiro_el,
         neiro_add_value: form.neiro_add_value,
-        recall: form.recall,
-        rewhatsapp: form.rewhatsapp,
         neiro_add_type,
         neiro_add_metall: form.neiro_add_metall,
         neiro_add_brilliant: form.neiro_add_brilliant,
         neiro_add_proba: form.neiro_add_proba,
-        phone: form.phone,
       }
     },
     (res) => {
