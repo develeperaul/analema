@@ -29,14 +29,14 @@
     <div class="actions" v-if="data.price">
       <BaseButton
         class="tw-mb-3"
-        text="Я согласен"
+        text="Продать"
         :disabled="loading"
-        @click="onAction('1')"
+        @click="finish"
       />
       <BaseButton
         border
         class="tw-mb-3"
-        text="Хочу поторговаться"
+        text="Не продаю"
         :disabled="loading"
         @click="showedReject = true"
       />
@@ -51,22 +51,29 @@
     <ModalOfferPrice
       v-model="showedReject"
       :loading="loading"
-      @ok="onAction('2', $event)"
+      @ok="onActionOffer($event)"
+    />
+    <ModalGuestFinish
+      v-model="showedGuestFinish"
+      :loading="loading"
+      @ok="onActionGuest($event)"
     />
     <q-inner-loading :showing="estimateRes.loading.value" />
   </div>
 </template>
 
 <script setup lang="ts">
-  import { useRouter } from 'vue-router';
   import useRequest from 'src/composables/useRequest';
   import useDataOrAlert from 'src/composables/useDataOrAlert';
   import GalleryUploaded from 'src/components/GalleryUploaded/index.vue';
   import usePostRequest from 'src/composables/usePostRequest';
+  import ModalGuestFinish from 'src/components/NeiroEstimate/ModalGuestFinish.vue';
   import ModalSuccess from 'src/components/Estimates/ModalSuccess.vue';
-  import ModalOfferPrice from 'src/components/Estimates/ModalOfferPrice.vue';
+  import ModalOfferPrice, { Form as OfferPayload } from 'src/components/Estimates/ModalOfferPrice.vue';
   import RobotMessage from './RobotMessage.vue';
   import type { EstimateNextStep } from 'src/repositories/neiro-estimates';
+  import { reactive, ref } from 'vue';
+  import { useAuthStore } from 'src/stores/auth';
 
   const props = defineProps<{
     id: string,
@@ -77,8 +84,6 @@
     (event: 'show:coinForm'): void,
   }>();
 
-  const router = useRouter();
-
   const api = useRepositories();
   const estimateRes = useRequest(() => api.estimates.show(props.id));
   useDataOrAlert(estimateRes);
@@ -86,14 +91,19 @@
   const data = computed(() => estimateRes.data.value?.[0] ?? null);
 
   const activeEvent = ref<EstimateNextStep | null>(null);
-  const comment = ref('');
+  const offerPayload: Omit<OfferPayload, 'phone'> = reactive({
+    summ: '',
+    comment: '',
+  });
+  const guestPhone = ref('');
 
   const { loading, send } = usePostRequest(
     api.neiroEstimates.finish,
     () => ({
       id: props.id,
       next_step: activeEvent.value!,
-      ...(activeEvent.value === '2' ? { comment: comment.value } : {}),
+      ...(activeEvent.value === '4' ? offerPayload : {}),
+      ...(guestPhone.value !== '' ? { phone: guestPhone.value } : {}),
     }),
     () => {
       showedSuccess.value = true;
@@ -101,14 +111,34 @@
     'Не удалось выполнить действие.',
   );
 
-  function onAction(event: EstimateNextStep, text?: string) {
+  function onAction(event: EstimateNextStep) {
     activeEvent.value = event;
-    if(text) comment.value = text;
     send();
   }
 
+  function onActionOffer(payload: OfferPayload) {
+    const { phone, ...data } = payload;
+    guestPhone.value = phone;
+    Object.assign(offerPayload, data);
+    onAction('4');
+  }
+
+  function onActionGuest(phone: string) {
+    guestPhone.value = phone;
+    onAction('3');
+  }
+
+  const authStore = useAuthStore();
+
   const showedSuccess = ref(false);
   const showedReject = ref(false);
+  const showedGuestFinish = ref(false);
+
+  function finish() {
+    authStore.user
+      ? onAction('3')
+      : showedGuestFinish.value = true;
+  }
 
   const {
     data: robotMeesage,

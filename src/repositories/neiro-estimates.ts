@@ -35,9 +35,11 @@ export interface EstimateFinishBody {
   id: string | number,
   next_step: EstimateNextStep,
   comment?: string,
+  summ?: string,
+  phone?: string,
 }
 
-export type EstimateNextStep = '1' | '2' | '3';
+export type EstimateNextStep = '1' | '2' | '3' | '4';
 
 export interface EstimateCreateBody {
   files: number[],
