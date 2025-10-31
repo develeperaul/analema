@@ -63,32 +63,6 @@
       </div>
       <div v-if="brilErr" class="tw-text-t2 tw-text-negative tw-mt-1">{{ brilErr }}</div>
     </template>
-    <div class="tw-mt-6">
-      <BaseCheckbox
-        class="tw-mb-4"
-        label="Перезвоните мне после оценки"
-        v-model="form.recall"
-        checkedValue="Да"
-        uncheckedValue=""
-      />
-      <BaseCheckbox
-        label="Свяжитесь со мной по WhatsApp после оценки"
-        v-model="form.rewhatsapp"
-        checkedValue="Да"
-        uncheckedValue=""
-      />
-    </div>
-    <BaseInput
-      v-if="!authStore.user"
-      class="tw-mt-6"
-      label="Номер телефона"
-      name="phone"
-      type="tel"
-      maska="+7 (###)-###-##-##"
-      placeholder="+7 (000)-000-00-00"
-      v-model="form.phone"
-      :rules="schema.phone"
-    />
     <BaseButton class="tw-mt-8" :disabled="loading" @click="emit('estimate')">
       Оценить
     </BaseButton>
@@ -98,7 +72,6 @@
 <script setup lang="ts">
   import BaseButton from 'src/components/Base/Button2.vue';
   import RobotMessage from './RobotMessage.vue';
-  import BaseCheckbox from 'src/components/Base/Checkbox.vue';
   import BaseRadio from 'src/components/Base/Radio.vue';
   import BaseSelect from 'src/components/Base/Select.vue';
   import { useAuthStore } from 'src/stores/auth';

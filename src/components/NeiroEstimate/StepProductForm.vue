@@ -20,32 +20,6 @@
       v-model="form.neiro_add_value"
       :error="addVErr"
     />
-    <div>
-      <BaseCheckbox
-        class="tw-mb-4"
-        label="Перезвоните мне после оценки"
-        v-model="form.recall"
-        checkedValue="Да"
-        uncheckedValue=""
-      />
-      <BaseCheckbox
-        label="Свяжитесь со мной по WhatsApp после оценки"
-        v-model="form.rewhatsapp"
-        checkedValue="Да"
-        uncheckedValue=""
-      />
-    </div>
-    <BaseInput
-      v-if="!authStore.user"
-      class="tw-mt-6"
-      label="Номер телефона"
-      name="phone"
-      type="tel"
-      maska="+7 (###)-###-##-##"
-      placeholder="+7 (000)-000-00-00"
-      v-model="form.phone"
-      :rules="schema.phone"
-    />
     <BaseButton class="tw-mt-8" :disabled="loading" @click="emit('estimate')">
       Оценить
     </BaseButton>
@@ -55,7 +29,6 @@
 <script setup lang="ts">
   import RobotMessage from './RobotMessage.vue';
   import BaseButton from 'src/components/Base/Button2.vue';
-  import BaseCheckbox from 'src/components/Base/Checkbox.vue';
   import useRepositories from 'src/composables/useRepositories';
   import useRequest from 'src/composables/useRequest';
   import { useAuthStore } from 'src/stores/auth';
