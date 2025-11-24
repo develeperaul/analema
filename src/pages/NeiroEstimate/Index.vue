@@ -1,5 +1,5 @@
 <template>
-  <div class="page-pb">
+  <div class="page-pb tw-bg-white">
     <ToolbarColored class="purple-gr tw-mb-6" title="Онлайн-оценка" :onBack="onBack" />
     <div class="wrapper">
       <VForm ref="formRef" as="div">
