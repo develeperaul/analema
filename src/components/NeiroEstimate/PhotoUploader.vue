@@ -220,6 +220,7 @@
     position: relative;
     border-radius: 20px;
     overflow: hidden;
+    z-index: 1;
 
     &--big {
       width: 200px;
