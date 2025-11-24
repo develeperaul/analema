@@ -41,13 +41,13 @@
           <template v-if="data.price">
             <BaseButton
               class="tw-mb-3"
-              text="Я согласен"
+              text="Продать"
               :disabled="loading"
-              @click="onAction('1')"
+              @click="onAction('3')"
             />
             <BaseButton
               border
-              text="Хочу поторговаться"
+              text="Не продаю"
               :disabled="loading"
               @click="showedReject = true"
             />
@@ -56,14 +56,11 @@
       </div>
     </div>
     <ModalSuccess v-model="showedSuccess" :estimateId="id" />
-    <ModalReject
+    <ModalOfferPrice
       v-model="showedReject"
       :loading="loading"
-      @accept:video="onAction('2')"
-      @reject:video="onAction('3')"
+      @ok="onActionOffer($event)"
     />
-    <ModalAcceptVideo v-model="showedAcceptVideo" />
-    <ModalRejectVideo v-model="showedRejectVideo" />
     <q-inner-loading :showing="estimateRes.loading.value" />
   </q-page>
 </template>
@@ -75,9 +72,7 @@
   import GalleryUploaded from 'src/components/GalleryUploaded/index.vue';
   import usePostRequest from 'src/composables/usePostRequest';
   import ModalSuccess from 'src/components/Estimates/ModalSuccess.vue';
-  import ModalReject from 'src/components/Estimates/ModalReject.vue';
-  import ModalAcceptVideo from 'src/components/Estimates/ModalAcceptVideo.vue';
-  import ModalRejectVideo from 'src/components/Estimates/ModalRejectVideo.vue';
+  import ModalOfferPrice, { Form as OfferPayload } from 'src/components/Estimates/ModalOfferPrice.vue';
   import type { EstimateNextStep } from 'src/repositories/neiro-estimates';
 
   const props = defineProps<{
@@ -93,6 +88,10 @@
   const data = computed(() => estimateRes.data.value?.[0] ?? null);
 
   const activeEvent = ref<EstimateNextStep | null>(null);
+  const offerPayload: Omit<OfferPayload, 'phone'> = reactive({
+    summ: '',
+    comment: '',
+  });
 
   const { loading: loadingCancel, send: cancel } = usePostRequest(
     api.estimates.sendEvent,
@@ -106,15 +105,10 @@
     () => ({
       id: props.id,
       next_step: activeEvent.value!,
+      ...(activeEvent.value === '4' ? offerPayload : {}),
     }),
     () => {
-      if(activeEvent.value === '1') {
-        showedSuccess.value = true;
-      } else if(activeEvent.value === '2') {
-        showedAcceptVideo.value = true;
-      } else {
-        showedRejectVideo.value = true;
-      }
+      showedSuccess.value = true;
     },
     'Не удалось выполнить действие.',
   );
@@ -124,10 +118,14 @@
     send();
   }
 
+  function onActionOffer(payload: OfferPayload) {
+    const { phone, ...data } = payload;
+    Object.assign(offerPayload, data);
+    onAction('4');
+  }
+
   const showedSuccess = ref(false);
   const showedReject = ref(false);
-  const showedAcceptVideo = ref(false);
-  const showedRejectVideo = ref(false);
 </script>
 
 <style scoped lang="scss">
